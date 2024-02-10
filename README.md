@@ -1,15 +1,20 @@
-<h1 align="center">Hi 👋🏾, I'm Carlandra</h1>
+<h1 align="center">Hi 👋🏾, I'm Carlandra🕊️</h1>
 <h3 align="center">A dev newbie learning how to ... everything.</h3>
 <p align="left">I'm a Business Analyst at heart who fell in love with AWS technology. After I became a FinOps (Cloud Financial Mgmt) Practitioner, I decided to start learning thorugh projects while working my way through ACantril's course.</p>
 <p> Some technologies I'm currenlty  working with include ReactJS, Jamstack (JavaScript, APIs + Markup) and GraphQL. I can read code but can't write it.</p>
 
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=thedovelydev&label=Profile%20views&color=0e75b6&style=flat" alt="thedovelydev" /> </p>
 
-<p align="center"> <a href="https://twitter.com/thedovelydev" target="blank"><img src="https://img.shields.io/twitter/follow/thedovelydev?logo=twitter&style=for-the-badge" alt="thedovelydev" /></a> </p>
+- 🔭 I’m currently working on **various AWS beginner projects on YT.**
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://twitter.com/thedovelydev" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="thedovelydev" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/carlandrawilliams" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="carlandrawilliams" height="30" width="40" /></a>
+- 🌱 I’m currently learning **my way through ACantril's SA course.**
+
+- 📫 How to reach me **datanpearlz@gmail.com**
+
+- ⚡ Fun fact **I'm witty.**
+<br> </br>
+<p align="left"> <a href="https://twitter.com/thedovelydev" target="blank"><img src="https://img.shields.io/twitter/follow/thedovelydev?logo=twitter&style=for-the-badge" alt="thedovelydev" /></a> </p>
+<p align="center">
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
