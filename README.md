@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋🏾, I'm Carlandra🕊️</h1>
+<h1 align="center">Hi 👋🏾, I'm Carlandra🕊️💻</h1>
 <h3 align="center">A dev newbie learning how to ... everything.</h3>
 <p align="left">I'm a Business Analyst at heart who fell in love with AWS technology. After I became a FinOps (Cloud Financial Mgmt) Practitioner, I decided to start learning thorugh projects while working my way through ACantril's course.</p>
 <p> Some technologies I'm currenlty  working with include ReactJS, Jamstack (JavaScript, APIs + Markup) and GraphQL. I can read code but can't write it.</p>
