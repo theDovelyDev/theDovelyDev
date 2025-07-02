@@ -1,0 +1,48 @@
+name: Deploy Static Site to S3
+# Updated workflow - testing deploy-to-s3 pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Change if needed
+
+      - name: Deploy Website
+        run: |
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/ s3://www.theprojectfolder.com \
+            --delete \
+            --acl public-read \
+            --exclude "*.pdf"
+
+      - name: Upload PDFs with cache headers
+        run: |
+          find "./theprojectfolder/cloudresumechallenge/" -name "*.pdf" | while IFS= read -r file; do
+            key="${file#./theprojectfolder/cloudresumechallenge/}"
+            aws s3 cp "$file" "s3://www.theprojectfolder.com/$key" \
+              --content-type application/pdf \
+              --cache-control "no-cache, no-store, must-revalidate" \
+              --acl public-read
+          done
+
+      - name: Invalidate CloudFront Cache (All)
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E2UA1URROHIZXT \
+            --paths "/*"
+
+          aws cloudfront create-invalidation \
+            --distribution-id E2YXOTOZ4EWSMK \
+            --paths "/*"
