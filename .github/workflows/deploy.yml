@@ -43,12 +43,20 @@ jobs:
 
       - name: Upload PDFs with cache headers
         run: |
-          find "./theprojectfolder/cloudresumechallenge/frontend" -name "*.pdf" | while IFS= read -r file; do
-            key="${file# ./theprojectfolder/cloudresumechallenge/frontend}"
-            aws s3 cp "$file" "s3://www.theprojectfolder.com/$key" \
+          pdfs=$(find "./theprojectfolder/cloudresumechallenge/frontend/assets" -name "*.pdf")
+          if [ -z "$pdfs" ]; then
+            echo "No PDF files found. Skipping upload."
+            exit 0
+          fi
+      
+          echo "$pdfs" | while IFS= read -r file; do
+            echo "Uploading: $file"
+            key="${file#./theprojectfolder/cloudresumechallenge/frontend/assets/}"
+            aws s3 cp "$file" "s3://www.theprojectfolder.com/assets/$key" \
               --content-type application/pdf \
-              --cache-control "no-cache, no-store, must-revalidate" \
+              --cache-control "no-cache, no-store, must-revalidate"
           done
+          
 
       - name: Invalidate CloudFront Cache (All)
         run: |
