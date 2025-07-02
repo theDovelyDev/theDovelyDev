@@ -25,10 +25,10 @@ jobs:
       
       - name: Deploy Website
         run: |
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/ s3://www.theprojectfolder.com \
-            --delete \
-            --acl public-read \
-            --exclude "*.pdf"
+         aws s3 sync ./theprojectfolder\cloudresumechallenge/ s3://www.theprojectfolder.com \
+          --acl public-read \
+          --exclude "*.pdf"
+          --dryrun
 
       - name: Upload PDFs with cache headers
         run: |
