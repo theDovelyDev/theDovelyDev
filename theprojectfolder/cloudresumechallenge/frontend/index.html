@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--- Basic Page Needs 
+    ================================================================================ -->
+    <meta charset="UTF-8">
+    <title>Carlandra Williams</title>
+    <meta name="description" content="Portfolio Website of Carlandra Williams">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link rel="stylesheet" href="./mediaqueries/mediaqueries.css" type="text/css">
+    <script src="./js/script.js" type="text/json"></script>
+    <script src="https://kit.fontawesome.com/cc0438124d.js" crossorigin="anonymous"></script>
+
+    <!-- Mobile Specific Metas 
+    ================================================================================ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="" />
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-------------------PAGE NAVIGATION---------------->
+    <nav id="desktop-nav">
+        <div class="logo"><img src="./images/project_folder logo.jpg" class="desktop-icon" /></div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#resume">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-------------------MOBILE NAV--------------------->
+    <nav id="hamburger-nav">
+        <div class="logo">
+            <img src="./images/theprojectfolder_logo.jpg" class="logo-icon" />
+        </div>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#resume" onclick="toggleMenu()">Resume</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    <!-------------------HERO SECTION------------------->
+    <section id="profile">
+        <div class="section__pic-container">
+            <img src="./images/profile_pic.jpg" alt="Carlandra profile_pic" />
+        </div>
+        <div class="section__text">
+            <h1 class="title">Carlandra Williams</h1>
+            <h2>
+                <p class="section__text__p1">Hello! I'm a
+                <div class="inner-headings">
+                    <span>
+                        <!--<p class="section__text__p2"></p>--> Sr. Cloud FinOps Analyst<br />
+                        <!--<p class="section__text__p2"></p>--> Sr. IT Business Analyst<br />
+                        <!--<p class="section__text__p2"></p>--> Business Systems Analyst<br />
+                        <!--<p class="section__text__p2"></p>--> Program Coordinator<br />
+                    </span>
+                </div>
+                </p>
+            </h2>
+            <div class="btn-container">
+                <button class="btn btn-color-2"
+                    onclick="window.open ('https://s3.us-east-1.amazonaws.com/www.theprojectfolder.com/assets/Carlandra+Williams+-+Sr.+FinOps+Analyst.pdf')">Download
+                    Resume
+                    <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact Info</button>
+            </div>
+            <div id="socials-container">
+                <i class="fa-brands fa-linkedin fa-2xl social-icon" style="color: #0077b5;"
+                    onclick="location.href='https://www.linkedin.com/in/carlandrawilliams'"></i>
+                <i class="fa-brands fa-github fa-2xl social-icon" style="color: #000000;"
+                    onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'"></i>
+            </div>
+        </div>
+    </section>
+    <!-------------------ABOUT ME SECTION--------------->
+    <section id="about">
+        <p class="section__text__p1">Get to Know More</p>
+        <h1 class="title">About Me</h1>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="./images/myavatar.png" alt="Profile picture" class="about-pic" />
+            </div>
+            <div class="about-details-container">
+                <div class="about-text-container">
+                    <p><strong>I bring a unique blend of IT Operations experience and FinOps certification to the table,
+                            with a focus on
+                            governance
+                            that scales. Whether it’s a fast-moving startup or a maturing tech organization, I help
+                            teams align cloud
+                            infrastructure, cost awareness, and policy-driven accountability. I thrive in environments
+                            where innovation
+                            meets
+                            intention—building systems that grow without chaos, and lead without compromise.</strong>
+                    </p>
+                </div>
+                <div class="about-containers">
+                    <div class="details-container">
+                        <i class="fa-solid fa-id-badge fa-xl" style="color: #000000;"></i>
+                        <br />
+                        <h2>Experience</h2>
+                        <p><span class="num">4</span> years<br /> Cloud FinOps Analysis</p>
+                        <br />
+                        <p><span class="num">5</span> years<br />Project Management</p>
+                        <br />
+                        <p><span class="num">10</span> + years<br />Business Analytics</p>
+                    </div>
+                    <div class="details-container">
+                        <i class="fa-sharp fa-solid fa-award fa-xl" alt="ribbon icon"></i>
+                        <h2>Certifications</h2>
+                        <img src="./images/aws-certified-cloud-practitioner.png" alt="aws ccp cert" class="cert-icon"
+                            onclick="location.href='https://www.credly.com/badges/d6a02cba-eeed-4a97-bcef-b2b4dc82e1f7/public_url'">
+                        <!--<div class="cert__container">
+                            <p class="cert__text">Earners of this certification have a fundamental understanding of IT
+                                services and their uses in the AWS Cloud.</p></div> -->
+                        <img src="./images/finops-certified-practitioner.png" alt="focp cert" class="cert-icon"
+                            onclick="location.href='https://www.credly.com/badges/c080a1de-46d0-432c-9447-202ec56bf5d4/public_url'">
+                        <!-- <div class="cert__container">
+                            <p class="cert__text"> These
+                                professionals make evidence-based decisions in near-real time to manage cloud use and
+                                increase business value.</p></div> -->
+                        <img src="./images/finops-certified-engineer.png" alt="foce cert" class="cert-icon"
+                            onclick="location.href='https://www.credly.com/badges/b5c76025-c5ae-4984-9488-d4b34e03c316/public_url'">
+                        <!-- <div class="cert__container">
+                            <p class="cert__text"> These professionals make data-driven, cost-informed decisions throughout the development lifecycle to get the most value
+                            from cloud.</p></div> -->
+                        <img src="./images/finops-certified-focus-analyst.png" alt="focfa cert" class="cert-icon1"
+                            onclick="location.href='https://www.credly.com/badges/4ea65c75-3dc3-45aa-8ecf-d6a12f61b7c2/public_url'">
+                        <br>
+                        <div class="verify-line">
+                            <p> Verify each credential by clicking the badge.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-interest-text-container">
+                    <p>
+                        My other interests: Cloud Engineering, Cybersecurity, Governance & Compliance, Data Engineering,
+                        IAM
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-------------------EXPERIENCE--------------------->
+    <section id="resume">
+        <p class="section__text__p1">Explore My</p>
+        <h1 class="title">Experience</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container">
+                    <h3 class="experience-sub-title">Cloud Cost Management </h3>
+                    <div class="article-container">
+                        <article>
+                            <i class="fa-solid fa-tags fa-xl icon"></i>
+                            <div>
+                                <h3>FinOps Practice Management</h3>
+                                <p>Tagging, Cloud Policies & Governance</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-file-invoice-dollar fa-xl icon"></i>
+                            <div>
+                                <h3>Invoicing & Chargeback</h3>
+                                <p>96% Cloud Cost Allocation Budgeting, Showback & Chargeback</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-gauge-high fa-xl icon"></i>
+                            <div>
+                                <h3>Cloud Efficiency</h3>
+                                <p>Rightsizing, Right-timing & Optimization recommendations</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-users-rectangle fa-xl icon"></i>
+                            <div>
+                                <h3>FinOps Tool Implementation & Training</h3>
+                                <p>Apptio Cloudability Administrator</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-umbrella fa-xl icon"></i>
+                            <div>
+                                <h3>Cloud Budgeting & Forecasting</h3>
+                                <p>Pre-migration application cost forecasting</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-chart-pie fa-xl icon"></i>
+                            <div>
+                                <h3>Reporting & Analytics</h3>
+                                <p>KPIs creation & Scorecards</p>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+                <div class="details-container">
+                    <h3 class="experience-sub-title">Business Analytics</h3>
+                    <div class="article-container">
+                        <article>
+                            <i class="fa-solid fa-arrows-spin fa-xl"></i>
+                            <div>
+                                <h3>Process Improvement</h3>
+                                <p>45% improvement in process efficiency</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-object-group fa-xl"></i>
+                            <div>
+                                <h3>Reporting Solutions</h3>
+                                <p>Designed & built actionable PowerBI dashabords</p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-people-roof fa-xl"></i>
+                            <div>
+                                <h3>Project & Program Management</h3>
+                                <p>Managed multi-year IT application sunrises & 25+ National security installation
+                                    projects </p>
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-person-chalkboard fa-xl"></i>
+                            <div>
+                                <h3>Data Visualization & Presentations</h3>
+                                <p>Statewise voter engagement program with 16k+ unique voters reached</p>
+                            </div>
+                        </article>
+                        <!-- <article>
+                            <i class="fa-solid fa-circle-check fa-xl"></i>
+                            <div>
+                                <h3>Business Insights</h3>
+                                <p>KPIs, Unit Scorecards</p>
+                            </div>
+                        </article>-->
+                        <article>
+                            <i class="fa-solid fa-people-arrows fa-lg"></i>
+                            <div>
+                                <h3>Stakeholder Relationship Management</h3>
+                                <!--<p>Pre-migration application cost forecasting</p>-->
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="details-container">
+                    <h3 class="experience-sub-title">IT Operations</h3>
+                    <div class="article-container">
+                        <article>
+                            <i class="fa-solid fa-building-circle-exclamation fa-xl"></i>
+                            <div>
+                                <h3>Vulnerability Management</h3>
+                                <!--<p></p>-->
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-microscope fa-xl"></i>
+                            <div>
+                                <h3>Systems Analysis & Solution Recommendations</h3>
+                                <!--<p></p>-->
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-list-ol fa-xl"></i>
+                            <div>
+                                <h3>Requirements Elicitation & Documentation</h3>
+                                <!--<p></p>-->
+                            </div>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-sliders fa-xl"></i>
+                            <div>
+                                <h3>Implementaion & Evaluation</h3>
+                                <!--<p>/p>-->
+                            </div>
+                        </article>
+                        <!-- <article>
+                                            <i class="fa-solid fa-circle-check fa-xl"></i>
+                                            <div>
+                                                <h3>Business Insights</h3>
+                                                <p>KPIs, Unit Scorecards</p>
+                                            </div>
+                                        </article>
+                        <article>
+                            <i class="fa-solid fa-circle-check fa-xl"></i>
+                            <div>
+                                <h3>Stakeholder Relationship Management</h3>
+                                <p>Pre-migration application cost forecasting</p>-->
+                    </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-------------------PROJECTS----------------------->
+    <section id="projects">
+        <p class="section__text__p1">Recent</p>
+        <h1 class="title">Projects</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="./images/cloud-resume_challenge.png" alt="Project 1" class="project-img" />
+                    </div>
+                    <h2 class="experience-sub-title project-title">Cloud Resume Challenge</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 projct-btn"
+                            onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'">Github</button>
+                        <button class="btn btn-color-2 projct-btn"
+                            onclick="location.href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'">Original
+                            challenge</button>
+                        <button class="btn btn-color-2 projct-btn" onclick="location.href=''">Blog</button>
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="./images/cloud-cost-optimization.jpg" alt="Project 2" class="project-img" />
+                    </div>
+                    <h2 class="experience-sub-title project-title">Cloud Cost Optimization</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 projct-btn"
+                            onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'">Github</button>
+                        <!-- <button class="btn btn-color-2 projct-btn"
+                        onclick="location.href=''">Live Demo or link to YT tutorial</button>-->
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="./images/web-application.jpg" alt="Project 3" class="project-img" />
+                    </div>
+                    <h2 class="experience-sub-title project-title">Project: TBD</h2>
+                    <p>This project is currently in the planning phase.</p>
+
+                    <!--<div class="btn-container">
+                        <button class="btn btn-color-2 projct-btn"
+                            onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'">Github</button>-->
+                    <!-- <button class="btn btn-color-2 projct-btn"
+                        onclick="location.href=''">Live Demo or link to YT tutorial</button>-->
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-------------------CONTACT ME--------------------->
+    <section id="contact">
+        <h2 class="title">Let's Connect</h2>
+        <div class="contact-info-upper-container">
+            <div class="contact-info-container">
+                <i class="fa-solid fa-square-envelope fa-2xl icon contact-icon"></i>
+                <p><a href="mailto:carlandra.williams@gmail.com">Email Me Directly</a></p>
+            </div>
+            <div class="contact-info-container">
+                <img src="./images/calendly_icon.png" class="calendar-icon contact-icon">
+                <p><a href="https://calendly.com/carlandrawilliams/30min">Schedule a Meeting</a>
+                </p>
+            </div>
+            <div class="contact-info-container">
+                <i class="fa-brands fa-linkedin fa-2xl icon contact-icon" style="color: #0077b5;"></i>
+                <p><a href="https://www.linkedin.com/in/carlandrawilliams'">Connect on LinkedIn</a>
+                </p>
+            </div>
+        </div>
+        <!---------------VISITOR COUNTER--------------------->
+        <div id="visitor-container">
+            <div class="visit-counter">
+                <h4> Visitor #<span id="visitCounter"></span>
+                </h4>
+            </div>
+        </div>
+    </section>
+    <!-------------------FOOTER------------------------->
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#resume">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p>Copyright &#169; 2024 Carlandra Williams. All Rights Reserved.</p>
+        <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up" style="color:white"></i></a>
+    </footer>
+</body>
