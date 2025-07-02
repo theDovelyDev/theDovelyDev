@@ -20,6 +20,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1  # Change if needed
 
+      - name: Debug AWS Identity
+        run: aws sts get-caller-identity
+      
       - name: Deploy Website
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/ s3://www.theprojectfolder.com \
