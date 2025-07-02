@@ -25,28 +25,28 @@ jobs:
       
       - name: Pre-Sync Safety Check
         run: |
-          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/)" ]; then
+          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/frontend)" ]; then
             echo "Local folder is empty. Aborting sync to prevent deletion."
             exit 1
           fi
       - name: Dry Run Sync Preview
         run: |
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
             --acl public-read \
             --exclude "*.pdf" \
             --dryrun
         
       - name: Deploy Website (Safe Upload)
         run: |
-          aws s3 sync theprojectfolder/cloudresumechallenge/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
             --acl public-read \
             --exclude "*.pdf"
       
 
       - name: Upload PDFs with cache headers
         run: |
-          find "theprojectfolder/cloudresumechallenge/" -name "*.pdf" | while IFS= read -r file; do
-            key="${file# theprojectfolder/cloudresumechallenge/}"
+          find "./theprojectfolder/cloudresumechallenge/frontend" -name "*.pdf" | while IFS= read -r file; do
+            key="${file# ./theprojectfolder/cloudresumechallenge/frontend}"
             aws s3 cp "$file" "s3://www.theprojectfolder.com/$key" \
               --content-type application/pdf \
               --cache-control "no-cache, no-store, must-revalidate" \
