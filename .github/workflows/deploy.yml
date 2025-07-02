@@ -32,14 +32,12 @@ jobs:
       - name: Dry Run Sync Preview
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
-            --acl public-read \
             --exclude "*.pdf" \
             --dryrun
         
       - name: Deploy Website (Safe Upload)
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
-            --acl public-read \
             --exclude "*.pdf"
       
 
@@ -50,7 +48,6 @@ jobs:
             aws s3 cp "$file" "s3://www.theprojectfolder.com/$key" \
               --content-type application/pdf \
               --cache-control "no-cache, no-store, must-revalidate" \
-              --acl public-read
           done
 
       - name: Invalidate CloudFront Cache (All)
