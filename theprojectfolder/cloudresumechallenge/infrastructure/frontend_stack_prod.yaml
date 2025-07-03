@@ -1,0 +1,100 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Production stack for static website with existing resources (excluding Route53)
+
+Resources:
+
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: www.theprojectfolder.com
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+      Tags:
+        - Key: project
+          Value: theprojectfolder
+        - Key: purpose
+          Value: frontend-stack-prod
+
+  RootRedirectBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: theprojectfolder.com
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: www.theprojectfolder.com
+      Tags:
+        - Key: project
+          Value: theprojectfolder
+        - Key: purpose
+          Value: frontend-stack-prod
+
+  LoggingBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: my-site-access-logs
+      Tags:
+        - Key: project
+          Value: theprojectfolder
+        - Key: purpose
+          Value: frontend-stack-prod
+
+  CloudFrontDistributionMain:
+    Type: AWS::CloudFront::Distribution
+    DeletionPolicy: Retain
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Aliases:
+          - www.theprojectfolder.com
+        Origins:
+          - DomainName: www.theprojectfolder.com.s3-website-us-east-1.amazonaws.com
+            Id: S3Origin1
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin1
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        DefaultRootObject: index.html
+        Comment: main distribution
+
+  CloudFrontDistributionRedirect:
+    Type: AWS::CloudFront::Distribution
+    DeletionPolicy: Retain
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Aliases:
+          - theprojectfolder.com
+        Origins:
+          - DomainName: theprojectfolder.com.s3-website-us-east-1.amazonaws.com
+            Id: S3Origin2
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin2
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        DefaultRootObject: index.html
+        Comment: redirect distribution
+  
+Outputs:
+  WebsiteURL:
+    Value: !Sub "https://www.theprojectfolder.com"
+    Description: URL of the static website
