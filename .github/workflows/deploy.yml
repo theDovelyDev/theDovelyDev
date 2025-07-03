@@ -29,6 +29,7 @@ jobs:
             echo "Local folder is empty. Aborting sync to prevent deletion."
             exit 1
           fi
+      
       - name: Dry Run Sync Preview
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
