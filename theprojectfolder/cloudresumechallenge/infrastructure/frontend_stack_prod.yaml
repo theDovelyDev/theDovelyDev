@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Production stack for static website with CloudFront and Route 53
+## final version
 
 Resources:
 
