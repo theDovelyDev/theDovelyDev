@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Production stack for static website with existing resources (excluding Route53)
+Description: Production stack for static website with CloudFront and Route 53
 
 Resources:
 
@@ -12,10 +13,9 @@ Resources:
         IndexDocument: index.html
         ErrorDocument: 404.html
       Tags:
-        - Key: project
-          Value: theprojectfolder
-        - Key: purpose
-          Value: frontend-stack-prod
+      LoggingConfiguration:
+        DestinationBucketName: my-site-access-logs
+        LogFilePrefix: www/
 
   RootRedirectBucket:
     Type: AWS::S3::Bucket
@@ -25,22 +25,20 @@ Resources:
       WebsiteConfiguration:
         RedirectAllRequestsTo:
           HostName: www.theprojectfolder.com
-      Tags:
-        - Key: project
-          Value: theprojectfolder
-        - Key: purpose
-          Value: frontend-stack-prod
+      LoggingConfiguration:
+        DestinationBucketName: my-site-access-logs
+        LogFilePrefix: root/
 
   LoggingBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     Properties:
       BucketName: my-site-access-logs
-      Tags:
-        - Key: project
-          Value: theprojectfolder
-        - Key: purpose
-          Value: frontend-stack-prod
+      LifecycleConfiguration:
+        Rules:
+          - Status: Enabled
+            ExpirationInDays: 60
+            Prefix: log/
 
   CloudFrontDistributionMain:
     Type: AWS::CloudFront::Distribution
@@ -50,6 +48,7 @@ Resources:
         Enabled: true
         Aliases:
           - www.theprojectfolder.com
+        DefaultRootObject: index.html
         Origins:
           - DomainName: www.theprojectfolder.com.s3-website-us-east-1.amazonaws.com
             Id: S3Origin1
@@ -65,8 +64,11 @@ Resources:
             QueryString: false
             Cookies:
               Forward: none
-        DefaultRootObject: index.html
         Comment: main distribution
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:102587257710:certificate/af820f81-ed77-48e5-979e-b69916941427
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
 
   CloudFrontDistributionRedirect:
     Type: AWS::CloudFront::Distribution
@@ -76,6 +78,7 @@ Resources:
         Enabled: true
         Aliases:
           - theprojectfolder.com
+        DefaultRootObject: index.html
         Origins:
           - DomainName: theprojectfolder.com.s3-website-us-east-1.amazonaws.com
             Id: S3Origin2
@@ -86,15 +89,47 @@ Resources:
         DefaultCacheBehavior:
           TargetOriginId: S3Origin2
           ViewerProtocolPolicy: redirect-to-https
-          AllowedMethods: [GET, HEAD]
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
           ForwardedValues:
             QueryString: false
             Cookies:
               Forward: none
-        DefaultRootObject: index.html
-        Comment: redirect distribution
-  
+        Comment: Redirect www-less root domain to primary
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:102587257710:certificate/af820f81-ed77-48e5-979e-b69916941427
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+
+  DNSRecordWWW:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z03024793FWW1BZ4QAAUV
+      Name: www.theprojectfolder.com.
+      Type: A
+      AliasTarget:
+        HostedZoneId: Z2FDTNDATAQYW2  # CloudFront global hosted zone ID
+        DNSName: !Sub "${CloudFrontDistributionMain.DomainName}."
+
+  DNSRecordRoot:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z03024793FWW1BZ4QAAUV
+      Name: theprojectfolder.com.
+      Type: A
+      AliasTarget:
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !Sub "${CloudFrontDistributionRedirect.DomainName}."
+
 Outputs:
   WebsiteURL:
+    Description: URL of the production website
     Value: !Sub "https://www.theprojectfolder.com"
-    Description: URL of the static website
+
+  CloudFrontDistributionId:
+    Description: ID of the CloudFront distribution
+    Value: !Ref CloudFrontDistributionMain
