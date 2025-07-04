@@ -132,3 +132,4 @@ Outputs:
   CloudFrontDistributionId:
     Description: ID of the CloudFront distribution
     Value: !Ref CloudFrontDistributionMain
+    
