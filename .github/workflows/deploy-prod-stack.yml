@@ -4,13 +4,8 @@ on:
   push:
      branches: [main]
      paths:
-<<<<<<< Updated upstream
-      - 'theprojectfolder/cloudresumechallenge/infrastructure/frontend_stack_prod.yaml'
-      - '.github/workflows/deploy-prod-stack.yml'
-=======
       - 'theprojectfolder/cloudresumechallenge/infrastructure/frontend-stack-prod.yaml'
-      - '.github/workflows/deploy-dev-stack.yml'
->>>>>>> Stashed changes
+      - '.github/workflows/deploy-prod-stack.yml'
 
 permissions:
   id-token: write
@@ -35,10 +30,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --stack-name frontend-stack-prod \
-<<<<<<< Updated upstream
-            --template-file ./theprojectfolder/cloudresumechallenge/infrastructure/frontend_stack_prod.yaml \
-=======
             --template-file ./theprojectfolder/cloudresumechallenge/infrastructure/frontend-stack-prod.yaml \
->>>>>>> Stashed changes
             --capabilities CAPABILITY_NAMED_IAM \
             --no-fail-on-empty-changeset
