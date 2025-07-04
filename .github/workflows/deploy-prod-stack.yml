@@ -1,0 +1,44 @@
+name: Deploy Frontend Prod Stack
+
+on:
+  push:
+     branches: [main]
+     paths:
+<<<<<<< Updated upstream
+      - 'theprojectfolder/cloudresumechallenge/infrastructure/frontend_stack_prod.yaml'
+      - '.github/workflows/deploy-prod-stack.yml'
+=======
+      - 'theprojectfolder/cloudresumechallenge/infrastructure/frontend-stack-prod.yaml'
+      - '.github/workflows/deploy-dev-stack.yml'
+>>>>>>> Stashed changes
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to CloudFormation (Prod)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials for GitHub Actions (Prod)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::102587257710:role/GitHubActionsProdRole
+          aws-region: us-east-1
+
+      - name: Deploy frontend-stack-prod
+        run: |
+          aws cloudformation deploy \
+            --stack-name frontend-stack-prod \
+<<<<<<< Updated upstream
+            --template-file ./theprojectfolder/cloudresumechallenge/infrastructure/frontend_stack_prod.yaml \
+=======
+            --template-file ./theprojectfolder/cloudresumechallenge/infrastructure/frontend-stack-prod.yaml \
+>>>>>>> Stashed changes
+            --capabilities CAPABILITY_NAMED_IAM \
+            --no-fail-on-empty-changeset
