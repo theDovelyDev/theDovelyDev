@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Dev stack for static website (S3 only, no CloudFront or Route 53)
+
+Resources:
+
+  DevWebsiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: dev.theprojectfolder.com
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+      LoggingConfiguration:
+        DestinationBucketName: dev-site-access-logs
+        LogFilePrefix: dev/
+      Tags:
+        - Key: project
+          Value: theprojectfolder
+        - Key: purpose
+          Value: frontend-stack-dev
+
+  DevLoggingBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: dev-site-access-logs
+      Tags:
+        - Key: project
+          Value: theprojectfolder
+        - Key: purpose
+          Value: frontend-stack-dev
+
+Outputs:
+  DevSiteURL:
+    Value: !Sub "http://${DevWebsiteBucket}.s3-website-${AWS::Region}.amazonaws.com"
+    Description: S3 static website URL for dev site

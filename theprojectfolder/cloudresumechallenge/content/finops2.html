@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>FinOps in Action: Optimizing Static Site Delivery with AWS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9fbfc;
+            color: #222;
+        }
+
+        header {
+            background: #2c4697;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #2c4697;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #e6f2ff;
+            padding: 10px;
+            border-left: 4px solid #2c4697;
+            margin-bottom: 20px;
+        }
+
+        .chart {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer {
+            background: #eee;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>FinOps in Action: Optimizing Static Site Delivery with AWS</h1>
+        <p><strong>Author:</strong> Carlandra Williams | <strong>Date:</strong> July 2025</p>
+    </header>
+
+    <section>
+        <h2>📌 Executive Summary</h2>
+        <div class="highlight">
+            This project demonstrates how FinOps principles and Cloud Economics work together to optimize cloud spend,
+            forecast value, and align infrastructure decisions with business outcomes.
+        </div>
+    </section>
+
+    <section>
+        <h2>🏗️ Full Architectural Stack</h2>
+        <ul>
+            <li>Static React frontend hosted on Amazon S3</li>
+            <li>CloudFront CDN + Route 53 DNS</li>
+            <li>Lambda Function URL for visitor tracking</li>
+            <li>DynamoDB (on-demand mode, TTL enabled)</li>
+            <li>GitHub Actions for CI/CD with dry-run logic</li>
+            <li>IAM roles with least privilege policies</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>💰 Cost Modeling Table</h2>
+        <ul>
+            <li>1K visitors: ~$0.95</li>
+            <li>5K visitors: ~$2.08</li>
+            <li>10K visitors: ~$3.40</li>
+            <li>15K visitors: ~$4.77</li>
+            <li>20K visitors: ~$6.09</li>
+            <li>50K visitors: ~$14.13</li>
+        </ul>
+    </section>
+
+    <section class="chart">
+        <h2>📊 Cost Estimate by AWS Service</h2>
+        <img src="chart-finops.png" alt="Stacked bar chart showing cost distribution by AWS service" width="800" />
+        <p><em>Each bar represents cumulative monthly cost across S3, CloudFront, Route 53, DynamoDB, and Lambda.</em>
+        </p>
+    </section>
+
+    <section>
+        <h2>🧠 Cloud Economics Integration</h2>
+        <ul>
+            <li>Unit cost modeling: ~$0.00017 per visitor</li>
+            <li>Break-even analysis: 50K visits/month vs. ~$14.13 total cost</li>
+            <li>Elastic infrastructure reduces idle spend</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🔐 Security Highlights</h2>
+        <ul>
+            <li>IAM roles scoped to Lambda and S3</li>
+            <li>Bucket policies (no ACLs), CORS headers</li>
+            <li>CloudWatch logging and DynamoDB TTL</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🔢 Visitor Tracking Logic</h2>
+        <ul>
+            <li>Lambda Function URL receives GET/POST requests</li>
+            <li>DynamoDB stores and updates visitor count</li>
+            <li>Atomic updates with no PII stored</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🔄 API Gateway vs. Lambda URL</h2>
+        <ul>
+            <li>Lambda URL chosen for simplicity and cost</li>
+            <li>API Gateway adds complexity and higher pricing</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🎯 FinOps Value Statement</h2>
+        <div class="highlight">
+            “By applying Cloud Economics to this FinOps build, I’ve created a system that doesn’t just track spend—it
+            quantifies value. Every visitor, every request, and every architectural choice is tied to a measurable
+            outcome.”
+        </div>
+    </section>
+
+    <section>
+        <h2>📊 Dashboard & Visibility</h2>
+        <ul>
+            <li>Real-time metrics via CloudWatch and S3 access logs</li>
+            <li>Forecasting future spend based on traffic growth</li>
+            <li>Tagging strategy for cost attribution</li>
+        </ul>
+    </section>
+
+    <footer class="footer">
+        © 2025 Carlandra Williams | FinOps Architect
+    </footer>
+
+</body>
+
+</html>

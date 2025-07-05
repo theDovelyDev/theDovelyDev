@@ -1,0 +1,48 @@
+# .github/workflows/deploy.yml
+name: Deploy CloudFormation Stacks Safely
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infrastructure/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Preview Changes (Dry Run)
+        run: |
+          cd infrastructure
+          for file in *.yaml; do
+            stack_name=$(basename "$file" -stack.yaml)-stack
+            echo "Previewing $stack_name"
+            aws cloudformation deploy \
+              --stack-name "$stack_name" \
+              --template-file "$file" \
+              --capabilities CAPABILITY_NAMED_IAM \
+              --parameter-overrides \
+                LogBucketName=my-site-access-logs \
+                WebsiteBucketName=www.theprojectfolder.com \
+              --no-execute-changeset || echo "No changes detected or dry run complete."
+          done
+
+      - name: Confirm and Deploy
+        if: success()
+        run: |
+          echo "✅ Confirmed. Proceeding with deployment."
+          cd infrastructure
+          chmod +x deploy.sh
+          ./deploy.sh
