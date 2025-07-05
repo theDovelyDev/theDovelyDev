@@ -4,7 +4,7 @@ on:
   push:
      branches: [main]
      paths:
-      - 'theprojectfolder/cloudresumechallenge/infrastructure/frontend_stack_prod.yaml'
+      - 'theprojectfolder/cloudresumechallenge/infrastructure/frontend-stack-prod.yaml'
       - '.github/workflows/deploy-prod-stack.yml'
 
 permissions:
@@ -30,6 +30,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --stack-name frontend-stack-prod \
-            --template-file ./theprojectfolder/cloudresumechallenge/infrastructure/frontend_stack_prod.yaml \
+            --template-file ./theprojectfolder/cloudresumechallenge/infrastructure/frontend-stack-prod.yaml \
             --capabilities CAPABILITY_NAMED_IAM \
             --no-fail-on-empty-changeset
