@@ -1,4 +1,4 @@
-name: Deploy Static Site to S3
+name: Deploy Prod Static Site to S3
 # Updated workflow - testing deploy-to-s3 pipeline
 
 on:
