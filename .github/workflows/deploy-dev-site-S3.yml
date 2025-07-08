@@ -1,5 +1,4 @@
 name: Deploy Dev Static Site to S3
-#test workflow
 
 on:
   push:
@@ -8,6 +7,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:         # ✅ Required for OIDC
+      id-token: write    # ✅ Enables token exchange with AWS
+      contents: read     # ✅ Allows `actions/checkout` to work
 
     steps:
       - name: Checkout Repository
@@ -21,25 +24,25 @@ jobs:
 
       - name: Debug AWS Identity
         run: aws sts get-caller-identity
-      
+
       - name: Pre-Sync Safety Check
         run: |
           if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/dev-site)" ]; then
             echo "Local dev-site folder is empty. Aborting sync to prevent deletion."
             exit 1
           fi
-      
+
       - name: Dry Run Sync Preview
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
             --exclude "*.pdf" \
             --dryrun
-        
+
       - name: Deploy Website (Safe Upload)
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
             --exclude "*.pdf"
-      
+
       - name: Upload PDFs with cache headers
         run: |
           pdfs=$(find "./theprojectfolder/cloudresumechallenge/dev-site/assets" -name "*.pdf")
