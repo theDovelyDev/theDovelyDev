@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-- **Project**: Static React Website
+- **Project**: Static Portfolio Website
 - **Purpose**: Lightweight, serverless web app with visitor tracking
 - **Traffic Volume**: Ranges from 1K to 50K visitors/month
 - **Deployment**: GitHub Actions with dry-run testing and fallback logic
@@ -13,7 +13,7 @@
 
 | Layer              | AWS Services                                                       |
 |--------------------|---------------------------------------------------------------------|
-| **Frontend**        | React app hosted on Amazon S3                                       |
+| **Frontend**        | Static Site  hosted on Amazon S3                                       |
 | **CI/CD**           | GitHub Actions (dry-run + fallback logic)                           |
 | **Storage**         | S3 with bucket policies (no ACLs)                                    |
 | **Networking**      | CloudFront CDN + Route 53 DNS                                       |
