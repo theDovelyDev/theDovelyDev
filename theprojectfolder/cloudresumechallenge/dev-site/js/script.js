@@ -4,3 +4,9 @@ function toggleMenu() {
     menu.classList.toggle("open");
     icon.classList.toggle("open");
 }
+
+function slideProjects(direction) {
+    const slider = document.getElementById('projectSlider');
+    const scrollAmount = 350;
+    slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+}
