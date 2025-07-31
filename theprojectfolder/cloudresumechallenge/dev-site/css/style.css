@@ -1,4 +1,4 @@
-/* ======= GENERAL ======= */
+/* ============= GENERAL ================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
@@ -19,7 +19,7 @@ p {
     color: rgb(85, 85, 85);
 }
 
-/* ======= TRANSITION ======= */
+/* ============= TRANSITION ================ */
 
 a {
     transition: all 300ms ease;
@@ -61,7 +61,7 @@ a:hover {
     cursor: pointer;
 }
 
-/* ======= HAMBURGER MENU ======= */
+/* ==================== HAMBURGER MENU ================ */
 
 #hamburger-nav {
     display: none;
@@ -251,7 +251,7 @@ section {
     }
 }
 
-/* ======== BUTTONS =======*/
+/* ================== BUTTONS =================*/
 .btn-container {
     display: flex;
     gap: 1rem;
@@ -277,7 +277,7 @@ section {
     color: #ecf0f1;
 }
 
-/* ======= ABOUT =======*/
+/* ============== ABOUT ===================*/
 
 #about {
     position: relative;
@@ -402,7 +402,7 @@ section {
     align-self: center;
 }
 
-/* ========EXPERIENCE ======*/
+/* ================= EXPERIENCE ================*/
 #experience {
     position: relative;
 }
@@ -430,27 +430,17 @@ article {
     width: 10rem;
 }
 
-/* ======= PROJECTS =======*/
+/* =============== PROJECTS =================*/
 #projects {
     position: relative;
 }
 
 .project-tile {
     text-decoration: none;
-    display: block;
-}
-
-.project-tile:hover .project-tile {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
-}
-
-.project-tile {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(53, 53, 53, 0.08);
     padding: 1rem;
@@ -465,7 +455,7 @@ article {
 }
 
 .project-tile h2 {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
     color: #2c3e50;
     text-align: initial;
 }
@@ -504,53 +494,56 @@ article {
 .slider-wrapper {
     position: relative;
     overflow: hidden;
-    padding: 1rem 0;
+    max-width: 100%;
 }
 
 .slider-track {
     display: flex;
-    gap: 2rem;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 1rem;
+    transition: transform 0.5s ease;
 }
 
-.project-tile {
-    flex: 0 0 300px;
-    min-width: 300px;
-    max-width: 300px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+.dots {
+    text-align: center;
+    margin-top: 1rem;
 }
 
-.slider-btn {
+.dots span {
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #bbb;
+    cursor: pointer;
+}
+
+.dots span.active {
+    background-color: #333;
+}
+
+.arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #ffffffdd;
-    border: none;
+    color: #2c3e50;
+    background-color: transparent;
     font-size: 2rem;
-    padding: 0.5rem;
+    border: none;
     cursor: pointer;
-    z-index: 1;
+    padding: 0.5rem;
+    z-index: 10;
 }
 
-.slider-btn.left {
-    left: 0;
+.arrow.prev {
+    left: 10px;
 }
 
-.slider-btn.right {
-    right: 0;
+.arrow.next {
+    right: 10px;
 }
 
-/*.color-container {
-    border: rgb(53, 53, 53) 0.1rem solid;
-    background: rgb(250, 250, 250);
-}*/
 
-/* ======= CONTACT =======*/
+/* =============== CONTACT ================*/
 .calendar-icon {
     height: 100px;
     width: 100px;
@@ -591,7 +584,7 @@ article {
     cursor: pointer;
 }
 
-/* ======= PAGE COUNTER =======*/
+/* ============== PAGE COUNTER ==============*/
 #visitor-container {
     display: flex;
     justify-content: center;
@@ -628,7 +621,7 @@ article {
     margin-top: 1rem;
 }
 
-/* ======== FOOTER =======*/
+/* =============== FOOTER ==================*/
 footer {
     height: 26vh;
     margin: 0 1rem;
