@@ -241,57 +241,7 @@ section>h2 {
     transform: translateY(-8px);
 }
 
-/* ===========================
-   PROFILE SECTION
-   =========================== */
-.section-text {
-    text-align: center;
-}
 
-.section-text-intro {
-    font-size: 1.25rem;
-    font-weight: 400;
-}
-
-.inner-headings {
-    border: 0px solid #ddd;
-    height: 2.5rem;
-    line-height: 3rem;
-    font-size: 1.5rem;
-    overflow: hidden;
-}
-
-.inner-headings span {
-    position: relative;
-    color: #2c4697;
-    animation: animation 12s ease infinite;
-}
-
-/* ===========================
-  PROFILE BTNS
-   =========================== */
-.btn-container {}
-
-.hero-btn {
-    padding: 0.75rem 1.25rem;
-    border: 2px solid #2c4697;
-    /* Cost-tracking gray */
-    color: #2c4697;
-    background-color: transparent;
-    text-decoration: none;
-    font-weight: 550;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    margin-top: auto;
-    /* pushes button to bottom for consistent alignment */
-    align-self: center;
-}
-
-.hero-btn:hover {
-    cursor: pointer;
-    background-color: #2c4697;
-    color: #ecf0f1;
-}
 
 @keyframes animation {
 
@@ -415,6 +365,30 @@ section>h2 {
     margin: 0 0 0.6rem 0;
     font-size: clamp(0.95rem, 1.4vw, 1rem);
     line-height: 1.6;
+}
+
+.btn-container {
+    margin-top: 2.5rem;
+    /* pushes button to bottom for consistent alignment */
+    text-align: center;
+}
+
+.hero-btn {
+    padding: 0.75rem 1.25rem;
+    border: 2px solid #2c4697;
+    /* Cost-tracking gray */
+    color: #2c4697;
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: 550;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    cursor: pointer;
+    background-color: #2c4697;
+    color: #ecf0f1;
 }
 
 /* ===========================
