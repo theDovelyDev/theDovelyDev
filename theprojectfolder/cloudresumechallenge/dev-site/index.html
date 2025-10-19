@@ -24,11 +24,10 @@
 <body>
     <!-------------------PAGE NAVIGATION---------------->
     <nav id="desktop-nav">
-        <div class="logo"><img src="./images/project_folder logo.jpg" class="desktop-icon" /></div>
+        <img src="./images/carlandra-logo.png" alt="logo" />
         <div>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#resume">Experience</a></li>
+                <li><a href="#experience">Expertise</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -36,429 +35,482 @@
     </nav>
     <!-------------------MOBILE NAV--------------------->
     <nav id="hamburger-nav">
-        <div class="logo">
-            <img src="./images/theprojectfolder_logo.jpg" class="logo-icon" />
-        </div>
         <div class="hamburger-menu">
             <div class="hamburger-icon" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <div class="menu-links">
+            <ul class="menu-links">
                 <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#resume" onclick="toggleMenu()">Resume</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
                 <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
                 <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
+            </ul>
         </div>
     </nav>
-    <!-------------------HERO SECTION------------------->
-    <section id="profile">
-        <div class="section__pic-container">
-            <img src="./images/profile_pic.jpg" alt="Carlandra profile_pic" />
-        </div>
-        <div class="section__text">
-            <h1 class="title">Carlandra Williams</h1>
-            <h2>
-                <p class="section__text__p1">Hello! I'm a
-                <div class="inner-headings">
-                    <span>
-                        <!--<p class="section__text__p2"></p>--> Sr. Cloud FinOps Analyst<br />
-                        <!--<p class="section__text__p2"></p>--> Sr. IT Business Analyst<br />
-                        <!--<p class="section__text__p2"></p>--> Business Systems Analyst<br />
-                        <!--<p class="section__text__p2"></p>--> Program Coordinator<br />
-                    </span>
-                </div>
-                </p>
-            </h2>
-            <div class="btn-container">
-                <button class="hero-btn"
-                    onclick="window.open ('https://s3.us-east-1.amazonaws.com/www.theprojectfolder.com/assets/Carlandra+Williams+-+Sr.+FinOps+Analyst.pdf')">Download
-                    Resume
-                </button>
-                <button class="hero-btn" onclick="location.href='https://www.linkedin.com/in/carlandrawilliams'"><i
-                        class="fa-brands fa-linkedin fa-2xl social-icon" style="color: #0077b5;"></i> Connect on
-                    LinkedIn
-                </button>
-                <button class="hero-btn"
-                    onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'"><i
-                        class="fa-brands fa-github fa-2xl social-icon" style="color: #000000;"></i> GitHub
-                    Repos</button>
+    <!-------------------HERO / ABOUT ME SECTION--------------->
+    <section id="about" class="about-section">
+        <h1 class="title">???</h1>
+        <div class="about-container">
+            <img src="./images/profile_pic.jpg" alt="Carlandra protrait" />
+            <div class="about-pic-text">
+                <div id="bio" class="bio-block">
+                    <div class="bio-inner">
+                        <p class="bio-lead">
+                            Hi, I’m <span class="bio-name">Carlandra -- </span>passionate about
+                            <span class="bio-highlight">FinOps</span>, <span class="bio-highlight">Cloud
+                                Governance</span>,
+                            and how <span class="bio-highlight">emerging tech</span> can shape smarter growth.
+                        </p>
 
-            </div>
-        </div>
-    </section>
+                        <p class="bio-body">
+                            I combine a background in <strong>IT Operations</strong> with <strong>FinOps</strong>
+                            expertise to
+                            help
+                            organizations scale with clarity and control. I focus on building Cloud environments that
+                            remain transparent, efficient, and accountable—without slowing innovation.
+                        </p>
 
-    <!-------------------ABOUT ME SECTION--------------->
-    <section id="about">
-        <p class="section__text__p1">Get to Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <div class="section__pic-container">
-                <img src="./images/myavatar.png" alt="Profile picture" class="about-pic" />
-            </div>
-            <div class="about-details-container">
-                <div class="about-text-container">
-                    <p><strong>I bring a unique blend of IT Operations experience and FinOps certification to the table,
-                            with a focus on
-                            governance
-                            that scales. Whether it’s a fast-moving startup or a maturing tech organization, I help
-                            teams align cloud
-                            infrastructure, cost awareness, and policy-driven accountability. I thrive in environments
-                            where innovation
-                            meets
-                            intention—building systems that grow without chaos, and lead without compromise.</strong>
-                    </p>
-                </div>
-                <div class="about-containers">
-                    <div class="details-container">
-                        <i class="fa-solid fa-id-badge fa-xl" style="color: #000000;"></i>
-                        <br />
-                        <h2>Experience</h2>
-                        <p><span class="num">4</span> years<br />IT Operations</p>
-                        <br />
-                        <p><span class="num">5</span> years<br /> Cloud FinOps Analytics</p>
-                        <br />
-                        <p><span class="num">6</span> years<br />Project Management</p>
-                        <br />
-                        <p><span class="num">10</span> + years<br />Business Analytics</p>
-                    </div>
-                    <!------------- Certifications Badges ------------------>
-                    <div class="details-container">
-                        <i class="fa-sharp fa-solid fa-award fa-xl" alt="ribbon icon"></i>
-                        <h2>Certifications</h2>
-                        <img src="./images/aws-certified-cloud-practitioner.png" alt="aws ccp cert" class="cert-icon"
-                            onclick="location.href='https://www.credly.com/badges/d6a02cba-eeed-4a97-bcef-b2b4dc82e1f7/public_url'">
-                        <!--<div class="cert__container">
-                            <p class="cert__text">Earners of this certification have a fundamental understanding of IT
-                                services and their uses in the AWS Cloud.</p></div> -->
-                        <img src="./images/finops-certified-practitioner.png" alt="focp cert" class="cert-icon"
-                            onclick="location.href='https://www.credly.com/badges/c080a1de-46d0-432c-9447-202ec56bf5d4/public_url'">
-                        <!-- <div class="cert__container">
-                            <p class="cert__text"> These
-                                professionals make evidence-based decisions in near-real time to manage cloud use and
-                                increase business value.</p></div> -->
-                        <img src="./images/finops-certified-engineer.png" alt="foce cert" class="cert-icon"
-                            onclick="location.href='https://www.credly.com/badges/b5c76025-c5ae-4984-9488-d4b34e03c316/public_url'">
-                        <!-- <div class="cert__container">
-                            <p class="cert__text"> These professionals make data-driven, cost-informed decisions throughout the development lifecycle to get the most value
-                            from cloud.</p></div> -->
-                        <img src="./images/finops-certified-focus-analyst.png" alt="focfa cert" class="cert-icon1"
-                            onclick="location.href='https://www.credly.com/badges/4ea65c75-3dc3-45aa-8ecf-d6a12f61b7c2/public_url'">
-                        <br>
-                        <img src="./images/oci_foundations_associate.jpeg" alt="focfa cert" class="cert-icon2"
-                            onclick="location.href='https://catalog-education.oracle.com/pls/certview/sharebadge?id=0DBADB7CDD606CC871E698A7A0606413B842361FF3EEFE2D3427079890FCEE97'">
-                        <br>
-                        <div class="verify-line">
-                            <p> Verify each credential by clicking the badge.</p>
+                        <p class="bio-body">
+                            Whether it’s a fast-moving startup or a growing enterprise, I enjoy crafting systems that
+                            balance <em>creativity with structure</em> and <em>growth with purpose</em>.
+                        </p>
+                        <div class="section-text">
+                            <div class="btn-container">
+                                <button class="hero-btn"
+                                    onclick="window.open ('https://s3.us-east-1.amazonaws.com/www.theprojectfolder.com/assets/Carlandra+Williams+-+Sr.+FinOps+Analyst.pdf')">Download
+                                    Resume
+                                </button>
+                                <button class="hero-btn"
+                                    onclick="location.href='https://www.linkedin.com/in/carlandrawilliams'"><i
+                                        class="fa-brands fa-linkedin fa-2xl social-icon" style="color: #0077b5;"></i>
+                                    Connect on
+                                    LinkedIn
+                                </button>
+                                <button class="hero-btn"
+                                    onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'"><i
+                                        class="fa-brands fa-github fa-2xl social-icon" style="color: #000000;"></i>
+                                    GitHub
+                                    Repos</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="about-interest-text-container">
-                    <p>
-                        My other interests: Cloud Engineering, Cybersecurity, Governance & Compliance, Data Engineering,
-                        IAM
-                    </p>
+            </div>
+        </div>
+        <div class="about-sections">
+            <div class="about-card">
+                <h3><i class="fa-solid fa-id-badge"></i> Career</h3>
+                <p><span class="num">10</span>+ years Business Analytics</p>
+                <p><span class="num">6</span> years Project Management</p>
+                <p><span class="num">5</span> years Cloud FinOps Analytics</p>
+                <p><span class="num">4</span> years IT Operations</p>
+            </div>
+            <div class="about-card certifications-card">
+                <h3><i class="fa-solid fa-award"></i> Certifications</h3>
+                <div class="certifications">
+                    <a href="https://www.credly.com/badges/d6a02cba-eeed-4a97-bcef-b2b4dc82e1f7/public_url'"
+                        target="_blank">
+                        <img src="./images/aws-certified-cloud-practitioner.png" alt="AWS Cloud Practitioner Badge">
+                    </a>
+                    <a href="https://www.credly.com/badges/c080a1de-46d0-432c-9447-202ec56bf5d4/public_url"
+                        target="_blank">
+                        <img src="./images/finops-certified-practitioner.png" alt="FinOps Certified Practitioner Badge">
+                    </a>
+                    <a href="'https://www.credly.com/badges/b5c76025-c5ae-4984-9488-d4b34e03c316/public_url"
+                        target="_blank">
+                        <img src="./images/finops-certified-engineer.png" alt="FinOps Certified Engineer Badge">
+                    </a>
+                    <a href="https://www.credly.com/badges/4ea65c75-3dc3-45aa-8ecf-d6a12f61b7c2/public_url'"
+                        target="_blank">
+                        <img src="./images/finops-certified-focus-analyst.png"
+                            alt="FinOps Certified FOCUS Analyst Badge">
+                    </a>
+                    <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=0DBADB7CDD606CC871E698A7A0606413B842361FF3EEFE2D3427079890FCEE97"
+                        target="_blank">
+                        <img src="./images/oci_foundations_associate.jpeg" alt="Oracle OCI Foundations Associate Badge">
+                    </a>
                 </div>
+                <p>Click a badge to verify the certification.</p>
+            </div>
+            <div class="about-card">
+                <h3><i class="fa-solid fa-book-open-reader"></i> Interests</h3>
+                <ul class="interest-list">
+                    <li>Cloud Engineering</li>
+                    <li>Cybersecurity</li>
+                    <li>Governance & Compliance</li>
+                    <li>Data Engineering</li>
+                    <li>IAM</li>
+                    <li>AI/ML</li>
+                    <li>Sustainable cloud practices</li>
+                </ul>
             </div>
         </div>
     </section>
     <!-------------------EXPERIENCE--------------------->
-    <section id="resume">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <h3 class="experience-sub-title">Cloud Cost Management </h3>
-                    <div class="article-container">
-                        <article>
-                            <i class="fa-solid fa-tags fa-xl icon"></i>
-                            <div>
-                                <h3>FinOps Practice Management</h3>
-                                <p>Tagging, Cloud Policies & Governance</p>
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-file-invoice-dollar fa-xl icon"></i>
-                            <div>
-                                <h3>Invoicing & Chargeback</h3>
-                                <p>96% Cloud Cost Allocation Budgeting, Showback & Chargeback</p>
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-gauge-high fa-xl icon"></i>
-                            <div>
-                                <h3>Cloud Efficiency</h3>
-                                <p>Rightsizing, Right-timing & Optimization recommendations</p>
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-users-rectangle fa-xl icon"></i>
-                            <div>
-                                <h3>FinOps Tool Implementation & Training</h3>
-                                <p>Apptio Cloudability Administrator</p>
-                            </div>
-                        </article>
-                        <article>
+    <section id="experience">
+        <h1 class="title">Expertise & Focus</h1>
+        <div class="details-container">
+            <div class="details-card">
+                <h3 class="experience-sub-title">FinOps Leadership</h3>
+                <div class="article-container">
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-money-bill-transfer fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Directed enterprise-wide FinOps strategy overseeing $200M+ AWS spend; achieved $1.5M+ in
+                                cost avoidance.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-magnifying-glass-chart fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Developed executive dashboards and KPIs monitoring usage, unit costs, and Savings Plan
+                                utilization.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-file-invoice-dollar fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Partnered with IT Finance to implement cost allocation frameworks and enhance
+                                showback/chargeback processes.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="details-card">
+                <h3 class="experience-sub-title">Cloud Governance & Strategy</h3>
+                <div class="article-container">
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-building-shield fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Established cloud data governance standards integrating Cloudability, Apptio BI, and AWS
+                                native tools.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
                             <i class="fa-solid fa-umbrella fa-xl icon"></i>
-                            <div>
-                                <h3>Cloud Budgeting & Forecasting</h3>
-                                <p>Pre-migration application cost forecasting</p>
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-chart-pie fa-xl icon"></i>
-                            <div>
-                                <h3>Reporting & Analytics</h3>
-                                <p>KPIs creation & Scorecards</p>
-                            </div>
-                        </article>
-
-                    </div>
+                        </div>
+                        <div>
+                            <p> Drove automation of cost reporting and anomaly detection to improve forecasting accuracy
+                                by 15%.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-users-between-lines fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Led FinOps culture initiatives—training 50+ stakeholders to embed financial
+                                accountability across teams.</p>
+                        </div>
+                    </article>
                 </div>
-                <div class="details-container">
-                    <h3 class="experience-sub-title">Business Analytics</h3>
-                    <div class="article-container">
-                        <article>
-                            <i class="fa-solid fa-arrows-spin fa-xl"></i>
-                            <div>
-                                <h3>Process Improvement</h3>
-                                <p>45% improvement in process efficiency</p>
-                            </div>
-                        </article>
-                        <article>
+            </div>
+            <div class="details-card">
+                <h3 class="experience-sub-title">Business Analysis & Insights</h3>
+                <div class="article-container">
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-envelopes-bulk fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Consolidated multi-source reporting to support executive decision-making and performance
+                                analytics.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
                             <i class="fa-solid fa-object-group fa-xl"></i>
-                            <div>
-                                <h3>Reporting Solutions</h3>
-                                <p>Designed & built actionable PowerBI dashabords</p>
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-people-roof fa-xl"></i>
-                            <div>
-                                <h3>Project & Program Management</h3>
-                                <p>Managed multi-year IT application sunrises & 25+ National security installation
-                                    projects </p>
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-person-chalkboard fa-xl"></i>
-                            <div>
-                                <h3>Data Visualization & Presentations</h3>
-                                <p>Statewise voter engagement program with 16k+ unique voters reached</p>
-                            </div>
-                        </article>
-                        <!-- <article>
-                            <i class="fa-solid fa-circle-check fa-xl"></i>
-                            <div>
-                                <h3>Business Insights</h3>
-                                <p>KPIs, Unit Scorecards</p>
-                            </div>
-                        </article>-->
-                        <article>
-                            <i class="fa-solid fa-people-arrows fa-lg"></i>
-                            <div>
-                                <h3>Stakeholder Relationship Management</h3>
-                                <!--<p>Pre-migration application cost forecasting</p>-->
-                            </div>
-                        </article>
-                    </div>
+                        </div>
+                        <div>
+                            <p>Designed and tested data reporting solutions in Salesforce Lightning, Apptio BI, and
+                                Power BI.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-handshake fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Partnered with technology teams as the key liaison between business units and development
+                                teams.</p>
+                        </div>
+                    </article>
                 </div>
-                <div class="details-container">
-                    <h3 class="experience-sub-title">IT Operations</h3>
-                    <div class="article-container">
-                        <article>
+            </div>
+            <div class="details-card">
+                <h3 class="experience-sub-title">Analytical & Technical Expertise</h3>
+                <div class="article-container">
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-brands fa-aws fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Skilled in AWS Cloud cost modeling, Cloudability, Apptio BI, Power BI, SQL, and
+                                Excel-based forecasting.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-tags fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Experienced in SaaS data integration, cost tagging, and usage-based chargeback
+                                automation.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-arrows-spin fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Strong foundation in data validation, QA processes, and Observability metrics for cloud
+                                spend analysis.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="details-card">
+                <h3 class="experience-sub-title">Strategic Impact</h3>
+                <div class="article-container">
+                    <article>
+                        <div class="icon-circle">
                             <i class="fa-solid fa-building-circle-exclamation fa-xl"></i>
-                            <div>
-                                <h3>Vulnerability Management</h3>
-                                <!--<p></p>-->
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-microscope fa-xl"></i>
-                            <div>
-                                <h3>Systems Analysis & Solution Recommendations</h3>
-                                <!--<p></p>-->
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-list-ol fa-xl"></i>
-                            <div>
-                                <h3>Requirements Elicitation & Documentation</h3>
-                                <!--<p></p>-->
-                            </div>
-                        </article>
-                        <article>
-                            <i class="fa-solid fa-sliders fa-xl"></i>
-                            <div>
-                                <h3>Implementaion & Evaluation</h3>
-                                <!--<p>/p>-->
-                            </div>
-                        </article>
-                        <!-- <article>
-                                            <i class="fa-solid fa-circle-check fa-xl"></i>
-                                            <div>
-                                                <h3>Business Insights</h3>
-                                                <p>KPIs, Unit Scorecards</p>
-                                            </div>
-                                        </article>
-                        <article>
-                            <i class="fa-solid fa-circle-check fa-xl"></i>
-                            <div>
-                                <h3>Stakeholder Relationship Management</h3>
-                                <p>Pre-migration application cost forecasting</p>-->
-                    </div>
+                        </div>
+                        <div>
+                            <p>Implemented Smarsh’s first FinOps program by defining requirements, personas, and
+                                governance processes.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-hand-holding-droplet fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Delivered recurring reports to Executives and Board, improving cloud visibility and
+                                accountability.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-recycle fa-xl"></i>
+                        </div>
+                        <div>
+                            <p>Led cross-functional initiatives that modernized financial reporting and reduced waste
+                                across environments.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="details-card">
+                <h3 class="experience-sub-title">IT Operations & Reliability Governance</h3>
+                <div class="article-container">
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-bridge-lock fa-xl"></i>
+                        </div>
+                        <div>
+                            <h4>Risk Management & Remediation</h4>
+                            <p>Led initiatives to reduce IT infrastructure and reliability risks by 63%, strengthening
+                                operational
+                                resilience.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-list-check fa-xl"></i>
+                        </div>
+                        <div>
+                            <h4>Process Optimization</h4>
+                            <p>Identified inefficiencies in IT workflows and system operations, driving measurable
+                                improvements in
+                                uptime, reliability,
+                                and compliance.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-people-arrows fa-lg"></i>
+                        </div>
+                        <div>
+                            <h4>Cross-Functional Collaboration</h4>
+                            <p>Partnered with Infrastructure & Reliability, and InfoSec Governance teams to define and
+                                refine
+                                performance metrics, SLAs, and
+                                reporting standards.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-route fa-xl"></i>
+                        </div>
+                        <div>
+                            <h4>Infrastructure & Reliability Oversight</h4>
+                            <p>Involved in Root Cause Analysis and risk prioritization workflows by transforming raw IT
+                                data into
+                                actionable insights.</p>
+                        </div>
                     </article>
                 </div>
             </div>
         </div>
-        </div>
     </section>
     <!-------------------PROJECTS----------------------->
-    <section id="projects" class="portfolio">
+    <section id="projects">
         <h1 class="title">Featured Projects</h1>
-        <div class="slider-wrapper">
-            <div class="slider-track" id="projectSlider">
-                <!-- BEGIN Project Tiles -->
-                <div class="project-tile">
-                    <img src="./images/cloud_resume_chlng.png" alt="Cloud Resume Challenge" />
-                    <div class="title-text">
-                        <h2>🔧 Cloud Resume Challenge</h2>
-                        <br>
-                        <p>
-                            The Cloud Resume Challenge bridges cloud certification with real-world DevOps skills. Built
-                            as a full-stack AWS showcase, this static site is hosted in AWS S3 featuring modular
-                            infrastructure...
-                        </p>
-                        <span class="tags">DevOps • IaC • CI/CD • IAM • Documentation • FinOps </span><br>
-                        <a href='https://github.com/theDovelyDev/theprojectfolder/tree/main'
-                            class="btn-finops-primary">GitHub Repo</a>
-                        <a href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'
-                            class="btn-finops-primary">Original Challenge</a>
-                        <a href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'
-                            class="btn-finops-primary">Post</a>
-                    </div>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <img src="./images/cloud_resume_chlng.png" alt="Cloud Resume Challenge" />
+                <h2>🔧 Cloud Resume Challenge</h2>
+                <p>
+                    The Cloud Resume Challenge bridges cloud certification with real-world DevOps skills.
+                    Built as a full-stack AWS showcase, this static site is hosted in AWS S3 featuring modular
+                    infrastructure...
+                </p>
+                <span class="tags">DevOps • IaC • CI/CD • IAM • Documentation • FinOps</span>
+                <div class="project-links">
+                    <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main"
+                        class="btn-finops-primary">GitHub Repo</a>
+                    <a href="https://cloudresumechallenge.dev/docs/the-challenge/aws/"
+                        class="btn-finops-primary">Substack</a>
+                    <a href="https://cloudresumechallenge.dev/docs/the-challenge/aws/"
+                        class="btn-finops-primary">Original Challenge</a>
                 </div>
-
-                <div class="project-tile">
-                    <img src="./images/finops-case-study.png" alt="FinOps Case Study" />
-                    <div class="title-text">
-                        <h2>💰 FinOps Case Study</h2>
-                        <br>
-                        <p>
-                            Uncovered cost drivers in AWS Free Tier usage and deployed budget guardrails with
-                            tagging-based
-                            visibility...
-                        </p>
-                        <span class="tags">FinOps • Cost Estimation • Tagging • Optimization</span>
-                        <br>
-                        <br>
-                        <a href='https://github.com/theDovelyDev/theprojectfolder/tree/main'
-                            class="btn-finops-primary">Read
-                            the Case Study</a>
-                        <a href='https://github.com/theDovelyDev/theprojectfolder/tree/main'
-                            class="btn-finops-primary">Download Case Study</a>
-                    </div>
-                </div>
-
-                <div class="project-tile">
-                    <img src="./images/cloud_governance_playbook.png" alt="Optimization Case Study" />
-                    <div class="title-text">
-                        <h2>Cloud Governance Playbook</h2>
-                        <br>
-                        <p>
-                            My Cloud Governance Playbook is a curated framework designed to bring clarity, consistency,
-                            and
-                            control to scalable infrastructure...
-                        </p>
-                        <span class="tags">FinOps Strategy • IAM Governance • Tagging Framework • Stakeholder
-                            Management</span>
-                        <br>
-                        <br>
-                        <a href='./content/cloud-governance-playbook.html' class="btn-finops-primary">View Playbook</a>
-                        <a href='../dev-site/assets/The Cloud Governance Playbook.pdf'
-                            download="CloudGovernancePlaybook_CarlandraW.pdf" class="btn-finops-primary">Download the
-                            Playbook</a>
-                    </div>
-                </div>
-                <!-- TBD Projects
-                <div class="project-tile">
-                    <img src="./images/project_tbd.png" alt="project_tbd" />
-                    <div class="title-text">
-                        <h2>How-to Guide</h2>
-                        <br>
-                        <p>
-                        </p>
-                        <span class="tags"></span><br>
-                        <a href='https://github.com/theDovelyDev/theprojectfolder/tree/main'
-                            class="btn-finops-primary">GitHub Repo</a>
-                        <a href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'
-                            class="btn-finops-primary">Original
-                            Challenge</a>
-                        <a href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'
-                            class="btn-finops-primary">Post</a>
-                    </div>
-                </div>
-
-                <div class="project-tile">
-                    <img src="./images/project_tbd.png" alt="project_tbd" />
-                    <div class="title-text">
-                        <h2></h2>
-                        <br>
-                        <p>
-
-                        </p>
-                        <span class="tags"> </span><br>
-                        <a href='https://github.com/theDovelyDev/theprojectfolder/tree/main'
-                            class="btn-finops-primary">GitHub Repo</a>
-                        <a href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'
-                            class="btn-finops-primary">Original
-                            Challenge</a>
-                        <a href='https://cloudresumechallenge.dev/docs/the-challenge/aws/'
-                            class="btn-finops-primary">Post</a>
-                    </div>
-                </div> -->
-                <!-- END Project Tiles -->
             </div>
-            <!-- Navigation arrows -->
-            <button class="arrow prev">&#10094;</button>
-            <button class="arrow next">&#10095;</button>
-            <!-- Dot indicators -->
-            <div class="dots"></div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <img src="./images/finops-case-study.png" alt="FinOps Case Study" />
+                <h2>💰 FinOps Case Study</h2>
+                <p>
+                    Uncovered cost drivers in AWS Free Tier usage and deployed budget guardrails with tagging-based
+                    visibility...
+                </p>
+                <span class="tags">FinOps • Cost Estimation • Tagging • Optimization</span>
+                <div class="project-links">
+                    <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main" class="btn-finops-primary">Read
+                        the Case Study</a>
+                    <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main"
+                        class="btn-finops-primary">Download Case Study</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <img src="./images/cloud_governance_playbook.png" alt="Cloud Governance Playbook" />
+                <h2>📘 Cloud Governance Playbook</h2>
+                <p>
+                    A curated framework designed to bring clarity, consistency,
+                    and control to scalable infrastructure...
+                </p>
+                <span class="tags">FinOps Strategy • IAM Governance • Tagging Framework • Stakeholder
+                    Management</span>
+                <div class="project-links">
+                    <a href="./content/cloud-governance-playbook.html" class="btn-finops-primary">View Playbook</a>
+                    <a href="../dev-site/assets/The Cloud Governance Playbook.pdf"
+                        download="CloudGovernancePlaybook_CarlandraW.pdf" class="btn-finops-primary">Download the
+                        Playbook</a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <img src="./images/ai-model.png" alt="Cloud Governance Playbook" />
+                <h2>🏷️ AI Model for AWS Resource Tagging</h2>
+                <p>
+                    Build and deploy an AI/ML solution in AWS that predicts missing or inconsistent resource tags
+                    (Environment, Project,
+                    Owner) using metadata + resource context.
+                </p>
+                <span class="tags">Model Training • Data Preparation • AWS SageMaker • Automation Pipeline</span>
+                <div class="project-links">
+                    <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main"
+                        class="btn-finops-primary">GitHub Repo</a>
+                    <a href="./content/cloud-governance-playbook.html" class="btn-finops-primary">Substack</a>
+                </div>
+            </div>
+
+            <!-- Project 5 
+        <div class="project-card">
+            <img src="./images/ai-model.png" alt="Cloud Governance Playbook" />
+            <h2>🏷️ AI Model for AWS Resource Tagging</h2>
+            <p>
+                Build and deploy an AI/ML solution in AWS that predicts missing or inconsistent resource tags (Environment,
+                Project,
+                Owner) using metadata + resource context.
+            </p>
+            <span class="tags">Model Training • Data Preparation • AWS SageMaker • Automation Pipeline</span>
+            <div class="project-links">
+                <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main" class="btn-finops-primary">GitHub Repo</a>
+                <a href="./content/cloud-governance-playbook.html" class="btn-finops-primary">Substack</a>
+            </div>
+        </div> -->
         </div>
     </section>
 
     <!-------------------CONTACT ME--------------------->
     <section id="contact">
-        <h2 class="title">Let's Connect</h2>
-        <div class="contact-info-upper-container">
-            <div class="contact-info-container">
-                <i class="fa-solid fa-square-envelope fa-2xl icon contact-icon"></i>
-                <p><a href="mailto:carlandra.williams@gmail.com">Email Me Directly</a></p>
+        <h1 class="title">Let's Collaborate</h1>
+        <div class="contact-container">
+            <!-- Email Card -->
+            <div class="contact-card">
+                <i class="fa-solid fa-envelope fa-2xl"></i>
+                <h2>Email</h2>
+                <p>carlandra.williams@gmail.com</p>
+                <a href="mailto:carlandra.williams@gmail.com" class="btn-finops-primary">Send Me a Message</a>
             </div>
-            <div class="contact-info-container">
-                <img src="./images/calendly_icon.png" class="calendar-icon contact-icon">
-                <p><a href="https://calendly.com/carlandrawilliams/30min">Schedule a Meeting</a>
-                </p>
+
+            <!-- LinkedIn Card -->
+            <div class="contact-card">
+                <i class="fa-brands fa-linkedin fa-2xl" style="color: #0077b5;"></i>
+                <h2>LinkedIn</h2>
+                <p>Grow your network with me.</p>
+                <a href="https://www.linkedin.com/in/carlandrawilliams" target="_blank" class="btn-finops-primary">
+                    Connect on LinkedIn
+                </a>
             </div>
-            <div class="contact-info-container">
-                <i class="fa-brands fa-linkedin fa-2xl icon contact-icon" style="color: #0077b5;"></i>
-                <p><a href="https://www.linkedin.com/in/carlandrawilliams">Connect on LinkedIn</a>
-                </p>
+
+            <!-- Calendly Card -->
+            <div class="contact-card">
+                <img src="./images/calendly.png" class="calendar-icon" alt="Calendly Logo">
+                <h2>Calendar</h2>
+                <p>Want to deep dive into career, FinOps, DevOps?</p>
+                <!-- Calendly link widget begin -->
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"
+                    async></script>
+                <a href=""
+                    onclick="Calendly.initPopupWidget({url: 'https://calendly.com/carlandrawilliams'}); return false;"
+                    class="btn-finops-primary">
+                    Schedule a Meeting
+                </a>
+                <!-- Calendly link widget end -->
             </div>
         </div>
-        <!---------------VISITOR COUNTER--------------------->
-        <span id="visitor_counter">Loading...</span>
+
     </section>
+
+    <!---------------VISITOR COUNTER--------------------->
+    <span id="visitor_counter">Loading...</span>
+
     <!-------------------FOOTER------------------------->
     <footer>
         <nav>
             <div class="nav-links-container">
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#resume">Experience</a></li>
+                    <li><a href="#resume">Career</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>

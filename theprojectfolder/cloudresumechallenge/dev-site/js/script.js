@@ -6,6 +6,47 @@ function toggleMenu() {
     icon.classList.toggle("open");
 }
 
+//Slider
+const grid = document.querySelector('.projects-grid');
+const nextBtn = document.querySelector('.next-btn');
+const prevBtn = document.querySelector('.prev-btn');
+
+let scrollAmount = 0;
+const cardWidth = grid.querySelector('.project-card').offsetWidth + 16;
+
+// Scroll right
+nextBtn.addEventListener('click', () => {
+    grid.scrollBy({ left: cardWidth * 2, behavior: 'smooth' });
+});
+
+// Scroll left
+prevBtn.addEventListener('click', () => {
+    grid.scrollBy({ left: -cardWidth * 2, behavior: 'smooth' });
+});
+
+// Enable dragging on mobile
+let isDown = false;
+let startX;
+let scrollLeft;
+
+grid.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - grid.offsetLeft;
+    scrollLeft = grid.scrollLeft;
+});
+
+grid.addEventListener('mouseleave', () => (isDown = false));
+grid.addEventListener('mouseup', () => (isDown = false));
+
+grid.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - grid.offsetLeft;
+    const walk = (x - startX) * 2;
+    grid.scrollLeft = scrollLeft - walk;
+});
+
+
 //Visitor Counter
 const functionUrl = "https://ligzkttonselfrpj5d3266qb7a0imnhp.lambda-url.us-east-1.on.aws/";
 
@@ -45,45 +86,46 @@ fetch(functionUrl, {
     })
     .catch(err => logError("GET failed", err));
 
-//Project Slider Dots
-const sliderTrack = document.querySelector('.slider-track');
-const tiles = document.querySelectorAll('.project-tile');
-const dotsContainer = document.querySelector('.dots');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
+document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = { threshold: 0.1 };
 
-let currentIndex = 0;
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target
 
-// Create dots
-tiles.forEach((_, index) => {
-    const dot = document.createElement('span');
-    dot.addEventListener('click', () => moveToSlide(index));
-    dotsContainer.appendChild(dot);
-});
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const observerOptions = { threshold: 0.1 };
 
-const dots = dotsContainer.querySelectorAll('span');
-dots[0].classList.add('active');
+                        const observer = new IntersectionObserver((entries, observer) => {
+                            entries.forEach((entry, index) => {
+                                if (entry.isIntersecting) {
+                                    // Add visible class to icon immediately
+                                    entry.target.classList.add('visible');
 
-function moveToSlide(index) {
-    currentIndex = index;
-    sliderTrack.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[index].classList.add('active');
-}
+                                    // If the target is a cert-wrapper, fade in the name slightly after
+                                    const certName = entry.target.querySelector('.cert-name');
+                                    if (certName) {
+                                        setTimeout(() => {
+                                            certName.classList.add('visible');
+                                        }, 150); // delay in ms for name
+                                    }
 
-// Arrow navigation
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % tiles.length;
-    moveToSlide(currentIndex);
-});
+                                    observer.unobserve(entry.target);
+                                }
+                            });
+                        }, observerOptions);
 
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + tiles.length) % tiles.length;
-    moveToSlide(currentIndex);
-});
+                        // About Me section cards, icons, and cert wrappers
+                        const aboutElements = document.querySelectorAll(
+                            '.about-details-container, .icon-circle, .cert-wrapper'
+                        );
+                        aboutElements.forEach(el => observer.observe(el));
 
-// Optional: Auto-slide
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % tiles.length;
-    moveToSlide(currentIndex);
-}, 8000);
+                        // Experience section cards and icons
+                        const experienceElements = document.querySelectorAll(
+                            '.details-container, .details-container .icon-circle'
+                        );
+                        experienceElements.forEach(el => observer.observe(el));
+                    });
