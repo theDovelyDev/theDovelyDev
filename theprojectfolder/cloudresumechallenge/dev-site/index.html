@@ -10,51 +10,53 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="./css/style.css" type="text/css">
     <link rel="stylesheet" href="./mediaqueries/mediaqueries.css" type="text/css">
-    <script src="./js/script.js" type="text/json"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <script src="./js/script.js" defer></script>
     <script src="https://kit.fontawesome.com/cc0438124d.js" crossorigin="anonymous"></script>
 
     <!-- Mobile Specific Metas 
     ================================================================================ -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="" />
-    <style>
-    </style>
 </head>
 
 <body>
     <!-------------------PAGE NAVIGATION---------------->
-    <nav id="desktop-nav">
-        <img src="./images/carlandra-logo.png" alt="logo" />
-        <div>
-            <ul class="nav-links">
-                <li><a href="#experience">Expertise</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <img src="./images/carlandra-logo.png" alt="logo" />
+
+            <!-- Hamburger button-->
+            <button class="hamburger" id="hamburger" ria-label="Toggle menu" aria-expanded="false"
+                aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Desktop nav (visible on wide screens) -->
+            <nav class="nav-desktop">
+                <a href="#experience">Expertise</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-    </nav>
-    <!-------------------MOBILE NAV--------------------->
-    <nav id="hamburger-nav">
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </ul>
-        </div>
+        <!-- Mobile nav (dropdown) -->
+        <nav class="nav-mobile" id="navMenu" aria-hidden="true">
+            <a href="#experience">Expertise</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </nav>
     <!-------------------HERO / ABOUT ME SECTION--------------->
-    <section id="about" class="about-section">
-        <h1 class="title">???</h1>
+    <section id="about">
         <div class="about-container">
             <img src="./images/profile_pic.jpg" alt="Carlandra protrait" />
             <div class="about-pic-text">
+                <img src="./images/citc-logo.png" class="citc-logo">
                 <div id="bio" class="bio-block">
                     <div class="bio-inner">
                         <p class="bio-lead">
@@ -84,29 +86,37 @@
                             </button>
                             <button class="hero-btn"
                                 onclick="location.href='https://www.linkedin.com/in/carlandrawilliams'"><i
-                                    class="fa-brands fa-linkedin fa-2xl social-icon" style="color: #0077b5;"></i>
+                                    class="fa-brands fa-linkedin fa-2xl" style="color: #0077b5;"></i>
                                 Connect on
                                 LinkedIn
                             </button>
                             <button class="hero-btn"
                                 onclick="location.href='https://github.com/theDovelyDev/theprojectfolder/tree/main'"><i
-                                    class="fa-brands fa-github fa-2xl social-icon" style="color: #000000;"></i>
+                                    class="fa-brands fa-github fa-2xl" style="color: #000000;"></i>
                                 GitHub
-                                Repos</button>
+                                Repos
+                            </button>
+                            <button class="hero-btn"
+                                onclick="location.href='https://substack.com/@carlandrainthecloud'"><i
+                                    class="fa-solid fa-bookmark fa-xl" style="color: #ff6719;"></i>
+                                Visit My Substack
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="about-sections">
-            <div class="about-card">
+            <div class="info-card">
                 <h3><i class="fa-solid fa-id-badge"></i> Career</h3>
-                <p><span class="num">10</span>+ years Business Analytics</p>
-                <p><span class="num">6</span> years Project Management</p>
-                <p><span class="num">5</span> years Cloud FinOps Analytics</p>
-                <p><span class="num">4</span> years IT Operations</p>
+                <ul class="interest-list">
+                    <li><span class="num">10</span>+ years Business Analytics</li>
+                    <li><span class="num">6</span> years Project Management</li>
+                    <li><span class="num">5</span> years Cloud FinOps Analytics</li>
+                    <li><span class="num">4</span> years IT Operations</li>
+                </ul>
             </div>
-            <div class="about-card certifications-card">
+            <div class="info-card certifications-card">
                 <h3><i class="fa-solid fa-award"></i> Certifications</h3>
                 <div class="certifications">
                     <a href="https://www.credly.com/badges/d6a02cba-eeed-4a97-bcef-b2b4dc82e1f7/public_url'"
@@ -128,21 +138,24 @@
                     </a>
                     <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=0DBADB7CDD606CC871E698A7A0606413B842361FF3EEFE2D3427079890FCEE97"
                         target="_blank">
-                        <img src="./images/oci_foundations_associate.jpeg" alt="Oracle OCI Foundations Associate Badge">
+                        <img src="./images/oci_foundations_assoc.png" alt="OCI Foundations Associate Badge">
+                    </a>
+                    <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=710155462B13A546B9D484883A1613E94035BBC0C9E614B0E070611B8CC41423"
+                        target="_blank">
+                        <img src="./images/oci_ai_assoc.png" alt="OCI AI Foundations Associate Badge">
                     </a>
                 </div>
                 <p>Click a badge to verify the certification.</p>
             </div>
-            <div class="about-card">
+            <div class="info-card">
                 <h3><i class="fa-solid fa-book-open-reader"></i> Interests</h3>
                 <ul class="interest-list">
-                    <li>Cloud Engineering</li>
-                    <li>Cybersecurity</li>
                     <li>Governance & Compliance</li>
+                    <li>Cybersecurity</li>
+                    <li>Cloud Engineering</li>
                     <li>Data Engineering</li>
                     <li>IAM</li>
                     <li>AI/ML</li>
-                    <li>Sustainable cloud practices</li>
                 </ul>
             </div>
         </div>
@@ -424,32 +437,33 @@
                 </div>
             </div>
 
-            <!-- Project 5 
-        <div class="project-card">
-            <img src="./images/ai-model.png" alt="Cloud Governance Playbook" />
-            <h2>🏷️ AI Model for AWS Resource Tagging</h2>
-            <p>
-                Build and deploy an AI/ML solution in AWS that predicts missing or inconsistent resource tags (Environment,
-                Project,
-                Owner) using metadata + resource context.
-            </p>
-            <span class="tags">Model Training • Data Preparation • AWS SageMaker • Automation Pipeline</span>
-            <div class="project-links">
-                <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main" class="btn-finops-primary">GitHub Repo</a>
-                <a href="./content/cloud-governance-playbook.html" class="btn-finops-primary">Substack</a>
+            <!-- Project 5 -->
+            <div class="project-card">
+                <img src="./images/route53_dns_failover.png" alt="DNS-Level Failover" />
+                <h2>🔮 Decision at the Edge – DNS Failover with Route 53</h2>
+                <p> Keep a hot (active) S3 static site + backend in us-east-1 and an identical passive copy in
+                    us-west-2. DNS failover using
+                    Route 53 will send traffic to the passive copy only when health checks show the primary is
+                    unhealthy.
+                </p>
+                <span class="tags">High Availability • CloudFormation • Route53 • Automation Pipeline</span>
+                <div class="project-links">
+                    <a href="https://github.com/theDovelyDev/theprojectfolder/tree/main"
+                        class="btn-finops-primary">GitHub Repo</a>
+                    <a href="./content/cloud-governance-playbook.html" class="btn-finops-primary">Substack</a>
+                </div>
             </div>
-        </div> -->
         </div>
     </section>
 
     <!-------------------CONTACT ME--------------------->
     <section id="contact">
         <h1 class="title">Let's Collaborate</h1>
-        <div class="contact-container">
+        <div class="projects-grid">
             <!-- Email Card -->
             <div class="contact-card">
                 <i class="fa-solid fa-envelope fa-2xl"></i>
-                <h2>Email</h2>
+                <h3>Email</h3>
                 <p>carlandra.williams@gmail.com</p>
                 <a href="mailto:carlandra.williams@gmail.com" class="btn-finops-primary">Send Me a Message</a>
             </div>
@@ -457,7 +471,7 @@
             <!-- LinkedIn Card -->
             <div class="contact-card">
                 <i class="fa-brands fa-linkedin fa-2xl" style="color: #0077b5;"></i>
-                <h2>LinkedIn</h2>
+                <h3>LinkedIn</h3>
                 <p>Grow your network with me.</p>
                 <a href="https://www.linkedin.com/in/carlandrawilliams" target="_blank" class="btn-finops-primary">
                     Connect on LinkedIn
@@ -467,7 +481,7 @@
             <!-- Calendly Card -->
             <div class="contact-card">
                 <img src="./images/calendly.png" class="calendar-icon" alt="Calendly Logo">
-                <h2>Calendar</h2>
+                <h3>Calendar</h3>
                 <p>Want to deep dive into career, FinOps, DevOps?</p>
                 <!-- Calendly link widget begin -->
                 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
@@ -480,25 +494,26 @@
                 </a>
                 <!-- Calendly link widget end -->
             </div>
+            <!-- SubStack Widget-->
+            <div class="contact-card">
+                <h3>Subscribe to my Substack</h3>
+                <iframe src="https://carlandrainthecloud.substack.com/embed" width="300" height="125"
+                    style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+            </div>
         </div>
-
     </section>
 
-    <!---------------VISITOR COUNTER--------------------->
-    <span id="visitor_counter">Loading...</span>
+    <!---------------VISITOR COUNTER--
+    <span id="visitor_counter">Loading...</span>------------------->
 
     <!-------------------FOOTER------------------------->
-    <footer>
-        <nav>
-            <div class="nav-links-container">
-                <ul class="nav-links">
-                    <li><a href="#experience">Expertise</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
+    <footer class="site-footer">
+        <nav class="footer-nav">
+            <a href="#experience">Expertise</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
         </nav>
         <p>Copyright &#169; 2024 Carlandra Williams. All Rights Reserved.</p>
-        <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up" style="color:white"></i></a>
+        <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
     </footer>
 </body>

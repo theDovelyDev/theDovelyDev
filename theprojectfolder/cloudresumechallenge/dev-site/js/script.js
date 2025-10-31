@@ -1,53 +1,30 @@
-//Hamburger Menu
+// Hamburger Menu
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
 function toggleMenu() {
-    const menu = document.querySelector(".menu-links");
-    const icon = document.querySelector(".hamburger-icon");
-    menu.classList.toggle("open");
-    icon.classList.toggle("open");
+    const isOpen = hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open', isOpen);
+
+    // ARIA for accessibility
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    navMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
 }
 
-//Slider
-const grid = document.querySelector('.projects-grid');
-const nextBtn = document.querySelector('.next-btn');
-const prevBtn = document.querySelector('.prev-btn');
+// Toggle on hamburger click
+hamburger.addEventListener('click', toggleMenu);
 
-let scrollAmount = 0;
-const cardWidth = grid.querySelector('.project-card').offsetWidth + 16;
-
-// Scroll right
-nextBtn.addEventListener('click', () => {
-    grid.scrollBy({ left: cardWidth * 2, behavior: 'smooth' });
+// Close when a link is clicked (mobile)
+navMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+    });
 });
 
-// Scroll left
-prevBtn.addEventListener('click', () => {
-    grid.scrollBy({ left: -cardWidth * 2, behavior: 'smooth' });
-});
-
-// Enable dragging on mobile
-let isDown = false;
-let startX;
-let scrollLeft;
-
-grid.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - grid.offsetLeft;
-    scrollLeft = grid.scrollLeft;
-});
-
-grid.addEventListener('mouseleave', () => (isDown = false));
-grid.addEventListener('mouseup', () => (isDown = false));
-
-grid.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - grid.offsetLeft;
-    const walk = (x - startX) * 2;
-    grid.scrollLeft = scrollLeft - walk;
-});
-
-
-//Visitor Counter
+// Visitor Counter
 const functionUrl = "https://ligzkttonselfrpj5d3266qb7a0imnhp.lambda-url.us-east-1.on.aws/";
 
 // Log helper
@@ -59,18 +36,14 @@ const logError = (msg, err) => {
 // 1. Increment visitor count (POST)
 fetch(functionUrl, {
     method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     mode: "cors"
 }).catch(err => logError("POST failed", err));
 
 // 2. Fetch current visitor count (GET)
 fetch(functionUrl, {
     method: "GET",
-    headers: {
-        "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     mode: "cors"
 })
     .then(response => {
@@ -86,46 +59,38 @@ fetch(functionUrl, {
     })
     .catch(err => logError("GET failed", err));
 
+// Animate icons and cards when visible
 document.addEventListener("DOMContentLoaded", function () {
     const observerOptions = { threshold: 0.1 };
 
     const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target
+                // Add visible class to icon immediately
+                entry.target.classList.add('visible');
 
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const observerOptions = { threshold: 0.1 };
+                // If the target is a cert-wrapper, fade in the name slightly after
+                const certName = entry.target.querySelector('.cert-name');
+                if (certName) {
+                    setTimeout(() => {
+                        certName.classList.add('visible');
+                    }, 150); // delay in ms for name
+                }
 
-                        const observer = new IntersectionObserver((entries, observer) => {
-                            entries.forEach((entry, index) => {
-                                if (entry.isIntersecting) {
-                                    // Add visible class to icon immediately
-                                    entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 
-                                    // If the target is a cert-wrapper, fade in the name slightly after
-                                    const certName = entry.target.querySelector('.cert-name');
-                                    if (certName) {
-                                        setTimeout(() => {
-                                            certName.classList.add('visible');
-                                        }, 150); // delay in ms for name
-                                    }
+    // About Me section cards, icons, and cert wrappers
+    const aboutElements = document.querySelectorAll(
+        '.about-details-container, .icon-circle, .cert-wrapper'
+    );
+    aboutElements.forEach(el => observer.observe(el));
 
-                                    observer.unobserve(entry.target);
-                                }
-                            });
-                        }, observerOptions);
-
-                        // About Me section cards, icons, and cert wrappers
-                        const aboutElements = document.querySelectorAll(
-                            '.about-details-container, .icon-circle, .cert-wrapper'
-                        );
-                        aboutElements.forEach(el => observer.observe(el));
-
-                        // Experience section cards and icons
-                        const experienceElements = document.querySelectorAll(
-                            '.details-container, .details-container .icon-circle'
-                        );
-                        experienceElements.forEach(el => observer.observe(el));
-                    });
+    // Experience section cards and icons
+    const experienceElements = document.querySelectorAll(
+        '.details-container, .details-container .icon-circle'
+    );
+    experienceElements.forEach(el => observer.observe(el));
+});

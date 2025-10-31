@@ -19,148 +19,164 @@ p {
     color: #00001c;
 }
 
-/* ============= TRANSITION ================ */
-a {
-    transition: all 300ms ease;
+/* ===========================
+   NAV LAYOUT
+   =========================== */
+.navbar {
+    width: 100%;
+    position: relative;
 }
 
-nav,
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.15rem 0.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* desktop nav */
+.nav-desktop {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.nav-desktop a {
+    color: #0a2540;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+}
+
+.nav-desktop a:hover {
+    color: #4a90e2d9;
+}
+
 .nav-links {
     display: flex;
-}
-
-nav {
-    justify-content: space-around;
-    align-items: center;
-    height: 17vh;
-}
-
-.nav-links {
-    gap: 2rem;
     list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
     font-size: 1.5rem;
-}
-
-a {
-    color: black;
-    text-decoration: none;
-    text-decoration-color: black;
-}
-
-a:hover {
     color: #2c4697;
-    text-underline-offset: .75rem;
-    text-decoration-color: #2c4697;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
 
-#desktop-nav img {
+.nav-links li a:hover {
+    color: #2c4697;
+}
+
+.navbar img {
     width: 100px;
     align-self: left;
 }
 
-/* ==================== HAMBURGER MENU ================ */
+/* ======== HAMBURGER MENU ======= */
 /* Hide hamburger menu by default (desktop) */
-#hamburger-nav {
+/* hamburger (hidden on desktop) */
+.hamburger {
     display: none;
-}
-
-/* Show only on tablet and mobile screens */
-@media (max-width: 768px) {
-    #hamburger-nav {
-        display: block;
-    }
-
-    .hamburger-menu {
-        position: relative;
-        display: inline-block;
-    }
-
-    /* Hamburger icon */
-    .hamburger-icon {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 24px;
-        width: 30px;
-        cursor: pointer;
-        z-index: 1001;
-    }
-
-    .hamburger-icon span {
-        width: 100%;
-        height: 2px;
-        background-color: black;
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    /* Menu container (hidden by default) */
-    .menu-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: whitesmoke;
-        width: fit-content;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition:
-            max-height 0.4s ease-in-out,
-            opacity 0.3s ease-in-out,
-            transform 0.3s ease-in-out;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .menu-links.open {
-        max-height: 300px;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .menu-links li {
-        list-style: none;
-    }
-
-    .menu-links a {
-        display: block;
-        padding: 12px 20px;
-        text-align: left;
-        font-size: 1rem;
-        color: black;
-        text-decoration: none;
-        transition: background 0.3s ease-in-out;
-    }
-
-    .menu-links a:hover {
-        background-color: #f0f0f0;
-    }
-
-    /* Hamburger icon open animation */
-    .hamburger-icon.open span:first-child {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger-icon.open span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger-icon.open span:last-child {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Reset when closed */
-    .hamburger-icon span {
-        transform: none;
-        opacity: 1;
-    }
-}
-
-/* Optional logo icon */
-.logo-icon {
-    height: 80%;
+    background: transparent;
+    border: none;
     cursor: pointer;
+    width: 36px;
+    height: 30px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 24px;
+    background: #2c4697;
+    border-radius: 3px;
+    margin: 4px 0;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+/* mobile nav (dropdown) */
+.nav-mobile {
+    overflow: hidden;
+    max-height: 0;
+    /* collapsed */
+    transition: max-height 320ms ease, padding 320ms ease;
+    background: #007bff0d;
+}
+
+/* links in mobile nav */
+.nav-mobile a {
+    display: block;
+    color: #2c4697;
+    text-decoration: none;
+    padding: 0.9rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    font-weight: 500;
+    text-align: center;
+}
+
+.nav-mobile a:hover {
+    background: #0a2540;
+    color: #fafafa;
+}
+
+
+/* hamburger open state (X) */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.hamburger.open span:nth-child(4) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --------------- Responsive rules --------------- */
+
+/* Mobile & Tablet: show hamburger and hide desktop nav */
+@media (max-width: 992px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-desktop {
+        display: none;
+    }
+
+    /* when mobile nav is open we will set a class to increase max-height */
+    .nav-mobile.open {
+        max-height: 500px;
+        /* large enough to show items (adjust if you add more) */
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+    }
+}
+
+/* Desktop: ensure mobile nav collapsed, desktop nav visible */
+@media (min-width: 993px) {
+    .nav-mobile {
+        display: none;
+    }
+
+    .nav-desktop {
+        display: flex;
+    }
 }
 
 /* ================ SECTIONS ================ */
@@ -168,10 +184,12 @@ a:hover {
 /* Control spacing between sections */
 section {
     max-width: 1200px;
-    margin: 0 auto 4rem auto;
-    /* 4rem gap below each section */
-    padding: 2rem 1rem;
+    margin: 0 auto 3rem auto;
+    /* 3rem gap below each section */
+    padding: 4rem 2rem;
     box-sizing: border-box;
+    gap: 2rem;
+    color: #1f2937;
 }
 
 /* Remove excess top margin on first section */
@@ -181,8 +199,7 @@ section:first-of-type {
 }
 
 /* Keep section titles consistent */
-section>h1,
-section>h2 {
+section h2 {
     margin-bottom: 1 rem;
     text-align: left;
     /* keep alignment consistent */
@@ -193,7 +210,12 @@ section>h2 {
     font-size: 3rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #2c4697;
+    color: #0a2540;
+}
+
+.citc-logo {
+    height: rem;
+    width: 100%;
 }
 
 /* Extra-wide monitors (> 1600px) */
@@ -232,7 +254,7 @@ section>h2 {
 .back-to-top {
     position: fixed;
     bottom: 6rem;
-    right: 6rem;
+    right: 3em;
     display: flex;
     background-color: #4A90E2;
     border-radius: 0.5rem;
@@ -282,13 +304,6 @@ section>h2 {
 /* ===========================
    ABOUT SECTION
    =========================== */
-#about {
-    padding: 4rem 2rem;
-    background-color: #fafafa;
-    color: #1f2937;
-    gap: 2rem;
-}
-
 /* ===========================
    ABOUT PICTURE + TEXT
    =========================== */
@@ -325,12 +340,12 @@ section>h2 {
     /* dark gray */
     display: flex;
     justify-content: center;
-    flex: 1 1 250px;
+    flex: 1 1 450px;
     /* allow bio to grow/shrink, prefer about 520px */
 }
 
 .bio-inner {
-    max-width: 800px;
+    max-width: 900px;
     /* line length control */
     width: 100%;
     box-sizing: border-box;
@@ -387,8 +402,12 @@ section>h2 {
 
 .hero-btn:hover {
     cursor: pointer;
-    background-color: #2c4697;
+    background-color: #0a2540;
     color: #ecf0f1;
+}
+
+.social-icon {
+    object-fit: scale-down;
 }
 
 /* ===========================
@@ -409,9 +428,6 @@ section>h2 {
     }
 }
 
-🧩 Explanation Removed padding: 0 8rem;
-→ that was causing .about-pic to be far wider than the image. Added display: inline-block;
-so
 /* Small screens — center align for compact reading */
 @media (max-width: 640px) {
     .bio-inner {
@@ -443,7 +459,6 @@ so
 /* ===========================
    ABOUT CARDS
    =========================== */
-
 .about-sections {
     display: flex;
     flex-wrap: wrap;
@@ -452,7 +467,7 @@ so
 }
 
 /* Card styling */
-.about-card {
+.info-card {
     flex: 1 1 250px;
     background-color: #fff;
     border-radius: 12px;
@@ -462,13 +477,13 @@ so
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.about-card h3 {
+.info-card h3 {
     font-size: x-large;
     color: #2c4697;
     margin-bottom: .5rem;
 }
 
-.about-card:hover {
+.info-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 14px rgba(74, 144, 226, .5);
 }
@@ -509,20 +524,9 @@ so
    RESPONSIVE BEHAVIOR
    =========================== */
 
-
-
-
 /* ===========================
    CAREER EXPERIENCE
    =========================== */
-/* Main title spans all columns */
-#experience {
-    padding: 4rem 2rem;
-    background-color: #fafafa;
-    color: #1f2937;
-    gap: 2rem;
-}
-
 .details-container {
     display: flex;
     flex-wrap: wrap;
@@ -610,11 +614,6 @@ article h4 {
 /* ===========================
    PROJECTS
    =========================== */
-#projects {
-    background-color: #fafafa;
-    padding: 4rem 2rem;
-    gap: 2rem;
-}
 
 /* grid container */
 .projects-grid {
@@ -705,45 +704,44 @@ article h4 {
 }
 
 .btn-finops-primary:hover {
-    background: #2c4697;
+    background: #0a2540;
     color: #fff;
-    border-color: #2c4697;
+    border-color: #0a2540;
 }
 
 
 /* ===========================
    RESPONSIVE BEHAVIOR
    =========================== */
-
-/* =============== CTA ================*/
-#contact {
-    padding: 4rem 2rem;
-    background-color: #fafafa;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    color: #1f2937;
-}
-
-.contact-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-}
-
+/* =============== CONTACT ================*/
 .contact-card {
     flex: 1 1 250px;
-    max-width: 300px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 2rem 1.5rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
     text-align: center;
+    /* centers text lines */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-icon {
+    height: 49px;
+    width: 60px;
+    object-fit: contain;
+    /* makes the Calendly image behave like an icon */
+    margin-bottom: -12px;
+}
+
+.contact-card h3 {
+    font-size: x-large;
+    margin: 1rem;
+    color: #2c4697;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.contact-card p {
+    margin-bottom: 1rem;
 }
 
 .contact-card:hover {
@@ -751,36 +749,38 @@ article h4 {
     box-shadow: 0 6px 14px rgba(74, 144, 226, .5);
 }
 
-/* Normalize the icon area so h2 headings line up */
-.contact-card i,
-.contact-card img {
-    height: 48px;
-    /* lock icon/image height */
-    width: 48px;
-    /* keeps them uniform */
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: contain;
-    /* makes the Calendly image behave like an icon */
+/* ===========================
+   RESPONSIVE BEHAVIOR
+   =========================== */
+
+/* Tablet view (2x2 grid) */
+@media (max-width: 1024px) {
+    .contact-container {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 4rem;
+        gap: 1.5rem;
+    }
 }
 
-.contact-card h2 {
-    font-size: 1.25rem;
-    margin: 0.5rem 0 0.75rem;
-    line-height: 1.3;
-    color: #2c4697;
-}
+/* Mobile view (stacked) */
+@media (max-width: 600px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        margin: 0 1.5rem;
+        gap: 1rem;
+    }
 
-.contact-card .btn-finops-primary {
-    margin-top: auto;
-    /* pushes button to bottom for consistent alignment */
-    align-self: center;
-}
+    .contact-card {
+        padding: 1.5rem 1rem;
+    }
 
-.contact-card p {
-    margin-bottom: 1rem;
+    .contact-card h2 {
+        font-size: 1.25rem;
+    }
+
+    .contact-card p {
+        font-size: 0.95rem;
+    }
 }
 
 /* ============== PAGE COUNTER ==============*/
@@ -821,35 +821,84 @@ article h4 {
 }*/
 
 /* =============== FOOTER ==================*/
-footer {
-    height: 26vh;
-    margin: 0 1rem;
-}
-
-footer p {
+/* Footer Layout */
+.site-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color: #2c4697;
     text-align: center;
-}
-
-.error-page {
-    position: absolute;
-    top: 10%;
-    left: 17%;
-    right: 17%;
-    bottom: 20%;
+    padding: 1.5rem 1rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    background: whitesmoke;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
 }
 
-/* === DEBUG: visualize section boundaries === */
-section {
-    outline: 2px dashed rgba(255, 0, 0, 0.5);
-    /* red dashed border */
+/* Footer Navigation */
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
-/* Optional: different color for About Me, Experience, Projects */
+.footer-nav a {
+    color: #0a2540;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
 
+.footer-nav a:hover {
+    color: #4a90e2d9;
+}
 
-/* Visualize card boundaries */
+/* Footer Copy */
+.footer-copy {
+    font-size: 0.9rem;
+    color: #9ba7bd;
+    margin: 0;
+}
+
+/* Sticky Footer Fix for Short Pages */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+@media (max-width: 992px) {
+    .footer-nav {
+        gap: 1.25rem;
+    }
+
+    .site-footer {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .footer-copy {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-nav {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .site-footer {
+        padding: 1rem;
+    }
+
+    .footer-copy {
+        font-size: 0.8rem;
+    }
+}
