@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read    # To checkout the repo
 
     steps:
       - name: Checkout Repository
@@ -15,12 +18,11 @@ jobs:
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with:   
+          role-to-assume: arn:aws:iam::102587257710:role/GitHubActionsProdRole
           aws-region: us-east-1  # Change if needed
 
-      - name: Debug AWS Identity
+      - name: Verify AWS Identity
         run: aws sts get-caller-identity
       
       - name: Pre-Sync Safety Check
@@ -63,8 +65,8 @@ jobs:
         run: |
           aws cloudfront create-invalidation \
             --distribution-id E2UA1URROHIZXT \
-            --paths "/*"
+            --paths "/*" --no-cli-pager
 
           aws cloudfront create-invalidation \
             --distribution-id E2YXOTOZ4EWSMK \
-            --paths "/*"
+            --paths "/*" --no-cli-pager
