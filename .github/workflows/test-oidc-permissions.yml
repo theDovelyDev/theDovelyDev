@@ -1,49 +1,56 @@
-name: Test AWS OIDC & Permissions
+name: 🔍 Validate AWS OIDC Connection & Role Permissions
+# Manual-only workflow to verify IAM trust policy, OIDC authentication,
+# and AWS resource permissions for GitHubActionsProdRole before deployment.
+
 on:
-  workflow_dispatch:  # Manual trigger only, so you can run it safely anytime
+  workflow_dispatch:
     inputs:
       confirm:
-        description: "Confirm to run the OIDC test"
+        description: "Type 'yes' to confirm running the AWS OIDC & permissions test"
         required: true
         default: "yes"
 
 jobs:
   sanity-test:
+    name: Validate OIDC, S3, CloudFront, Route53, CloudFormation Access
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: 🧾 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials (OIDC)
+      - name: 🔐 Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::102587257710:role/GitHubActionsProdRole
           aws-region: us-east-1
 
-      - name: Confirm AWS Identity
+      - name: 🪪 Verify AWS Identity
         run: aws sts get-caller-identity
 
-      - name: Verify S3 Access
+      - name: 🗂️ Check S3 Bucket Access
         run: |
-          echo "Listing S3 buckets to verify access..."
-          aws s3 ls www.theprojectfolder.com || echo "❌ Failed: cannot list main bucket"
-          aws s3 ls theprojectfolder.com || echo "⚠️ Root redirect bucket - read-only check"
-          aws s3 ls my-site-access-logs || echo "⚠️ Logs bucket - read-only check"
+          echo "Verifying access to all required S3 buckets..."
+          aws s3 ls www.theprojectfolder.com || echo "❌ Could not list main bucket"
+          aws s3 ls theprojectfolder.com || echo "⚠️ Root redirect bucket read-only check"
+          aws s3 ls my-site-access-logs || echo "⚠️ Access logs bucket read-only check"
 
-      - name: Verify CloudFormation Access
+      - name: 🏗️ Verify CloudFormation Access
         run: |
-          echo "Checking CloudFormation stack access..."
+          echo "Checking CloudFormation stack permissions..."
           aws cloudformation describe-stacks --stack-name frontend-stack-prod || echo "❌ CloudFormation describe failed"
 
-      - name: Verify CloudFront Permissions
+      - name: 🌐 Verify CloudFront Permissions
         run: |
-          echo "Checking CloudFront invalidation permissions..."
+          echo "Creating test invalidation to verify CloudFront access..."
           aws cloudfront create-invalidation \
             --distribution-id E2UA1URROHIZXT \
-            --paths "/test-verification-$(date +%s)" || echo "❌ CloudFront invalidation failed"
-      
-      - name: Verify Route53 Permissions
+            --paths "/oidc-test-$(date +%s)" || echo "❌ CloudFront invalidation failed"
+
+      - name: 🌎 Verify Route53 Permissions
         run: |
-          echo "Checking Route53 permissions..."
-          aws route53 list-resource-record-sets --hosted-zone-id Z03024793FWW1BZ4QAAUV | head -n 5 || echo "❌ Route53 read failed"
+          echo "Checking Route53 record listing permissions..."
+          aws route53 list-resource-record-sets --hosted-zone-id Z03024793FWW1BZ4QAAUV | head -n 5 || echo "❌ Route53 list failed"
+
+      - name: ✅ Summary
+        run: echo "OIDC Role and Permission validation complete."
