@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📊 FinOps Case Study: Static Website on AWS</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <main>
+        <h1>📊 FinOps Case Study: Static Website on AWS</h1>
+
+        <section>
+            <h2>📌 Project Overview</h2>
+            <ul>
+                <li><strong>Project:</strong> Static Portfolio Website</li>
+                <li><strong>Purpose:</strong> Lightweight, serverless web app with visitor tracking</li>
+                <li><strong>Traffic Volume:</strong> 1K to 50K visitors/month</li>
+                <li><strong>Deployment:</strong> GitHub Actions with dry-run testing and fallback logic</li>
+            </ul>
+        </section>
+
+        <hr />
+
+        <section>
+            <h2>🧱 Infrastructure Stack</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>AWS Services</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td>Amazon S3 static site hosting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CI/CD</strong></td>
+                        <td>GitHub Actions (dry-run + fallback logic)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Storage</strong></td>
+                        <td>S3 with bucket policies (no ACLs)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Networking</strong></td>
+                        <td>CloudFront CDN + Route 53 DNS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serverless Logic</strong></td>
+                        <td>Lambda Function URL for visitor tracking (x86, 120ms)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database</strong></td>
+                        <td>DynamoDB (on-demand mode, TTL enabled)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monitoring</strong></td>
+                        <td>S3 access logs + CloudWatch for Lambda</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>IAM roles, least privilege policies, CORS headers</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr />
+
+        <section>
+            <h2>💰 Cost Model (Estimates)</h2>
+            <p>Assumes 1MB asset load per visitor, standard AWS pricing, and x86 Lambda @ 120ms.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Monthly Visitors</th>
+                        <th>Estimated Monthly Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1K Visitors</strong></td>
+                        <td>~$0.95</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5K Visitors</strong></td>
+                        <td>~$2.08</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10K Visitors</strong></td>
+                        <td>~$3.40</td>
+                    </tr>
+                    <tr>
+                        <td><strong>15K Visitors</strong></td>
+                        <td>~$4.77</td>
+                    </tr>
+                    <tr>
+                        <td><strong>20K Visitors</strong></td>
+                        <td>~$6.09</td>
+                    </tr>
+                    <tr>
+                        <td><strong>50K Visitors</strong></td>
+                        <td>~$14.13</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>📈 Cost Breakdown by Service</h2>
+            <img src="./finops_stacked_cost_chart_accessible.png" alt="Accessible Cost Breakdown Chart" />
+            <ul>
+                <li>Traffic Volume: 50K/month</li>
+                <li>Payload: ~1MB/visitor</li>
+                <li>Lambda: x86, ~120ms</li>
+                <li>DynamoDB: On-demand + TTL</li>
+                <li>CloudFront: Global caching</li>
+                <li>Route 53: Single hosted zone</li>
+                <li>Monitoring & IAM: included</li>
+            </ul>
+            <img src="./cost_optimization_impact_2500visitors.png" alt="2500 Visitor Optimization Impact" />
+            <img src="./cost_optimization_cumulative_12mo.png" alt="12-Month Cumulative Cost Impact" />
+        </section>
+
+        <section>
+            <h2>🔎 FinOps Lens</h2>
+
+            <h3>1. Visibility</h3>
+            <ul>
+                <li>AWS Budgets and alerts</li>
+                <li>CloudWatch Dashboards:
+                    <ul>
+                        <li>Lambda usage</li>
+                        <li>CloudFront cache efficiency</li>
+                        <li>DynamoDB operations</li>
+                        <li>S3 request/size tracking</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2. Optimization</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>S3</td>
+                        <td>Lifecycle policies, Intelligent-Tiering</td>
+                    </tr>
+                    <tr>
+                        <td>CloudFront</td>
+                        <td>Optimized TTLs and cache keys</td>
+                    </tr>
+                    <tr>
+                        <td>Lambda</td>
+                        <td>Lightweight, 120ms x86 (consider ARM)</td>
+                    </tr>
+                    <tr>
+                        <td>DynamoDB</td>
+                        <td>TTL-enabled, on-demand mode</td>
+                    </tr>
+                    <tr>
+                        <td>Logging</td>
+                        <td>CloudWatch tuning, S3 lifecycle</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. Accountability</h3>
+            <ul>
+                <li>Tagging: <code>Project: StaticSite</code></li>
+                <li>Cost groups align to stack layers</li>
+                <li>GitHub Actions usage logs tracked</li>
+            </ul>
+
+            <h3>4. Value Realization</h3>
+            <ul>
+                <li>Scaling: <$0.01 /visitor at 50K volume</li>
+                <li>Infra management eliminated via CI/CD</li>
+                <li>Observability and alerts implemented</li>
+                <li>Total cost: <$15 /month @ 50K visitors</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>✅ Final Takeaways</h2>
+            <ul>
+                <li>⚙️ Serverless stack = flexible, cost-efficient</li>
+                <li>📉 Low-cost footprint across traffic levels</li>
+                <li>🔍 FinOps visibility and control in place</li>
+                <li>🚀 High ROI from automation and minimal overhead</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>📎 Appendix</h2>
+            <ul>
+                <li>Lambda execution: 120ms (x86)</li>
+                <li>Cost assumptions: 1MB/visitor</li>
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>

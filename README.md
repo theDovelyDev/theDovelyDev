@@ -7,7 +7,7 @@
 
 - 🔭 I’m currently working on **various AWS beginner projects on YT.**
 
-- 🌱 I’m currently learning **my way through ACantril's SA course.**
+- 🌱 I’m learning **my way through ACantril's SA course.**
 
 - 📫 How to reach me **datanpearlz@gmail.com**
 
