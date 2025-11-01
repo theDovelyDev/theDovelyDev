@@ -1,6 +1,11 @@
 name: Test AWS OIDC & Permissions
 on:
   workflow_dispatch:  # Manual trigger only, so you can run it safely anytime
+    inputs:
+      confirm:
+        description: "Confirm to run the OIDC test"
+        required: true
+        default: "yes"
 
 jobs:
   sanity-test:
