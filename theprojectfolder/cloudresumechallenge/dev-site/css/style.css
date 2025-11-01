@@ -261,8 +261,7 @@ section h2 {
     padding: 0.5rem;
     transition: 0.2s ease-out;
     transform: translateY(-8px);
-}
-
+    text-decoration: none;
 
 
 @keyframes animation {
