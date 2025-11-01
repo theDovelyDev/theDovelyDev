@@ -1,6 +1,6 @@
 <h1 align="center">Hi 👋🏾, I'm Carlandra🕊️💻</h1>
 <h3 align="center">A dev newbie learning how to ... everything.</h3>
-<p align="left">I'm a Business Analyst at heart who fell in love with AWS technology. After I became a FinOps (Cloud Financial Mgmt) Practitioner, I decided to start learning thorugh projects while working my way through ACantril's course.</p>
+<p align="left">I'm a Sr. FinOps Business Analyst at heart who fell in love with AWS technology. After I became a FinOps (Cloud Financial Mgmt) Practitioner, I decided to start learning through projects while working through ACantril's course.</p>
 
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=thedovelydev&label=Profile%20views&color=0e75b6&style=flat" alt="thedovelydev" /> </p>
