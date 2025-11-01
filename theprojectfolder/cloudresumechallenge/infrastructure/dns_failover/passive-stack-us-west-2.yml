@@ -1,0 +1,251 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  Passive failover stack for www.theprojectfolder.com (same AWS account, region us-west-2).
+  Creates passive S3 website buckets, passive CloudFront distribution (NO custom CNAME),
+  DynamoDB visitor table, visitor-counter Lambda + Function URL, Route53 HealthCheck (targets primary domain),
+  and a Route53 SECONDARY alias record pointing at the passive CloudFront distribution.
+  NOTE: Passive distribution does not include the custom domain alias (www.theprojectfolder.com)
+  because CloudFront custom CNAMEs must be unique per AWS account.
+
+Parameters:
+  PrimaryDomain:
+    Type: String
+    Default: www.theprojectfolder.com
+    Description: "Your primary site domain (custom hostname)."
+  HostedZoneId:
+    Type: String
+    Default: Z03024793FWW1BZ4QAAUV
+    Description: "Route53 hosted zone ID for theprojectfolder.com."
+  AcmCertificateArn:
+    Type: String
+    Default: arn:aws:acm:us-east-1:102587257710:certificate/af820f81-ed77-48e5-979e-b69916941427
+    Description: "ACM certificate ARN in us-east-1 for CloudFront. (Used by primary distribution. Not used by passive CF for this same-account setup.)"
+  PassiveBucketName:
+    Type: String
+    Default: www-theprojectfolder-com-passive-us-west-2
+    Description: "Global-unique S3 bucket name for passive website (change as needed)."
+  PassiveRootRedirectBucketName:
+    Type: String
+    Default: theprojectfolder-com-passive-us-west-2
+    Description: "S3 bucket name for passive root redirect (global-unique)."
+  VisitorDynamoTableName:
+    Type: String
+    Default: visitor-counter-passive
+    Description: "DynamoDB table name for passive visitor counter."
+  LambdaRuntime:
+    Type: String
+    Default: nodejs18.x
+    Description: "Runtime for visitor counter Lambda."
+
+Conditions:
+  CreateRoute53Secondary: !Not [ !Equals [ !Ref HostedZoneId, 'NONE' ] ]
+
+Resources:
+
+  ############################
+  # Passive S3 website buckets
+  ############################
+  PassiveWebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref PassiveBucketName
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+      LoggingConfiguration:
+        DestinationBucketName: my-site-access-logs
+        LogFilePrefix: passive-www/
+    DeletionPolicy: Retain
+
+  PassiveRootRedirectBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref PassiveRootRedirectBucketName
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Ref PrimaryDomain
+      LoggingConfiguration:
+        DestinationBucketName: my-site-access-logs
+        LogFilePrefix: passive-root/
+    DeletionPolicy: Retain
+
+  ####################################
+  # Passive CloudFront Distribution
+  # NOTE: This distribution intentionally does NOT include Aliases that use the custom domain
+  # because duplicate CNAMEs are not allowed in the same account.
+  ####################################
+  PassiveCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    DeletionPolicy: Retain
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: Passive CloudFront distribution (us-west-2) for failover - NO custom CNAME
+        DefaultRootObject: index.html
+        Origins:
+          - Id: PassiveS3Origin
+            DomainName: !Sub '${PassiveBucketName}.s3-website-us-west-2.amazonaws.com'
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: PassiveS3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        ViewerCertificate:
+          # We set a default CloudFront certificate (recommended for testing),
+          # but because this distribution does not have the custom CNAME, the ACM cert is not required here.
+          CloudFrontDefaultCertificate: true
+        PriceClass: PriceClass_100
+        IsIPV6Enabled: true
+
+  ####################################
+  # DynamoDB table for visitor counter (passive)
+  ####################################
+  VisitorCounterTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      TableName: !Ref VisitorDynamoTableName
+      AttributeDefinitions:
+        - AttributeName: CounterId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: CounterId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      Tags:
+        - Key: Project
+          Value: theprojectfolder
+
+  ####################################
+  # Visitor counter Lambda + Function URL
+  ####################################
+  VisitorLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'passive-visitor-lambda-role-${AWS::StackName}'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  VisitorLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub 'passive-visitor-counter-${AWS::StackName}'
+      Runtime: !Ref LambdaRuntime
+      Handler: index.handler
+      Role: !GetAtt VisitorLambdaRole.Arn
+      Timeout: 10
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref VisitorDynamoTableName
+      Code:
+        ZipFile: |
+          const AWS = require('aws-sdk');
+          const db = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+          const TABLE = process.env.TABLE_NAME;
+          exports.handler = async (event) => {
+            const id = 'global';
+            try {
+              const res = await db.update({
+                TableName: TABLE,
+                Key: { CounterId: id },
+                UpdateExpression: 'SET #c = if_not_exists(#c, :zero) + :inc',
+                ExpressionAttributeNames: { '#c': 'Count' },
+                ExpressionAttributeValues: { ':inc': 1, ':zero': 0 },
+                ReturnValues: 'UPDATED_NEW'
+              }).promise();
+              return { statusCode: 200, body: JSON.stringify(res.Attributes) };
+            } catch (e) {
+              console.error(e);
+              return { statusCode: 500, body: 'error' };
+            }
+          };
+
+  VisitorLambdaFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn: !Ref VisitorLambda
+
+  VisitorLambdaPolicyToDDB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub 'visitor-lambda-ddb-policy-${AWS::StackName}'
+      Roles: [ !Ref VisitorLambdaRole ]
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:UpdateItem
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+            Resource: !GetAtt VisitorCounterTable.Arn
+
+  ####################################
+  # Route53 Health Check targeting the primary domain
+  ####################################
+  PrimaryHealthCheck:
+    Type: AWS::Route53::HealthCheck
+    Properties:
+      HealthCheckConfig:
+        Type: HTTPS
+        FullyQualifiedDomainName: !Ref PrimaryDomain
+        Port: 443
+        ResourcePath: /
+        RequestInterval: 30
+        FailureThreshold: 3
+
+  ####################################
+  # Route53 SECONDARY alias record that points to the passive CloudFront distribution domain
+  # Note: Because the passive CF has no custom CNAME, this alias points to distribution domain.
+  ####################################
+  PassiveAliasRecord:
+    Type: AWS::Route53::RecordSet
+    Condition: CreateRoute53Secondary
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref PrimaryDomain
+      Type: A
+      Failover: SECONDARY
+      TTL: 60
+      AliasTarget:
+        DNSName: !GetAtt PassiveCloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2  # CloudFront global hosted zone ID
+
+Outputs:
+  PassiveBucketName:
+    Description: Passive S3 website bucket name
+    Value: !Ref PassiveBucketName
+
+  PassiveCloudFrontDomain:
+    Description: Passive CloudFront domain (no custom CNAME)
+    Value: !GetAtt PassiveCloudFrontDistribution.DomainName
+
+  VisitorLambdaUrl:
+    Description: Visitor counter Function URL
+    Value: !Ref VisitorLambdaFunctionUrl
+
+  VisitorTableName:
+    Description: Passive DynamoDB table name
+    Value: !Ref VisitorDynamoTableName

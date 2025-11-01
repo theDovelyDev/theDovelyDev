@@ -250,69 +250,21 @@
     </header>
 
     <section>
-        <h2 style="color:#2c4697;">📌 Project Summary</h2>
-        <p>This project is a hands-on example of how smart architecture and FinOps thinking can turn a simple website
-            into a
-            secure, scalable, and cost-aware solution—without complexity or overhead. I built everything from the ground
-            up,
-            focusing on real performance and long-term transparency.</p>
-
-        <ul>
-            <li>Designed and deployed a <strong>static site</strong> using Amazon S3 for hosting</li>
-            <li>Set up <strong>automated deployments</strong> with GitHub Actions—including dry-run checks and built-in
-                safeguards</li>
-            <li>Sketched out the full <strong>architecture diagram</strong> to map each AWS service clearly</li>
-            <li>Added a lightweight <strong>visitor tracking system</strong> using a Lambda Function URL and DynamoDB—no
-                API
-                Gateway required</li>
-            <li>Estimated <strong>monthly cloud costs</strong> based on traffic tiers (1K to 50K visitors)</li>
-            <li>Implemented <strong>security best practices</strong> like scoped IAM roles, bucket policies, and CORS
-                protection</li>
-            <li>Built with a future-facing mindset: easy to monitor, cost-tag, and scale as needed</li>
-        </ul>
-
-        <p>Whether you're exploring static delivery, diving into FinOps modeling, or searching for scalable ideas that
-            won’t
-            break your budget—this project shows what’s possible with a clear strategy and a few powerful AWS tools.</p>
+        <h2>📌 Project Summary</h2>
+        <p>This use case demonstrates a scalable, secure, and cost-aware approach to deploying a static site on AWS.
+            Each element was built with performance, transparency, and future-proofing in mind.</p>
     </section>
 
     <section>
-        <h2 style="color:#2c4697;">🏗️ Full Architectural Stack</h2>
-        <p>This section details every layer of infrastructure used to deliver a cost-aware, scalable static site
-            architecture.</p>
+        <h2>🛠️ Architecture Overview</h2>
         <ul>
-            <li><strong>Frontend:</strong> Static React app hosted on Amazon S3</li>
-            <li><strong>CI/CD:</strong> GitHub Actions with dry-run testing and fallback logic</li>
-            <li><strong>Storage:</strong> S3 with bucket policies (no ACLs)</li>
-            <li><strong>Networking:</strong> CloudFront CDN + Route 53 DNS</li>
-            <li><strong>Serverless Logic:</strong> Lambda Function URL for visitor tracking</li>
-            <li><strong>Database:</strong> DynamoDB (on-demand mode, TTL enabled)</li>
-            <li><strong>Monitoring:</strong> S3 access logs + CloudWatch for Lambda</li>
-            <li><strong>Security:</strong> IAM roles, least privilege policies, CORS headers</li>
+            <li>Frontend: HTML & CSS app deployed to Amazon S3</li>
+            <li>CI/CD: GitHub Actions with dry-run testing and graceful error handling</li>
+            <li>Storage & Access: S3 with IAM roles and bucket policies replacing ACLs</li>
+            <li>Monitoring: Server access logging via S3</li>
+            <li>Networking: CloudFront CDN + Route 53 DNS</li>
         </ul>
         <p><em>Visual:</em> Insert your custom architecture diagram here</p>
-    </section>
-
-    <section>
-        <h2 style="color:#2c4697;">🔐 Security Highlights</h2>
-        <p>This section showcases the secure, maintainable posture of your cloud architecture. "Scoped IAM roles ensure
-            Lambda and S3 only access required resources—reducing risk, enforcing least privilege, and
-            maintaining a secure deployment."</p>
-        <ul>
-            <li><strong>IAM Roles:</strong> Scoped permissions for Lambda and S3</li>
-            <li><strong>Bucket Policies:</strong> Replaced ACLs with maintainable policies</li>
-            <li><strong>Lambda Function URL:</strong> <code>AuthType: NONE</code> with CORS headers enabled</li>
-            <li><strong>Data Protection:</strong> Visitor count stored as numeric ID, no PII</li>
-            <li><strong>Monitoring:</strong> CloudWatch logs for Lambda invocations</li>
-            <li><strong>TTL in DynamoDB:</strong> Auto-expiry for stale records</li>
-        </ul>
-
-        <h3 style="color:#2c4697; margin-top:30px;">🛡️ CI/CD Safeguards</h3>
-        <ul>
-            <li>GitHub Actions with <code>--dryrun</code> validation</li>
-            <li>Conditional deploy steps to prevent accidental overwrites</li>
-            <li>Fallback logic and file checks in CI workflow</li>
-        </ul>
     </section>
 
     <section>
@@ -334,87 +286,37 @@
 
     <section>
         <h2>💰 Cost Modeling Approach</h2>
-        <p><strong>Traffic Estimate:</strong> Ranged of monthly visitors assuming ~1MB asset load per visitor, standard
-            AWS pricing, and x86 Lambda architecture with 120ms execution time.</p>
-        <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
-            <thead>
-                <tr style="background-color: #e6f2ff;">
-                    <th style="border: 1px solid #ccc; padding: 10px;">AWS Service</th>
-                    <th style="border: 1px solid #ccc; padding: 10px;">1,000 Visitors</th>
-                    <th style="border: 1px solid #ccc; padding: 10px;">5,000 Visitors</th>
-                    <th style="border: 1px solid #ccc; padding: 10px;">10,000 Visitors</th>
-                    <th style="border: 1px solid #ccc; padding: 10px;">15,000 Visitors</th>
-                    <th style="border: 1px solid #ccc; padding: 10px;">20,000 Visitors</th>
-                    <th style="border: 1px solid #ccc; padding: 10px;">50,000 Visitors</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="border: 1px solid #ccc; padding: 10px;">S3 Storage</td>
-                    <td style="border: 1px solid #ccc; padding: 10px;">$0.01</td>
-                    <td>$0.03</td>
-                    <td>$0.05</td>
-                    <td>$0.07</td>
-                    <td>$0.09</td>
-                    <td>$0.18</td>
-                </tr>
-                <tr>
-                    <td>CloudFront Data Transfer</td>
-                    <td>$0.10</td>
-                    <td>$0.45</td>
-                    <td>$0.85</td>
-                    <td>$1.30</td>
-                    <td>$1.70</td>
-                    <td>$4.25</td>
-                </tr>
-                <tr>
-                    <td>CloudFront Requests</td>
-                    <td>$0.04</td>
-                    <td>$0.20</td>
-                    <td>$0.40</td>
-                    <td>$0.60</td>
-                    <td>$0.80</td>
-                    <td>$2.00</td>
-                </tr>
-                <tr>
-                    <td>Route 53</td>
-                    <td>$0.70</td>
-                    <td>$0.70</td>
-                    <td>$0.70</td>
-                    <td>$0.70</td>
-                    <td>$0.70</td>
-                    <td>$0.70</td>
-                </tr>
-                <tr>
-                    <td>DynamoDB Visitor Counter</td>
-                    <td>$0.10</td>
-                    <td>$0.50</td>
-                    <td>$1.00</td>
-                    <td>$1.50</td>
-                    <td>$2.00</td>
-                    <td>$5.00</td>
-                </tr>
-                <tr>
-                    <td>Lambda Function</td>
-                    <td>$0.00</td>
-                    <td>$0.20</td>
-                    <td>$0.40</td>
-                    <td>$0.60</td>
-                    <td>$0.80</td>
-                    <td>$2.00</td>
-                </tr>
-                <tr style="font-weight: bold; background-color: #f4f8ff;">
-                    <td>Total Monthly Cost</td>
-                    <td>$0.95</td>
-                    <td>$2.08</td>
-                    <td>$3.40</td>
-                    <td>$4.77</td>
-                    <td>$6.09</td>
-                    <td>$14.13</td>
-                </tr>
-            </tbody>
+        <p><strong>Traffic Estimate:</strong> 50,000 monthly visitors, ~1MB asset load each</p>
+        <table>
+            <tr>
+                <th>Service</th>
+                <th>Estimated Monthly Cost</th>
+            </tr>
+            <tr>
+                <td>S3 Storage</td>
+                <td>~$0.05</td>
+            </tr>
+            <tr>
+                <td>S3 Data Transfer via CloudFront</td>
+                <td>~$4.25</td>
+            </tr>
+            <tr>
+                <td>CloudFront Requests</td>
+                <td>~$1.88</td>
+            </tr>
+            <tr>
+                <td>Route 53</td>
+                <td>~$0.70</td>
+            </tr>
+            <tr>
+                <td>DynamoDB Visitor Counter</td>
+                <td>~$1.50</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>~$8.38</strong></td>
+            </tr>
         </table>
-
     </section>
 
     <section>
