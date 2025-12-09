@@ -1,5 +1,5 @@
 name: Deploy Dev Static Site to S3
-#test workflow
+
 on:
   push:
     branches: [dev]
@@ -8,9 +8,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    permissions:         # ✅ Required for OIDC
-      id-token: write    # ✅ Enables token exchange with AWS
-      contents: read     # ✅ Allows `actions/checkout` to work
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout Repository
@@ -28,33 +28,134 @@ jobs:
       - name: Pre-Sync Safety Check
         run: |
           if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/dev-site)" ]; then
-            echo "Local dev-site folder is empty. Aborting sync to prevent deletion."
+            echo "❌ Local dev-site folder is empty. Aborting sync to prevent deletion."
             exit 1
           fi
+          echo "✅ Local dev-site folder contains files"
 
       - name: Dry Run Sync Preview
         run: |
+          echo "📋 Preview of changes that will be synced:"
           aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
-            --exclude "*.pdf" \
             --dryrun
 
-      - name: Deploy Website (Safe Upload)
+      # Deploy HTML files with short cache
+      - name: Deploy HTML Files
         run: |
           aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
-            --exclude "*.pdf"
+            --exclude "*" \
+            --include "*.html" \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "public, max-age=300, must-revalidate" \
+            --metadata-directive REPLACE
 
-      - name: Upload PDFs with cache headers
+      # Deploy CSS/JS with long cache (assumes you use versioned filenames)
+      - name: Deploy CSS and JavaScript
         run: |
-          pdfs=$(find "./theprojectfolder/cloudresumechallenge/dev-site/assets" -name "*.pdf")
-          if [ -z "$pdfs" ]; then
-            echo "No PDF files found. Skipping upload."
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
+            --exclude "*" \
+            --include "*.css" \
+            --include "*.js" \
+            --content-type "text/css" \
+            --cache-control "public, max-age=31536000, immutable"
+          
+          # Set correct content-type for JS files separately
+          find ./theprojectfolder/cloudresumechallenge/dev-site -name "*.js" -type f | while read file; do
+            key="${file#./theprojectfolder/cloudresumechallenge/dev-site/}"
+            aws s3 cp "$file" "s3://dev.theprojectfolder.com/$key" \
+              --content-type "application/javascript" \
+              --cache-control "public, max-age=31536000, immutable"
+          done
+
+      # Deploy images with long cache
+      - name: Deploy Images
+        run: |
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
+            --exclude "*" \
+            --include "*.jpg" \
+            --include "*.jpeg" \
+            --include "*.png" \
+            --include "*.gif" \
+            --include "*.svg" \
+            --include "*.webp" \
+            --include "*.ico" \
+            --cache-control "public, max-age=31536000, immutable"
+
+      # Deploy fonts with long cache
+      - name: Deploy Fonts
+        run: |
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
+            --exclude "*" \
+            --include "*.woff" \
+            --include "*.woff2" \
+            --include "*.ttf" \
+            --include "*.eot" \
+            --cache-control "public, max-age=31536000, immutable"
+
+      # Deploy PDFs with moderate cache
+      - name: Deploy PDF Files
+        run: |
+          cd ./theprojectfolder/cloudresumechallenge/dev-site
+          pdf_count=$(find . -name "*.pdf" -type f | wc -l)
+          
+          if [ "$pdf_count" -eq 0 ]; then
+            echo "ℹ️  No PDF files found. Skipping upload."
             exit 0
           fi
-
-          echo "$pdfs" | while IFS= read -r file; do
-            echo "Uploading: $file"
-            key="${file#./theprojectfolder/cloudresumechallenge/dev-site/assets/}"
-            aws s3 cp "$file" "s3://dev.theprojectfolder.com/assets/$key" \
-              --content-type application/pdf \
-              --cache-control "no-cache, no-store, must-revalidate"
+          
+          echo "📄 Uploading $pdf_count PDF file(s)..."
+          find . -name "*.pdf" -type f | while IFS= read -r file; do
+            echo "  Uploading: $file"
+            aws s3 cp "$file" "s3://dev.theprojectfolder.com/${file#./}" \
+              --content-type "application/pdf" \
+              --cache-control "public, max-age=3600, must-revalidate"
           done
+
+      # Catch any remaining files
+      - name: Deploy Other Files
+        run: |
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/dev-site/ s3://dev.theprojectfolder.com \
+            --exclude "*.html" \
+            --exclude "*.css" \
+            --exclude "*.js" \
+            --exclude "*.jpg" \
+            --exclude "*.jpeg" \
+            --exclude "*.png" \
+            --exclude "*.gif" \
+            --exclude "*.svg" \
+            --exclude "*.webp" \
+            --exclude "*.ico" \
+            --exclude "*.woff*" \
+            --exclude "*.ttf" \
+            --exclude "*.eot" \
+            --exclude "*.pdf"
+
+      # Optional: Uncomment if using CloudFront
+      # - name: Invalidate CloudFront Cache
+      #   run: |
+      #     aws cloudfront create-invalidation \
+      #       --distribution-id YOUR_DISTRIBUTION_ID \
+      #       --paths "/*"
+
+      - name: Verify Deployment
+        run: |
+          echo "🔍 Verifying deployment..."
+          sleep 5  # Wait for S3 propagation
+          
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://dev.theprojectfolder.com/index.html || echo "000")
+          
+          if [ "$response" = "200" ]; then
+            echo "✅ Deployment verified successfully (HTTP $response)"
+          else
+            echo "⚠️  Warning: Deployment verification returned HTTP $response"
+            echo "This might be normal if CloudFront is not yet configured."
+          fi
+
+      - name: Deployment Summary
+        run: |
+          echo "🚀 Deployment Complete!"
+          echo "Environment: Development"
+          echo "S3 Bucket: s3://dev.theprojectfolder.com"
+          echo "URL: https://dev.theprojectfolder.com"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
