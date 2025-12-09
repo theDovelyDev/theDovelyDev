@@ -15,11 +15,6 @@ jobs:
     name: Validate OIDC, S3, CloudFront, Route53, CloudFormation Access
     runs-on: ubuntu-latest
 
-    # 🧩 REQUIRED for OIDC to work
-    permissions:
-      id-token: write        # allows the workflow to request an OIDC token
-      contents: read         # allows reading the repo content if needed
-
     steps:
       - name: 🧾 Checkout Repository
         uses: actions/checkout@v3
