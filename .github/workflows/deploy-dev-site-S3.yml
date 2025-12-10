@@ -3,6 +3,7 @@ name: Deploy Dev Static Site to S3
 on:
   push:
     branches: [dev]
+  workflow_dispatch:
 
 jobs:
   deploy:
