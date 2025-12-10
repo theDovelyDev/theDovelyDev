@@ -11,11 +11,29 @@ jobs:
 
     permissions:
       id-token: write
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      #################################################
+      # 🔵 CSS VERSIONING SECTION (added here)
+      #################################################
+
+      - name: Generate Timestamp for CSS Versioning
+        id: ts
+        run: echo "TS=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Update CSS Version in HTML files
+        run: |
+          find ./theprojectfolder/cloudresumechallenge/dev-site -name "*.html" -type f -print0 | \
+          while IFS= read -r -d '' file; do
+            sed -i \
+              "s|style.css?v=[0-9A-Za-z.\-]*|style.css?v=${{ steps.ts.outputs.TS }}|g" \
+              "$file"
+          done
+      #################################################
 
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
