@@ -27,7 +27,7 @@ jobs:
           BUILD_NUMBER="${{ github.run_number }}"
           
           # Find all HTML files and add version meta tags
-          find ./theprojectfolder/cloudresumechallenge/frontend -name "*.html" -type f | while IFS= read -r file; do
+          find ./theprojectfolder/cloudresumechallenge/site -name "*.html" -type f | while IFS= read -r file; do
             # Check if meta tags already exist
             if grep -q 'name="version"' "$file"; then
               echo "  Updating version in: $file"
@@ -60,19 +60,19 @@ jobs:
         run: |
           echo "🔍 Validating deployment requirements..."
           
-          # Check if frontend folder exists and has content
-          if [ ! -d "./theprojectfolder/cloudresumechallenge/frontend" ]; then
-            echo "❌ ERROR: frontend/ directory does not exist"
+          # Check if site folder exists and has content
+          if [ ! -d "./theprojectfolder/cloudresumechallenge/site" ]; then
+            echo "❌ ERROR: site/ directory does not exist"
             exit 1
           fi
           
-          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/frontend)" ]; then
-            echo "❌ ERROR: frontend/ folder is empty. Aborting to prevent deletion."
+          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/site)" ]; then
+            echo "❌ ERROR: site/ folder is empty. Aborting to prevent deletion."
             exit 1
           fi
           
           # Check for index.html (critical file)
-          if [ ! -f "./theprojectfolder/cloudresumechallenge/frontend/index.html" ]; then
+          if [ ! -f "./theprojectfolder/cloudresumechallenge/site/index.html" ]; then
             echo "⚠️  WARNING: index.html not found. Deployment may fail."
           fi
           
@@ -81,14 +81,14 @@ jobs:
       - name: Dry Run Sync Preview
         run: |
           echo "📋 Preview of changes that will be synced to PRODUCTION:"
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --dryrun
 
       # Deploy HTML files with short cache
       - name: Deploy HTML Files
         run: |
           echo "📄 Deploying HTML files..."
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*" \
             --include "*.html" \
             --content-type "text/html; charset=utf-8" \
@@ -99,7 +99,7 @@ jobs:
       - name: Deploy CSS Files
         run: |
           echo "🎨 Deploying CSS files..."
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*" \
             --include "*.css" \
             --content-type "text/css" \
@@ -108,7 +108,7 @@ jobs:
       - name: Deploy JavaScript Files
         run: |
           echo "⚡ Deploying JavaScript files..."
-          cd ./theprojectfolder/cloudresumechallenge/frontend
+          cd ./theprojectfolder/cloudresumechallenge/site
           find . -name "*.js" -type f | while read file; do
             key="${file#./}"
             aws s3 cp "$file" "s3://www.theprojectfolder.com/$key" \
@@ -120,7 +120,7 @@ jobs:
       - name: Deploy Images
         run: |
           echo "🖼️  Deploying images..."
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*" \
             --include "*.jpg" \
             --include "*.jpeg" \
@@ -135,7 +135,7 @@ jobs:
       - name: Deploy Fonts
         run: |
           echo "🔤 Deploying fonts..."
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*" \
             --include "*.woff" \
             --include "*.woff2" \
@@ -146,7 +146,7 @@ jobs:
       # Deploy PDFs with moderate cache
       - name: Deploy PDF Files
         run: |
-          cd ./theprojectfolder/cloudresumechallenge/frontend
+          cd ./theprojectfolder/cloudresumechallenge/site
           pdf_count=$(find . -name "*.pdf" -type f | wc -l)
           
           if [ "$pdf_count" -eq 0 ]; then
@@ -166,7 +166,7 @@ jobs:
       - name: Deploy Other Files
         run: |
           echo "📦 Deploying remaining files..."
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*.html" \
             --exclude "*.css" \
             --exclude "*.js" \
