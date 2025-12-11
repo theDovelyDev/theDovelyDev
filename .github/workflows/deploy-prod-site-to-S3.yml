@@ -27,26 +27,26 @@ jobs:
       
       - name: Pre-Sync Safety Check
         run: |
-          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/frontend)" ]; then
+          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/site)" ]; then
             echo "Local folder is empty. Aborting sync to prevent deletion."
             exit 1
           fi
       
       - name: Dry Run Sync Preview
         run: |
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*.pdf" \
             --dryrun
         
       - name: Deploy Website (Safe Upload)
         run: |
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/frontend/ s3://www.theprojectfolder.com \
+          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*.pdf"
       
 
       - name: Upload PDFs with cache headers
         run: |
-          pdfs=$(find "./theprojectfolder/cloudresumechallenge/frontend/assets" -name "*.pdf")
+          pdfs=$(find "./theprojectfolder/cloudresumechallenge/site/assets" -name "*.pdf")
           if [ -z "$pdfs" ]; then
             echo "No PDF files found. Skipping upload."
             exit 0
@@ -54,7 +54,7 @@ jobs:
       
           echo "$pdfs" | while IFS= read -r file; do
             echo "Uploading: $file"
-            key="${file#./theprojectfolder/cloudresumechallenge/frontend/assets/}"
+            key="${file#./theprojectfolder/cloudresumechallenge/site/assets/}"
             aws s3 cp "$file" "s3://www.theprojectfolder.com/assets/$key" \
               --content-type application/pdf \
               --cache-control "no-cache, no-store, must-revalidate"
