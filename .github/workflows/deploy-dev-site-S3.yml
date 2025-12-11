@@ -3,6 +3,7 @@ name: Deploy Dev Static Site to S3
 on:
   push:
     branches: [dev]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -10,11 +11,47 @@ jobs:
 
     permissions:
       id-token: write
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      #################################################
+      # CSS VERSIONING SECTION (added here)
+      - name: Generate Timestamp for CSS Versioning
+        id: ts
+        run: echo "TS=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Update CSS Version in HTML files
+        run: |
+          find ./theprojectfolder/cloudresumechallenge/dev-site -name "*.html" -type f -print0 |
+          while IFS= read -r -d '' file; do
+            # Replace existing version
+            sed -i "s|style.css?v=[0-9A-Za-z.\-]*|style.css?v=20251210-2032|g" "$file"
+
+            # Append version if missing
+            sed -i "s|style.css\"|style.css?v=20251210-2032\"|g" "$file"
+          done
+
+      - name: Commit versioned HTML changes
+        run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            # Stage only HTML files (avoid committing anything else)
+            git add theprojectfolder/cloudresumechallenge/dev-site/*.html
+
+            # If there are no changes, exit gracefully
+            if git diff --cached --quiet; then
+              echo "ℹ️ No HTML changes to commit."
+              exit 0
+            fi
+
+            git commit -m "Auto-version HTML assets for deploy [skip ci]"
+            git push origin dev
+
+      #################################################
 
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
