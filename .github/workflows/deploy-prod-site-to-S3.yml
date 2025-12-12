@@ -58,16 +58,11 @@ jobs:
 
       - name: Pre-Deployment Validation
         run: |
-<<<<<<< HEAD
           echo "🔍 Validating deployment requirements..."
           
           # Check if site folder exists and has content
           if [ ! -d "./theprojectfolder/cloudresumechallenge/site" ]; then
             echo "❌ ERROR: site/ directory does not exist"
-=======
-          if [ -z "$(ls -A ./theprojectfolder/cloudresumechallenge/site)" ]; then
-            echo "Local folder is empty. Aborting sync to prevent deletion."
->>>>>>> dev
             exit 1
           fi
           
@@ -85,26 +80,13 @@ jobs:
 
       - name: Dry Run Sync Preview
         run: |
-<<<<<<< HEAD
           echo "📋 Preview of changes that will be synced to PRODUCTION:"
           aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --dryrun
-=======
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
-            --exclude "*.pdf" \
-            --dryrun
-        
-      - name: Deploy Website (Safe Upload)
-        run: |
-          aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
-            --exclude "*.pdf"
-      
->>>>>>> dev
 
       # Deploy HTML files with short cache
       - name: Deploy HTML Files
         run: |
-<<<<<<< HEAD
           echo "📄 Deploying HTML files..."
           aws s3 sync ./theprojectfolder/cloudresumechallenge/site/ s3://www.theprojectfolder.com \
             --exclude "*" \
@@ -171,21 +153,6 @@ jobs:
             echo "ℹ️  No PDF files found. Skipping upload."
             exit 0
           fi
-=======
-          pdfs=$(find "./theprojectfolder/cloudresumechallenge/site/assets" -name "*.pdf")
-          if [ -z "$pdfs" ]; then
-            echo "No PDF files found. Skipping upload."
-            exit 0
-          fi
-      
-          echo "$pdfs" | while IFS= read -r file; do
-            echo "Uploading: $file"
-            key="${file#./theprojectfolder/cloudresumechallenge/site/assets/}"
-            aws s3 cp "$file" "s3://www.theprojectfolder.com/assets/$key" \
-              --content-type application/pdf \
-              --cache-control "no-cache, no-store, must-revalidate"
-          done
->>>>>>> dev
           
           echo "📄 Uploading $pdf_count PDF file(s)..."
           find . -name "*.pdf" -type f | while IFS= read -r file; do
