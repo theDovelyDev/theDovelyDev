@@ -30,7 +30,7 @@ const functionUrl = "https://ligzkttonselfrpj5d3266qb7a0imnhp.lambda-url.us-east
 // Log helper
 const logError = (msg, err) => {
     console.error(msg, err);
-    document.getElementById("visitor_counter").innerText = "Unavailable";
+    document.getElementById("visitor_counter").innerText = "Visitor Count Unavailable";
 };
 
 // 1. Increment visitor count (POST)
