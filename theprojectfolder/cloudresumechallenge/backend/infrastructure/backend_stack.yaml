@@ -1,0 +1,222 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Backend stack for visitor counter with Lambda, DynamoDB, and Function URL
+
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Default: https://www.theprojectfolder.com
+    Description: Allowed CORS origin for the Lambda function
+  
+  Environment:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+    Description: Environment name (dev or prod)
+
+Resources:
+  # DynamoDB Table for Visitor Count
+  VisitorCountTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub VisitorCountTable-${Environment}
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: visitor_count_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: visitor_count_id
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      Tags:
+        - Key: Project
+          Value: CloudResumeChallenge
+        - Key: Environment
+          Value: !Ref Environment
+
+  # IAM Role for Lambda Function
+  VisitorCounterLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub VisitorCounterLambdaRole-${Environment}
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: DynamoDBAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:PutItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                Resource: !GetAtt VisitorCountTable.Arn
+
+  # Lambda Function
+  VisitorCounterFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub VisitorCounterFunction-${Environment}
+      Runtime: python3.11
+      Handler: visitor_counter.lambda_handler
+      Role: !GetAtt VisitorCounterLambdaRole.Arn
+      Timeout: 10
+      MemorySize: 128
+      Environment:
+        Variables:
+          ALLOWED_ORIGIN: !Ref AllowedOrigin
+          DYNAMODB_TABLE: !Ref VisitorCountTable
+      Code:
+        ZipFile: |
+          import json
+          import boto3
+          import os
+          from datetime import datetime
+
+          # Initialize DynamoDB table
+          dynamodb = boto3.resource('dynamodb')
+          table = dynamodb.Table(os.environ.get('DYNAMODB_TABLE', 'VisitorCountTable'))
+
+          # Set allowed CORS origin from env (fallback to production domain)
+          ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "https://www.theprojectfolder.com")
+
+          def lambda_handler(event, context):
+              method = event.get("requestContext", {}).get("http", {}).get("method", "GET")
+
+              cors_headers = {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+                  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                  "Access-Control-Allow-Headers": "Content-Type"
+              }
+
+              # Handle CORS preflight
+              if method == "OPTIONS":
+                  return {
+                      "statusCode": 200,
+                      "headers": cors_headers,
+                      "body": json.dumps({"message": "CORS preflight allowed"})
+                  }
+
+              if method == "POST":
+                  try:
+                      response = table.update_item(
+                          Key={"visitor_count_id": "global"},
+                          UpdateExpression="SET visitorCount = if_not_exists(visitorCount, :start) + :inc, #ts = :ts",
+                          ExpressionAttributeValues={
+                              ":inc": 1,
+                              ":start": 0,
+                              ":ts": str(datetime.utcnow())
+                          },
+                          ExpressionAttributeNames={
+                              "#ts": "timestamp"
+                          },
+                          ReturnValues="UPDATED_NEW"
+                      )
+                      new_count = response["Attributes"]["visitorCount"]
+                      print(f"[POST] Visitor count incremented to {new_count}")
+
+                      return {
+                          "statusCode": 200,
+                          "headers": cors_headers,
+                          "body": json.dumps({"visitorCount": int(new_count)})
+                      }
+
+                  except Exception as e:
+                      print(f"[ERROR] POST failed: {str(e)}")
+                      return {
+                          "statusCode": 500,
+                          "headers": cors_headers,
+                          "body": json.dumps({"error": "Could not update visitor count"})
+                      }
+
+              elif method == "GET":
+                  try:
+                      response = table.get_item(Key={"visitor_count_id": "global"})
+                      item = response.get("Item", {})
+                      count = item.get("visitorCount", 0)
+                      print(f"[GET] Current visitor count: {count}")
+
+                      return {
+                          "statusCode": 200,
+                          "headers": cors_headers,
+                          "body": json.dumps({"visitorCount": int(count)})
+                      }
+
+                  except Exception as e:
+                      print(f"[ERROR] GET failed: {str(e)}")
+                      return {
+                          "statusCode": 500,
+                          "headers": cors_headers,
+                          "body": json.dumps({"error": "Could not retrieve visitor count"})
+                      }
+
+              else:
+                  print(f"[ERROR] Method {method} not allowed")
+                  return {
+                      "statusCode": 405,
+                      "headers": cors_headers,
+                      "body": json.dumps({"error": "Method Not Allowed"})
+                  }
+      Tags:
+        - Key: Project
+          Value: CloudResumeChallenge
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Lambda Function URL
+  VisitorCounterFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !GetAtt VisitorCounterFunction.Arn
+      AuthType: NONE
+      Cors:
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+        MaxAge: 300
+
+  # Permission for Function URL to invoke Lambda
+  VisitorCounterFunctionUrlPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref VisitorCounterFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: '*'
+      FunctionUrlAuthType: NONE
+
+Outputs:
+  FunctionUrl:
+    Description: Lambda Function URL
+    Value: !GetAtt VisitorCounterFunctionUrl.FunctionUrl
+    Export:
+      Name: !Sub ${AWS::StackName}-FunctionUrl
+
+  DynamoDBTableName:
+    Description: DynamoDB Table Name
+    Value: !Ref VisitorCountTable
+    Export:
+      Name: !Sub ${AWS::StackName}-TableName
+
+  LambdaFunctionArn:
+    Description: Lambda Function ARN
+    Value: !GetAtt VisitorCounterFunction.Arn
+    Export:
+      Name: !Sub ${AWS::StackName}-FunctionArn
