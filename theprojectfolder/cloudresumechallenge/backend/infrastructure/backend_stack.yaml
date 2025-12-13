@@ -32,7 +32,9 @@ Resources:
         PointInTimeRecoveryEnabled: true
       Tags:
         - Key: Project
-          Value: CloudResumeChallenge
+          Value: theprojectfolder
+        - Key: purpose
+          Value: backend
         - Key: Environment
           Value: !Ref Environment
 
@@ -172,7 +174,9 @@ Resources:
                   }
       Tags:
         - Key: Project
-          Value: CloudResumeChallenge
+          Value: theprojectfolder
+        - Key: purpose
+          Value: backend
         - Key: Environment
           Value: !Ref Environment
 
