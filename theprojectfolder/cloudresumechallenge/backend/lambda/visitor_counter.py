@@ -3,14 +3,15 @@ import boto3
 import os
 from datetime import datetime
 
-# Initialize DynamoDB table
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('VisitorCountTable')
-
 # Set allowed CORS origin from env (fallback to production domain)
 ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "https://www.theprojectfolder.com")
 
 def lambda_handler(event, context):
+    # Initialize DynamoDB inside the function
+    dynamodb = boto3.resource('dynamodb')
+    table_name = os.environ.get('DYNAMODB_TABLE', 'VisitorCountTable')
+    table = dynamodb.Table('VisitorCountTable')
+    
     method = event.get("requestContext", {}).get("http", {}).get("method", "GET")
 
     cors_headers = {
