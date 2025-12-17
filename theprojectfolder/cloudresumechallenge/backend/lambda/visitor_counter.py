@@ -32,7 +32,7 @@ def lambda_handler(event, context):
     if method == "POST":
         try:
             response = table.update_item(
-                Key={"visitor_count_id": "global"},
+                Key={"visitor_count_id": 1},
                 UpdateExpression="SET visitorCount = if_not_exists(visitorCount, :start) + :inc, #ts = :ts",
                 ExpressionAttributeValues={
                     ":inc": 1,
@@ -63,7 +63,7 @@ def lambda_handler(event, context):
 
     elif method == "GET":
         try:
-            response = table.get_item(Key={"visitor_count_id": "global"})
+            response = table.get_item(Key={"visitor_count_id": 1})
             item = response.get("Item", {})
             count = item.get("visitorCount", 0)
             print(f"[GET] Current visitor count: {count}")
