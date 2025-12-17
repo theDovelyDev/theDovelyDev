@@ -3,8 +3,6 @@ import boto3
 import os
 from datetime import datetime
 
-# Set allowed CORS origin from env (fallback to production domain)
-ALLOWED_ORIGIN = os.environ.get("ALLOWED_ORIGIN", "https://www.theprojectfolder.com")
 
 def lambda_handler(event, context):
     # Initialize DynamoDB inside the function
@@ -13,21 +11,6 @@ def lambda_handler(event, context):
     table = dynamodb.Table('VisitorCountTable')
     
     method = event.get("requestContext", {}).get("http", {}).get("method", "GET")
-
-    cors_headers = {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type"
-    }
-
-    # Handle CORS preflight
-    if method == "OPTIONS":
-        return {
-            "statusCode": 200,
-            "headers": cors_headers,
-            "body": json.dumps({"message": "CORS preflight allowed"})
-        }
 
     if method == "POST":
         try:
@@ -49,7 +32,6 @@ def lambda_handler(event, context):
 
             return {
                 "statusCode": 200,
-                "headers": cors_headers,
                 "body": json.dumps({"visitorCount": int(new_count)})
             }
 
@@ -57,7 +39,6 @@ def lambda_handler(event, context):
             print(f"[ERROR] POST failed: {str(e)}")
             return {
                 "statusCode": 500,
-                "headers": cors_headers,
                 "body": json.dumps({"error": "Could not update visitor count"})
             }
 
@@ -70,7 +51,6 @@ def lambda_handler(event, context):
 
             return {
                 "statusCode": 200,
-                "headers": cors_headers,
                 "body": json.dumps({"visitorCount": int(count)})
             }
 
@@ -78,7 +58,6 @@ def lambda_handler(event, context):
             print(f"[ERROR] GET failed: {str(e)}")
             return {
                 "statusCode": 500,
-                "headers": cors_headers,
                 "body": json.dumps({"error": "Could not retrieve visitor count"})
             }
 
@@ -86,6 +65,5 @@ def lambda_handler(event, context):
         print(f"[ERROR] Method {method} not allowed")
         return {
             "statusCode": 405,
-            "headers": cors_headers,
             "body": json.dumps({"error": "Method Not Allowed"})
         }
