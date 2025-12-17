@@ -59,7 +59,7 @@ class TestVisitorCounterGET:
         # Assert
         assert response['statusCode'] == 200
         assert json.loads(response['body'])['visitorCount'] == 42
-        reset_mock.get_item.assert_called_once_with(Key={'visitor_count_id': })
+        reset_mock.get_item.assert_called_once_with(Key={'visitor_count_id': 1})
     
     def test_get_returns_zero_for_new_counter(self, reset_mock, mock_env):
         """Test GET returns 0 when no visitor count exists"""
@@ -211,7 +211,7 @@ class TestResponseFormat:
     def test_visitor_count_is_integer(self, reset_mock, mock_env):
         """Test visitor count is returned as integer"""
         # Arrange
-        reset_mock.get_item.return_value = {'Item': {'visitor_count_id': 'global', 'visitorCount': 50}}
+        reset_mock.get_item.return_value = {'Item': {'visitor_count_id': 1, 'visitorCount': 50}}
         event = {
             'requestContext': {
                 'http': {'method': 'GET'}
