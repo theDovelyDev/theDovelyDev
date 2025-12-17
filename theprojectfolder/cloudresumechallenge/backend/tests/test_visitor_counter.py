@@ -45,7 +45,7 @@ class TestVisitorCounterGET:
         """Test GET request returns current visitor count"""
         # Arrange
         reset_mock.get_item.return_value = {
-            'Item': {'visitor_count_id': 'global', 'visitorCount': 42}
+            'Item': {'visitor_count_id': 1, 'visitorCount': 42}
         }
         
         event = {
@@ -61,7 +61,7 @@ class TestVisitorCounterGET:
         assert response['statusCode'] == 200
         assert json.loads(response['body'])['visitorCount'] == 42
         assert 'Access-Control-Allow-Origin' in response['headers']
-        reset_mock.get_item.assert_called_once_with(Key={'visitor_count_id': 'global'})
+        reset_mock.get_item.assert_called_once_with(Key={'visitor_count_id': 1})
     
     def test_get_returns_zero_for_new_counter(self, reset_mock, mock_env):
         """Test GET returns 0 when no visitor count exists"""
