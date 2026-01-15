@@ -1,0 +1,6 @@
+#!/bin/bash
+export PROJECT_NAME="doc-processing-demo"
+export REGION="us-east-1"
+export ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+echo "✅ Environment variables loaded"
+echo "Note: This script dynamically fetches your Account ID"
