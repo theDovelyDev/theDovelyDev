@@ -1,0 +1,28 @@
+{
+  "TagSet": [
+    {
+      "Key": "Project",
+      "Value": "doc-processing-pipeline"
+    },
+    {
+      "Key": "Environment",
+      "Value": "dev"
+    },
+    {
+      "Key": "Owner",
+      "Value": "YourName"
+    },
+    {
+      "Key": "CostCenter",
+      "Value": "Project1"
+    },
+    {
+      "Key": "CreatedDate",
+      "Value": "2026-01-16"
+    },
+    {
+      "Key": "ManagedBy",
+      "Value": "manual"
+    }
+  ]
+}

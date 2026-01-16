@@ -4,3 +4,19 @@ export REGION="us-east-1"
 export ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 echo "✅ Environment variables loaded"
 echo "Note: This script dynamically fetches your Account ID"
+
+# Tagging Configuration
+export PROJECT_TAG="doc-processing-pipeline"
+export ENVIRONMENT="dev"
+export COST_CENTER="Project1"
+export CREATED_DATE="2026-01-16"
+export MANAGED_BY="manual"
+
+# Construct tags for CLI commands
+export TAGS="Project=${PROJECT_TAG},Environment=${ENVIRONMENT},CostCenter=${COST_CENTER},CreatedDate=${CREATED_DATE},ManagedBy=${MANAGED_BY}"
+
+echo "✅ Environment variables loaded"
+echo "PROJECT_NAME: $PROJECT_NAME"
+echo "REGION: $REGION"
+echo "ACCOUNT_ID: $ACCOUNT_ID"
+echo "TAGS: $TAGS"
