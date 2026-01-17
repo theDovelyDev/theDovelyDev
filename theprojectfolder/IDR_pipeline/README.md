@@ -6,9 +6,10 @@ AI-powered document extraction and analysis system built with AWS serverless arc
 [![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Project Status:** 🚧 In Development - Phase 1 Complete (S3 Infrastructure)  
+> **Project Status:** 🚧 In Development - Phase 2 Complete (Lambda Deployment)
 > **Cost So Far:** $0.00 / $25.00 Budget  
 > **Started:** January 16, 2026
+> **Last Updated:** January 17, 2026
 
 ---
 
@@ -315,12 +316,59 @@ aws s3api put-bucket-versioning \
 
 #### 4. Deploy Lambda Functions
 
+````bash
+#### 4. Deploy Lambda Functions
 ```bash
-# Package and deploy (coming in Phase 2)
-cd lambda
-zip function.zip document_processor.py
-aws lambda create-function --function-name DocumentProcessor ...
+# Create IAM role
+aws iam create-role \
+  --role-name DocProcessingLambdaRole \
+  --assume-role-policy-document file://lambda-trust-policy.json
+
+# Attach policies
+aws iam attach-role-policy --role-name DocProcessingLambdaRole \
+  --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+aws iam attach-role-policy --role-name DocProcessingLambdaRole \
+  --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
+aws iam attach-role-policy --role-name DocProcessingLambdaRole \
+  --policy-arn arn:aws:iam::aws:policy/AmazonTextractFullAccess
+aws iam attach-role-policy --role-name DocProcessingLambdaRole \
+  --policy-arn arn:aws:iam::aws:policy/ComprehendFullAccess
+
+# Package Lambda
+# Windows (PowerShell):
+#   Compress-Archive -Path .\package\* -DestinationPath function.zip
+#   Compress-Archive -Path document_processor.py -Update -DestinationPath function.zip
+# Linux/Mac:
+cd lambda/document-processor
+pip install --target ./package boto3
+cd package && zip -r ../function.zip . && cd ..
+zip -g function.zip document_processor.py
+
+# Deploy Lambda
+ROLE_ARN=$(aws iam get-role --role-name DocProcessingLambdaRole --query 'Role.Arn' --output text)
+aws lambda create-function \
+  --function-name DocumentProcessor \
+  --runtime python3.11 \
+  --role ${ROLE_ARN} \
+  --handler document_processor.lambda_handler \
+  --zip-file fileb://function.zip \
+  --timeout 60 \
+  --memory-size 512 \
+  --environment "Variables={PROCESSED_BUCKET=${PROJECT_NAME}-processed-${ACCOUNT_ID}}"
+
+# Configure S3 trigger
+aws lambda add-permission \
+  --function-name DocumentProcessor \
+  --statement-id S3InvokeFunction \
+  --action lambda:InvokeFunction \
+  --principal s3.amazonaws.com \
+  --source-arn arn:aws:s3:::${PROJECT_NAME}-uploads-${ACCOUNT_ID}
+
+aws s3api put-bucket-notification-configuration \
+  --bucket ${PROJECT_NAME}-uploads-${ACCOUNT_ID} \
+  --notification-configuration file://s3-notification.json
 ```
+````
 
 #### 5. Deploy Frontend
 
@@ -371,24 +419,32 @@ For step-by-step instructions with screenshots, see:
 - [x] Set up SNS email notifications
 - [x] Created manual audit scripts (backup)
 
-**Current Status:** Phase 1 Complete ✅  
-**Total Time Invested:** 4 hours  
+#### Phase 2: Lambda Function Development (3 hours)
+
+- [x] Created IAM role for Lambda (DocProcessingLambdaRole)
+- [x] Wrote document_processor.py (200+ lines with Textract + Comprehend)
+- [x] Packaged Lambda function with boto3 dependencies (PowerShell on Windows)
+- [x] Deployed Lambda function to AWS (DocumentProcessor)
+- [x] Configured S3 trigger for automatic processing
+- [x] Created test invoice image using Python PIL
+- [x] Tested end-to-end pipeline (upload → extract → analyze → save)
+- [x] Verified results in CloudWatch and S3
+
+**Current Status:** Phase 2 Complete  
+**Total Time Invested:** 7 hours  
 **Cost So Far:** $0.00
 
 ### 🚧 In Progress
 
-#### Phase 2: Lambda Function Development (6-8 hours)
+#### Phase 3: Textract Integration Deep Dive (3-4 hours)
 
-- [ ] Create IAM role for Lambda
-- [ ] Write document_processor.py
-- [ ] Implement Textract integration
-- [ ] Implement Comprehend integration
-- [ ] Package and deploy Lambda
-- [ ] Configure S3 trigger
+- [ ] Test with various document types (invoices, receipts, forms)
+- [ ] Measure extraction accuracy
+- [ ] Analyze processing times
+- [ ] Document performance benchmarks
 
 ### 📅 Upcoming Phases
 
-- Phase 3: Textract Integration Deep Dive
 - Phase 4: Comprehend Integration Deep Dive
 - Phase 5: Frontend Development
 - Phase 6: API Gateway Integration
@@ -527,12 +583,29 @@ For on-demand checks:
 4. **Automated Governance Without Breaking the Bank**  
    Lambda tag audit provides AWS Config-level governance at $0 cost, while teaching three AWS services (Lambda, EventBridge, SNS).
 
+5. **Platform-Specific Challenges Are Real** _(Phase 2)_  
+   Working on Windows revealed gaps most tutorials don't cover: Git Bash lacks `zip`, path
+   translation breaks CloudWatch commands. Solution: hybrid tooling (PowerShell for
+   packaging, AWS CLI for deployment). Real-world development means adapting to your
+   actual environment.
+
+6. **Getting Unstuck: Recognizing the Wrong Problem** _(Phase 2)_  
+   After 20 minutes debugging automation scripts, the realization hit: the goal wasn't
+   "perfect scripts" but "deployed Lambda." That pivot saved hours. Sometimes the best
+   engineering decision is abandoning the "right" approach for what actually works.
+
+7. **Event-Driven Architecture Scales Effortlessly** _(Phase 2)_  
+   S3 upload → Lambda trigger eliminates polling, cron jobs, and server management. Scales
+   from 1 to 10,000 documents without code changes. This is the serverless promise delivered.
+
 ### Lessons for Interviews
 
 - **Cost-conscious engineering:** Evaluating tool costs vs benefits ($0 Lambda vs $1/year Config)
 - **Adaptability:** Switching between CLI and Console based on situation
 - **Forward thinking:** Planning for year-end analysis from day one
 - **Learning by doing:** Building automation to learn new services
+- **Platform awareness:** Understanding OS-specific tooling differences (Windows vs Linux)
+- **Problem reframing:** Recognizing when you're optimizing for the wrong outcome
 
 ---
 
@@ -612,8 +685,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ☁️ AWS, 🐍 Python, and 📚 lots of documentation**
 
-**Project Timeline:** January 16, 2026 - Present  
-**Estimated Completion:** ~28 hours total  
+**Project Timeline:** January 16, 2026 - Present
+**Estimated Completion:** ~28 hours total
 **Current Status:** Phase 1 Complete (4 hours invested)
 
 _Last Updated: January 16, 2026_
+
+```
+
+```

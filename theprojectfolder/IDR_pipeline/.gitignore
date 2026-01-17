@@ -32,3 +32,5 @@ test-documents/
 *.pdf
 lambda/package/
 lambda/function.zip
+test-invoice.png
+test-*.png
