@@ -70,9 +70,10 @@ This tagging strategy enables:
 - **CostCenter:** `Project1`
 - **Start Date:** January 16, 2026
 - **Environment:** `dev`
-- **Services Used:** S3, Lambda, Textract, Comprehend, API Gateway, CloudWatch
+- **Services Used:** S3, Lambda, Textract, Comprehend, API Gateway, CloudWatch, EventBridge, SNS
 - **Description:** AI-powered document extraction and analysis system
 - **Estimated Monthly Cost:** $17 (500 documents)
+- **Status:** ✅ In Development (Phase 1 Complete)
 
 ### Project 2: [Your Next Project]
 
@@ -107,8 +108,10 @@ Use the `Component` tag to identify specific resource types within a project:
 | S3 frontend bucket  | `frontend`      | doc-processing-demo-frontend-123456789012  |
 | Lambda processor    | `processing`    | DocumentProcessor                          |
 | Lambda API handler  | `api`           | APIUploadHandler                           |
+| Lambda tag audit    | `monitoring`    | TagAuditFunction                           |
 | API Gateway         | `api`           | DocumentProcessingAPI                      |
 | CloudWatch logs     | `monitoring`    | /aws/lambda/DocumentProcessor              |
+| SNS topic           | `monitoring`    | TagAuditNotifications                      |
 
 ---
 
@@ -137,6 +140,15 @@ aws lambda create-function \
   --function-name DocumentProcessor \
   --tags Project=${PROJECT_TAG},CostCenter=${COST_CENTER},Environment=${ENVIRONMENT},Owner=${OWNER},Component=processing,CreatedDate=${CREATED_DATE},ManagedBy=${MANAGED_BY} \
   # ... other parameters
+
+```
+
+### SNS Topics
+
+```bash
+aws sns create-topic \
+  --name TagAuditNotifications \
+  --tags "Key=Project,Value=${PROJECT_TAG}" "Key=CostCenter,Value=${COST_CENTER}" "Key=Component,Value=monitoring"
 ```
 
 ### API Gateway
@@ -146,6 +158,136 @@ aws apigateway create-rest-api \
   --name "DocumentProcessingAPI" \
   --tags Project=${PROJECT_TAG},CostCenter=${COST_CENTER},Environment=${ENVIRONMENT},Owner=${OWNER},Component=api,CreatedDate=${CREATED_DATE},ManagedBy=${MANAGED_BY}
 ```
+
+---
+
+## 🔍 Tag Governance & Auditing
+
+### ✅ Implemented: Automated Lambda Tag Audit
+
+**Status:** Active and Running  
+**Implementation Date:** January 16, 2026  
+**Cost:** $0.00 (within Free Tier)
+
+#### Architecture
+
+```
+EventBridge Rule (Weekly: Mon 9AM UTC)
+    ↓
+Lambda Function (TagAuditFunction)
+    ↓ scans all AWS resources
+ResourceGroupsTaggingAPI
+    ↓ generates compliance report
+SNS Topic (TagAuditNotifications)
+    ↓ sends email notification
+Your Inbox 📧
+```
+
+#### How It Works
+
+1. **Every Monday at 9 AM UTC**, EventBridge triggers the Lambda function
+2. Lambda scans **all AWS resources** using ResourceGroupsTaggingAPI
+3. Checks each resource for **7 required tags** (Project, CostCenter, Environment, Owner, Component, CreatedDate, ManagedBy)
+4. Generates a **compliance report** listing non-compliant resources
+5. Sends **email report** via SNS with:
+   - Total resources scanned
+   - Compliance rate percentage
+   - List of non-compliant resources grouped by type
+   - Missing tags for each resource
+   - Action items for remediation
+
+#### Email Report Example
+
+```
+AWS TAG COMPLIANCE AUDIT REPORT
+================================
+Date: 2026-01-23 09:00:00 UTC
+
+SUMMARY
+-------
+Total Resources: 6
+Compliant: 6
+Non-Compliant: 0
+Compliance Rate: 100.0%
+
+Required Tags: Project, CostCenter, Environment, Owner, CreatedDate, ManagedBy
+
+✅ ALL RESOURCES ARE COMPLIANT!
+
+Next audit: 1 week from now
+```
+
+#### Resources Created
+
+- **Lambda Function:** `TagAuditFunction` (Python 3.11, 256MB, 60s timeout)
+- **IAM Role:** `TagAuditLambdaRole` (with AWSLambdaBasicExecutionRole + custom TagAuditPolicy)
+- **EventBridge Rule:** `TagAuditWeeklySchedule` (cron: 0 9 ? _ MON _)
+- **SNS Topic:** `TagAuditNotifications` (email subscription confirmed)
+- **CloudWatch Logs:** `/aws/lambda/TagAuditFunction` (automatic)
+
+#### Cost Breakdown (Monthly)
+
+| Component          | Usage         | Cost                           |
+| ------------------ | ------------- | ------------------------------ |
+| Lambda Invocations | 4/month       | $0.00 (Free Tier: 1M/month)    |
+| Lambda Compute     | 10 GB-seconds | $0.00 (Free Tier: 400K GB-sec) |
+| EventBridge Rule   | 1 rule        | $0.00 (First rule free)        |
+| SNS Notifications  | 4 emails      | $0.00 (Free Tier: 1,000/month) |
+| CloudWatch Logs    | ~5 MB         | $0.00 (Free Tier: 5 GB/month)  |
+| **Total**          |               | **$0.00**                      |
+
+**Annual Cost:** $0.00 (within Free Tier forever)  
+**Savings vs AWS Config:** $1.00/year
+
+---
+
+### Regular Tag Audits
+
+**Automated (Primary):**
+
+- Weekly Lambda audits every Monday
+- Email reports to your inbox
+- No manual intervention required
+- ✅ **Currently Active**
+
+**Manual (Backup):**
+
+```bash
+# Run on-demand audit
+./audit-tags.sh
+
+# Fix non-compliant resource
+./fix-tags.sh <resource-arn>
+```
+
+---
+
+### Automated Compliance Checks - Options Comparison
+
+| Solution                 | Monthly Cost | Frequency  | Setup Time | Maintenance | Best For                             | Status             |
+| ------------------------ | ------------ | ---------- | ---------- | ----------- | ------------------------------------ | ------------------ |
+| **Lambda + EventBridge** | $0.00        | Weekly     | 1 hour     | None        | Learning projects, personal accounts | ✅ **Implemented** |
+| AWS Config               | $0.08        | Continuous | 10 min     | Low         | Production, teams, compliance        | ❌ Not used        |
+| Manual Script            | $0.00        | On-demand  | 15 min     | Manual runs | One-off checks                       | ⚠️ Backup only     |
+
+**Decision Rationale:**
+
+- Lambda provides **professional-grade governance** at zero cost
+- Learning opportunity: Built Lambda, EventBridge, SNS integration
+- Automated weekly audits are sufficient for 15 resources
+- Saved $1/year while gaining hands-on AWS experience
+- Can scale to hundreds of resources without additional cost
+
+---
+
+### Tag Governance Best Practices
+
+1. ✅ **Document your tagging strategy** (this file!)
+2. ✅ **Audit tags automatically** (Lambda function running weekly)
+3. ✅ **Email notifications** (immediate visibility of issues)
+4. ✅ **Review cost allocation tags** (activated in AWS Billing)
+5. ⚠️ **Clean up unused tags** (quarterly review)
+6. ⚠️ **Train team members** (when working with others)
 
 ---
 

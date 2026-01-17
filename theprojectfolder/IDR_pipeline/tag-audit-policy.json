@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "tag:GetResources",
+        "resourcegroupstaggingapi:GetResources",
+        "s3:GetBucketTagging",
+        "s3:ListAllMyBuckets",
+        "lambda:ListFunctions",
+        "lambda:ListTags",
+        "apigateway:GET",
+        "sns:Publish"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
