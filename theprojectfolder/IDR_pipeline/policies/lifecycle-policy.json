@@ -1,0 +1,15 @@
+{
+  "Rules": [
+    {
+      "Id": "ArchiveOldDocuments",
+      "Status": "Enabled",
+      "Transitions": [
+        {
+          "Days": 90,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "Prefix": "processed/"
+    }
+  ]
+}

@@ -402,7 +402,7 @@ section h2 {
 
 .hero-btn:hover {
     cursor: pointer;
-    background-color: #0a2540;
+    background-color: #2c3e50;
     color: #ecf0f1;
 }
 
@@ -704,9 +704,9 @@ article h4 {
 }
 
 .btn-finops-primary:hover {
-    background: #0a2540;
+    background: #1859a3;
     color: #fff;
-    border-color: #0a2540;
+    border-color: #1859a3;
 }
 
 
@@ -1296,17 +1296,17 @@ section h2 {
     padding: 0.75rem 1.25rem;
     border: 2px solid #2c4697;
     /* Cost-tracking gray */
-    color: #2c4697;
+    color: #0a2540;
     background-color: transparent;
     text-decoration: none;
-    font-weight: 550;
+    font-weight: 450;
     border-radius: 6px;
     transition: all 0.3s ease;
 }
 
 .hero-btn:hover {
     cursor: pointer;
-    background-color: #0a2540;
+    background-color: #2c3e50;
     color: #ecf0f1;
 }
 
