@@ -1660,7 +1660,7 @@ article h4 {
 /* Tablet view (2x2 grid) */
 @media (max-width: 1024px) {
     .contact-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         margin: 0 4rem;
         gap: 1.5rem;
     }

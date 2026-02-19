@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769887345_invoice_041_BILL-2024-9367.pdf",
+  "processed_at": "2026-01-31T19:22:34.631838",
+  "status": "success",
+  "full_text_length": 799,
+  "key_value_pairs": 13,
+  "page_count": 1,
+  "entities_found": 22,
+  "avg_entity_confidence": 93.9,
+  "entity_types": {
+    "OTHER": 4,
+    "DATE": 2,
+    "QUANTITY": 13,
+    "ORGANIZATION": 2,
+    "LOCATION": 1
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "INVOICE Invoice Number",
+    "BILL-2024-9367 Invoice Date",
+    "August 18, 2025",
+    "Due",
+    "Date"
+  ]
+}

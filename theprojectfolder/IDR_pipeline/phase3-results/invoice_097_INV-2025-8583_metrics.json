@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769888171_invoice_097_INV-2025-8583.pdf",
+  "processed_at": "2026-01-31T19:36:20.303175",
+  "status": "success",
+  "full_text_length": 707,
+  "key_value_pairs": 14,
+  "page_count": 1,
+  "entities_found": 18,
+  "avg_entity_confidence": 95.8,
+  "entity_types": {
+    "OTHER": 4,
+    "DATE": 2,
+    "ORGANIZATION": 2,
+    "LOCATION": 1,
+    "QUANTITY": 9
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "INVOICE Invoice Number",
+    "INV-2025-8583 Invoice Date",
+    "October 19, 2025",
+    "Due Date",
+    "November 18, 2025"
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "document_name": "uploads/phase3/1769888171_invoice_097_INV-2025-8583.pdf",
+  "processed_at": "2026-01-31T19:36:20.303175",
+  "extraction": {
+    "full_text": "INVOICE Invoice Number: INV-2025-8583 Invoice Date: October 19, 2025 Due Date: November 18, 2025 Terms: Due upon receipt From: Bill To: Paramount Services Stellar Solutions Inc 135 Industry Parkway 135 Industry Parkway Denver, CO 80201 Denver, CO 80201 Description Quantity Unit Price Amount Software Licensing (licenses) 20 $448.62 $8,972.40 Training and Development (hours) 24 $235.38 $5,649.12 Subtotal: $14,621.52 Tax (8%): $1,169.72 Total: $15,791.24 Payment Instructions: Please make payment to: Paramount Services Bank Account: 4709984916 Routing Number: 123456789 Reference: Invoice number on payment Thank you for your business! For questions about this invoice, please contact accounts@company.com",
+    "key_value_pairs": {
+      "Invoice Number:": "INV-2025-8583",
+      "Invoice Date:": "October 19, 2025",
+      "From:": "Paramount Services 135 Industry Parkway Denver, CO 80201",
+      "Bill To:": "Stellar Solutions Inc 135 Industry Parkway Denver, CO 80201",
+      "Please make payment to:": "Paramount Services",
+      "Routing Number:": "123456789",
+      "Bank Account:": "4709984916",
+      "Total:": "$15,791.24",
+      "Due Date:": "November 18, 2025",
+      "Terms:": "Due upon receipt",
+      "Reference:": "Invoice number on payment",
+      "Subtotal:": "$14,621.52",
+      "Tax (8%):": "$1,169.72",
+      "For questions about this invoice, please contact": "accounts@company.com"
+    },
+    "page_count": 1,
+    "extraction_confidence": 94.7
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "INV-2025-8583",
+        "type": "OTHER",
+        "score": 0.92
+      },
+      {
+        "text": "October 19, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "November 18, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "Paramount Services Stellar Solutions Inc",
+        "type": "ORGANIZATION",
+        "score": 0.9
+      },
+      {
+        "text": "135 Industry Parkway 135 Industry Parkway Denver, CO 80201 Denver, CO 80201",
+        "type": "LOCATION",
+        "score": 0.96
+      },
+      {
+        "text": "20 $448.62",
+        "type": "QUANTITY",
+        "score": 0.78
+      },
+      {
+        "text": "$8,972.40",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "24",
+        "type": "QUANTITY",
+        "score": 0.94
+      },
+      {
+        "text": "$235.38",
+        "type": "QUANTITY",
+        "score": 0.84
+      },
+      {
+        "text": "$5,649.12",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$14,621.52",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$1,169.72",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$15,791.24",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "Paramount Services Bank",
+        "type": "ORGANIZATION",
+        "score": 0.96
+      },
+      {
+        "text": "4709984916",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "123456789",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "accounts@company.com",
+        "type": "OTHER",
+        "score": 0.99
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "INVOICE Invoice Number",
+        "score": 0.96
+      },
+      {
+        "text": "INV-2025-8583 Invoice Date",
+        "score": 0.96
+      },
+      {
+        "text": "October 19, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Due Date",
+        "score": 0.8
+      },
+      {
+        "text": "November 18, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Terms",
+        "score": 0.74
+      },
+      {
+        "text": "Due",
+        "score": 0.86
+      },
+      {
+        "text": "receipt",
+        "score": 0.94
+      },
+      {
+        "text": "Bill",
+        "score": 0.87
+      },
+      {
+        "text": "Paramount Services Stellar Solutions Inc 135 Industry Parkway 135 Industry Parkway Denver",
+        "score": 0.84
+      }
+    ]
+  },
+  "status": "success"
+}

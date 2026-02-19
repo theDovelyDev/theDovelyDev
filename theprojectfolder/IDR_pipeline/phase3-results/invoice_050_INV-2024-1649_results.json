@@ -1,0 +1,181 @@
+{
+  "document_name": "uploads/phase3/1769885328_invoice_050_INV-2024-1649.pdf",
+  "processed_at": "2026-01-31T18:48:55.522558",
+  "extraction": {
+    "full_text": "INVOICE Invoice Number: INV-2024-1649 Invoice Date: July 16, 2025 Due Date: August 15, 2025 Terms: Net 30 days From: Bill To: Stellar Solutions Inc Horizon Technologies 987 Corporate Drive 987 Corporate Drive Boston, MA 02101 Boston, MA 02101 Description Quantity Unit Price Amount Managed Services (month) 17 $373.76 $6,353.92 Application Support (hours) 44 $113.38 $4,988.72 Subtotal: $11,342.64 Tax (8%): $907.41 Total: $12,250.05 Payment Instructions: Please make payment to: Stellar Solutions Inc Bank Account: 9022702866 Routing Number: 123456789 Reference: Invoice number on payment Thank you for your business! For questions about this invoice, please contact accounts@company.com",
+    "key_value_pairs": {
+      "Invoice Number:": "INV-2024-1649",
+      "Invoice Date:": "July 16, 2025",
+      "From:": "Stellar Solutions Inc 987 Corporate Drive Boston, MA 02101",
+      "Bill To:": "Horizon Technologies 987 Corporate Drive Boston, MA 02101",
+      "Please make payment to:": "Stellar Solutions Inc",
+      "Routing Number:": "123456789",
+      "Bank Account:": "9022702866",
+      "Total:": "$12,250.05",
+      "Due Date:": "August 15, 2025",
+      "Terms:": "Net 30 days",
+      "Reference:": "Invoice number on payment",
+      "Subtotal:": "$11,342.64",
+      "Amount": "$6,353.92",
+      "Tax (8%):": "$907.41"
+    },
+    "page_count": 1,
+    "extraction_confidence": 94.32
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "INV-2024-1649",
+        "type": "OTHER",
+        "score": 0.92
+      },
+      {
+        "text": "July 16, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "August 15, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "30 days",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "Stellar Solutions Inc Horizon Technologies",
+        "type": "ORGANIZATION",
+        "score": 0.99
+      },
+      {
+        "text": "987 Corporate Drive 987 Corporate Drive Boston, MA 02101 Boston, MA 02101",
+        "type": "LOCATION",
+        "score": 0.91
+      },
+      {
+        "text": "17",
+        "type": "QUANTITY",
+        "score": 0.96
+      },
+      {
+        "text": "$373.76",
+        "type": "QUANTITY",
+        "score": 0.82
+      },
+      {
+        "text": "$6,353.92",
+        "type": "QUANTITY",
+        "score": 0.96
+      },
+      {
+        "text": "44",
+        "type": "QUANTITY",
+        "score": 0.94
+      },
+      {
+        "text": "$113.38",
+        "type": "QUANTITY",
+        "score": 0.9
+      },
+      {
+        "text": "$4,988.72",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$11,342.64",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8%",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$907.41",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$12,250.05",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "Stellar Solutions Inc Bank",
+        "type": "ORGANIZATION",
+        "score": 0.92
+      },
+      {
+        "text": "9022702866",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "123456789",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "accounts@company.com",
+        "type": "OTHER",
+        "score": 0.99
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "INVOICE Invoice Number",
+        "score": 0.96
+      },
+      {
+        "text": "INV-2024-1649 Invoice Date",
+        "score": 0.97
+      },
+      {
+        "text": "July 16, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Due",
+        "score": 0.9
+      },
+      {
+        "text": "Date",
+        "score": 0.7
+      },
+      {
+        "text": "August 15, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Terms",
+        "score": 0.86
+      },
+      {
+        "text": "Net 30 days",
+        "score": 0.92
+      },
+      {
+        "text": "Bill",
+        "score": 0.94
+      },
+      {
+        "text": "Stellar Solutions Inc Horizon Technologies 987 Corporate Drive 987 Corporate Drive Boston",
+        "score": 0.88
+      }
+    ]
+  },
+  "status": "success"
+}

@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1768851915_invoice_036_INV-2025-5079.pdf",
+  "processed_at": "2026-01-19T19:45:25.607572",
+  "status": "success",
+  "full_text_length": 779,
+  "key_value_pairs": 13,
+  "page_count": 1,
+  "entities_found": 23,
+  "avg_entity_confidence": 95.5,
+  "entity_types": {
+    "OTHER": 4,
+    "DATE": 2,
+    "QUANTITY": 14,
+    "ORGANIZATION": 2,
+    "LOCATION": 1
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "INVOICE Invoice Number",
+    "INV-2025-5079 Invoice Date",
+    "December 12, 2025",
+    "Due",
+    "Date"
+  ]
+}

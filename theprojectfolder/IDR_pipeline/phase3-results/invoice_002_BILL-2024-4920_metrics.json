@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769887409_invoice_002_BILL-2024-4920.pdf",
+  "processed_at": "2026-01-31T19:23:40.360770",
+  "status": "success",
+  "full_text_length": 803,
+  "key_value_pairs": 13,
+  "page_count": 1,
+  "entities_found": 24,
+  "avg_entity_confidence": 94.1,
+  "entity_types": {
+    "OTHER": 5,
+    "DATE": 2,
+    "QUANTITY": 14,
+    "ORGANIZATION": 2,
+    "LOCATION": 1
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "INVOICE Invoice Number",
+    "BILL-2024-4920 Invoice Date",
+    "December 21, 2025",
+    "Due",
+    "Date"
+  ]
+}

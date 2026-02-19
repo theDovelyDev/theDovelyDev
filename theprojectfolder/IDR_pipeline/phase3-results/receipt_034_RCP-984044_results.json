@@ -1,0 +1,178 @@
+{
+  "document_name": "uploads/phase3/1769885136_receipt_034_RCP-984044.pdf",
+  "processed_at": "2026-01-31T18:45:45.746746",
+  "extraction": {
+    "full_text": "Acme Corporation 456 Tech Center Drive San Francisco, CA 94102 Receipt #: RCP-984044 Date: 10/17/2025 12:13 PM Cashier: Cashier 12 Database Management 1 X $ 6.97 $ 6.97 Software Licensing 1 X $ 21.62 $ 21.62 Project Management 2 X $ 29.44 $ 58.88 Subtotal: $ 87.47 Tax (8.25%) : $ 7.22 TOTAL: $ 94.69 Payment Method: Credit Card Card ending in: 3516 Thank you for your purchase!",
+    "key_value_pairs": {
+      "Tax (8.25%) :": "$ 7.22",
+      "TOTAL:": "$ 94.69",
+      "Date:": "10/17/2025 12:13 PM",
+      "Cashier:": "Cashier 12",
+      "Card ending in:": "3516",
+      "Receipt #:": "RCP-984044",
+      "Subtotal:": "$ 87.47",
+      "Payment Method:": "Credit Card",
+      "Project Management 2 X": "$ 29.44 $ 58.88",
+      "Software Licensing 1 X": "$ 21.62 $ 21.62",
+      "Database Management": "1 X $ 6.97 $ 6.97"
+    },
+    "page_count": 1,
+    "extraction_confidence": 90.62
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "Acme Corporation",
+        "type": "ORGANIZATION",
+        "score": 0.99
+      },
+      {
+        "text": "456 Tech Center Drive",
+        "type": "LOCATION",
+        "score": 0.93
+      },
+      {
+        "text": "San Francisco, CA 94102",
+        "type": "LOCATION",
+        "score": 0.94
+      },
+      {
+        "text": "RCP-984044",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "10/17/2025 12:13 PM",
+        "type": "DATE",
+        "score": 0.97
+      },
+      {
+        "text": "Database",
+        "type": "TITLE",
+        "score": 0.68
+      },
+      {
+        "text": "1",
+        "type": "QUANTITY",
+        "score": 0.57
+      },
+      {
+        "text": "$ 6.97",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 6.97",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "1",
+        "type": "QUANTITY",
+        "score": 0.82
+      },
+      {
+        "text": "$ 21.62",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$ 21.62",
+        "type": "QUANTITY",
+        "score": 0.94
+      },
+      {
+        "text": "2",
+        "type": "QUANTITY",
+        "score": 0.87
+      },
+      {
+        "text": "$ 29.44",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$ 58.88",
+        "type": "QUANTITY",
+        "score": 0.93
+      },
+      {
+        "text": "$ 87.47",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8.25%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$ 7.22",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 94.69",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "3516",
+        "type": "OTHER",
+        "score": 0.98
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "Acme Corporation 456 Tech Center Drive San Francisco",
+        "score": 0.96
+      },
+      {
+        "text": "CA 94102 Receipt",
+        "score": 0.77
+      },
+      {
+        "text": "RCP-984044 Date",
+        "score": 0.95
+      },
+      {
+        "text": "10/17/2025",
+        "score": 1.0
+      },
+      {
+        "text": "12:13 PM Cashier",
+        "score": 0.75
+      },
+      {
+        "text": "Cashier 12 Database Management 1 X",
+        "score": 0.87
+      },
+      {
+        "text": "$ 6.97",
+        "score": 0.97
+      },
+      {
+        "text": "$ 6.97 Software Licensing 1 X",
+        "score": 0.78
+      },
+      {
+        "text": "$ 21.62",
+        "score": 0.92
+      },
+      {
+        "text": "$ 21.62",
+        "score": 0.96
+      }
+    ]
+  },
+  "status": "success"
+}

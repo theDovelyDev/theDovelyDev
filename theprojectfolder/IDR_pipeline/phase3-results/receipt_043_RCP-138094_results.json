@@ -1,0 +1,201 @@
+{
+  "document_name": "uploads/phase3/1769888450_receipt_043_RCP-138094.pdf",
+  "processed_at": "2026-01-31T19:40:57.699252",
+  "extraction": {
+    "full_text": "Horizon Technologies 246 Enterprise Avenue Atlanta, GA 30301 Receipt #: RCP-138094 Date: 09/26/2025 12:13 PM Cashier: Cashier 19 Application Support 5 X $ 11.91 $ 59.55 Technical Support 3 X $ 73.45 $ 220.35 Network Administration 3 X $ 65.11 $ 195.33 Professional Consulting Servic 2 X $ 97.09 $ 194.18 Data Analysis Services 5 X $ 80.08 $ 400.40 Subtotal: $ 1069.81 Tax (8.25%) : $ 88.26 TOTAL: $ 1158.07 Payment Method: Credit Card Card ending in: 8891 Thank you for your purchase!",
+    "key_value_pairs": {
+      "Tax": "(8.25%)",
+      ":": "$ 88.26",
+      "Card ending in:": "8891",
+      "Date:": "09/26/2025 12:13 PM",
+      "Cashier:": "Cashier 19",
+      "Application Support": "5 X $ 11.91 $ 59.55",
+      "Payment Method:": "Credit Card",
+      "Receipt #:": "RCP-138094",
+      "TOTAL:": "$ 1158.07",
+      "Subtotal:": "$ 1069.81",
+      "Technical Support 3": "$ 73.45 $ 220.35",
+      "Data Analysis Services 5 X": "$ 80.08 $ 400.40",
+      "Professional Consulting Servic": "$ 97.09 $ 194.18",
+      "Network Administration 3 X": "$ 65.11 $ 195.33"
+    },
+    "page_count": 1,
+    "extraction_confidence": 88.3
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "Horizon Technologies",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "246 Enterprise Avenue Atlanta, GA 30301",
+        "type": "LOCATION",
+        "score": 0.96
+      },
+      {
+        "text": "RCP-138094",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "09/26/2025 12:13 PM",
+        "type": "DATE",
+        "score": 0.94
+      },
+      {
+        "text": "19",
+        "type": "OTHER",
+        "score": 0.86
+      },
+      {
+        "text": "5",
+        "type": "OTHER",
+        "score": 0.48
+      },
+      {
+        "text": "$ 11.91",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 59.55",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "3",
+        "type": "OTHER",
+        "score": 0.54
+      },
+      {
+        "text": "$ 73.45",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 220.35",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "3",
+        "type": "OTHER",
+        "score": 0.42
+      },
+      {
+        "text": "$ 65.11",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 195.33",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "2",
+        "type": "OTHER",
+        "score": 0.63
+      },
+      {
+        "text": "$ 97.09",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 194.18",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 80.08",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 400.40",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$ 1069.81",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8.25%",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$ 88.26",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 1158.07",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8891",
+        "type": "OTHER",
+        "score": 0.98
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "Horizon Technologies 246 Enterprise Avenue Atlanta",
+        "score": 0.95
+      },
+      {
+        "text": "GA 30301 Receipt",
+        "score": 0.87
+      },
+      {
+        "text": "RCP-138094 Date",
+        "score": 0.93
+      },
+      {
+        "text": "09/26/2025",
+        "score": 0.97
+      },
+      {
+        "text": "12:13 PM Cashier",
+        "score": 0.82
+      },
+      {
+        "text": "Cashier 19 Application Support 5 X",
+        "score": 0.89
+      },
+      {
+        "text": "$ 11.91",
+        "score": 0.96
+      },
+      {
+        "text": "$ 59.55 Technical Support 3 X",
+        "score": 0.79
+      },
+      {
+        "text": "$ 73.45",
+        "score": 0.94
+      },
+      {
+        "text": "$ 220.35",
+        "score": 0.95
+      }
+    ]
+  },
+  "status": "success"
+}

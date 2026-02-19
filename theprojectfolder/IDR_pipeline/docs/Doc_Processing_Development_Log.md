@@ -845,56 +845,162 @@ The lesson: Don't let perfect be the enemy of done. Ship first, optimize later.
 
 ---
 
+---
+
 ### Phase 3: Textract Integration Deep Dive
 
-**Date:** [DATE]  
-**Time Spent:** [HOURS]  
-**Status:** [ ] In Progress / [ ] Complete
+**Date:** January 31, 2026  
+**Time Spent:** 3 hours  
+**Status:** ✅ Complete
 
 #### What I Did:
 
-- [ ] Tested Textract on 20 different document types
-- [ ] Analyzed accuracy on invoices vs receipts
-- [ ] Optimized for form field extraction
-- [ ] Handled multi-page documents
+- [x] Selected 15 diverse test documents (9 invoices, 6 receipts)
+- [x] Created automated testing toolkit (4 scripts)
+- [x] Uploaded all 15 documents to S3
+- [x] Verified Lambda processing for each document
+- [x] Analyzed Textract extraction accuracy
+- [x] Measured Comprehend entity detection
+- [x] Tracked processing times and costs
+- [x] Documented all results in comprehensive template
 
-#### Testing Results:
+#### Testing Results Summary:
 
-| Document Type | Pages | Processing Time | Accuracy | Cost    |
-| ------------- | ----- | --------------- | -------- | ------- |
-| Invoice       | 2     | 18s             | 95%      | $0.003  |
-| Receipt       | 1     | 12s             | 98%      | $0.0015 |
-| Form          | 3     | 25s             | 92%      | $0.0045 |
+**Documents Tested:** 15 total
 
-#### Cost Tracker:
+- Simple: 4 documents (100% success)
+- Medium: 8 documents (100% success)
+- Complex: 3 documents (0% success - Textract compatibility issue)
 
-- Textract API calls: $[AMOUNT]
-- Running total: $[TOTAL]
+**Success Rate:** 12/15 (80%)
+
+**Performance Metrics:**
+
+- Average Processing Time: ~30-60 seconds
+- Average Entities Detected: 21.4 per document
+- Average Confidence Score: 94.9%
+- Total Cost: $0.038 for 15 documents
+- Cost per Document: $0.003170
+
+**Cost Projections:**
+
+- 500 documents/month: $1.59/month
+- Annual (500 docs/month): $19.08/year
+- ROI vs Manual Processing: 519% annually
 
 #### Key Findings:
 
-```
-[Share insights about Textract performance]
+**✅ What Worked Excellently:**
 
-Example:
-- Textract is amazing on printed text (98% accuracy)
-- Struggles with handwriting (70% accuracy)
-- Form extraction works best with clear borders
-- Table detection is surprisingly accurate
-```
+1. **High Accuracy on Standard Documents**
+   - 94.9% average confidence across successful extractions
+   - Consistent performance on receipts and invoices
+   - Entity detection averaged 21.4 per document
+   - All documents processed in under 60 seconds
 
-#### Challenges Faced:
+2. **Cost Efficiency**
+   - $0.003170 per document (97% cheaper than manual at $1.25)
+   - Well within Free Tier for testing phase
+   - Scales economically for production
 
-```
-[YOUR CHALLENGES]
-```
+3. **Reliable Processing**
+   - 100% success rate on simple/medium complexity documents
+   - Consistent sentiment analysis (all Neutral)
+   - No Lambda timeout errors
+
+**⚠️ What Struggled:**
+
+1. **PDF Format Compatibility Issues**
+   - 20% failure rate (3/15 documents)
+   - All failures were complex invoices (>3,700 bytes)
+   - Error: `UnsupportedDocumentException` from Textract
+   - Root cause: PDF encoding/format incompatibility
+   - Documents are valid (readable in PDF viewers) but Textract cannot process them
+
+2. **Document Complexity Correlation**
+   - 100% success on documents <3,700 bytes
+   - 0% success on documents >3,700 bytes
+   - File size appears to correlate with PDF format complexity
+
+#### Production Recommendations:
+
+1. **Implement PDF Pre-validation**
+   - Check PDF format before sending to Textract
+   - Route incompatible formats to alternative processing
+   - Estimated implementation: 2-3 hours
+
+2. **Add PDF Normalization Pipeline**
+   - Use PyPDF2 or Ghostscript to rewrite PDFs
+   - Convert to Textract-compatible format before processing
+   - Fallback to OCR pipeline (pdf2image + Tesseract) for stubborn formats
+   - Estimated implementation: 4-6 hours
+
+3. **Enhanced Error Handling**
+   - Graceful failure notifications to users
+   - Retry logic with automatic format conversion
+   - Clear messaging about supported formats
+   - Estimated implementation: 2 hours
+
+#### Tools Created:
+
+**Testing Scripts:**
+
+1. `select-test-documents.py` - Selects diverse subset from 150 mock documents
+2. `upload-document.sh` - Uploads single document to S3 with timing
+3. `check-results.py` - Verifies processing and displays metrics
+4. `generate-test-documents.py` - Generates new test documents (bonus)
+
+**Documentation:**
+
+- `Phase3_Test_Results_Template.md` - Comprehensive tracking spreadsheet
+- `PHASE3_TESTING_GUIDE.md` - Step-by-step workflow
+- `PHASE3_TOOLKIT_SUMMARY.md` - Tool descriptions and setup
+
+#### Cost Tracker:
+
+- S3 uploads: $0.00 (negligible)
+- S3 storage: $0.00 (minimal)
+- Lambda invocations: $0.00 (15 invocations, within Free Tier)
+- Textract: $0.00 (15 pages, within 1,000 page/month Free Tier)
+- Comprehend: $0.038 (within 50K unit/month Free Tier)
+- **Running total: $0.038**
+- **Budget remaining: $24.96**
 
 #### Screenshots Captured:
 
-- [ ] Textract extraction examples
-- [ ] Before/after comparison (document → JSON)
+- [x] Upload script output showing S3 paths
+- [x] Check-results.py output with metrics
+- [x] Sample extracted JSON (invoice)
+- [x] Sample extracted JSON (receipt)
+- [x] Textract error for unsupported PDF
+- [x] Phase 3 cost breakdown
 
----
+#### Challenges Faced:
+
+Challenge 1: Windows Path Compatibility
+
+- Issue: Scripts had Linux paths (/home/claude/)
+- Solution: Updated all paths to relative paths (./test-documents/)
+- Time spent: 15 minutes
+- #### Lesson: Always use relative paths for cross-platform compatibility
+
+Challenge 2: Git Bash vs PowerShell
+
+- Issue: upload-document.sh is bash script, won't run in PowerShell
+- Solution: Used Git Bash terminal for all script execution
+- Alternative: Could create PowerShell .ps1 version
+  Time spent: 5 minutes troubleshooting
+- #### Lesson: Document required shell environment for scripts
+
+Challenge 3: Textract PDF Compatibility
+
+- Issue: 3 complex documents failed with UnsupportedDocumentException
+- Investigation: PDFs are valid and readable, but incompatible with Textract
+- Root cause: PDF format/encoding that Textract doesn't support
+- Impact: 20% failure rate
+- Solution: Proposed PDF normalization preprocessing step
+- Time spent: 30 minutes investigating
+- #### Lesson: Always test with edge cases and document failures
 
 ### Phase 4: Comprehend Integration Deep Dive
 
@@ -1536,50 +1642,42 @@ When converting this log to a Substack article, use this structure:
 ### Article Flow:
 
 1. **Hook** (200 words)
-
    - The problem (manual document processing is slow/expensive)
    - What I built (AI-powered automation)
    - Results teaser (80% time savings, $0.034 per document)
 
 2. **Why I Built This** (300 words)
-
    - Learning goals
    - Career transition context
    - Portfolio motivation
 
 3. **The Architecture** (400 words)
-
    - Simple diagram
    - 6 layers explained briefly
    - Tech stack overview
 
 4. **Building It: The Journey** (800 words)
-
    - Phase-by-phase highlights (not all details)
    - Focus on 2-3 biggest challenges
    - Include code snippets
    - Share "aha!" moments
 
 5. **Testing at Scale** (300 words)
-
    - 150 mock documents
    - Results & accuracy
    - Cost breakdown
 
 6. **What I Learned** (400 words)
-
    - Technical skills
    - Unexpected insights
    - What I'd do differently
 
 7. **The Results** (300 words)
-
    - Final metrics
    - ROI analysis
    - Business impact
 
 8. **Try It Yourself** (200 words)
-
    - Link to GitHub
    - Link to implementation guide
    - Encouragement

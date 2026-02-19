@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769885201_receipt_047_RCP-443053.pdf",
+  "processed_at": "2026-01-31T18:46:47.895854",
+  "status": "success",
+  "full_text_length": 378,
+  "key_value_pairs": 11,
+  "page_count": 1,
+  "entities_found": 18,
+  "avg_entity_confidence": 93.8,
+  "entity_types": {
+    "ORGANIZATION": 1,
+    "LOCATION": 1,
+    "OTHER": 2,
+    "DATE": 1,
+    "QUANTITY": 13
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "Acme Corporation 246 Enterprise Avenue Atlanta",
+    "GA 30301 Receipt",
+    "RCP-443053 Date",
+    "07/24/2025",
+    "12:13 PM Cashier"
+  ]
+}

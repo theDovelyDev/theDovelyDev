@@ -1,0 +1,195 @@
+{
+  "document_name": "uploads/phase3/1768851915_invoice_036_INV-2025-5079.pdf",
+  "processed_at": "2026-01-19T19:45:25.607572",
+  "extraction": {
+    "full_text": "INVOICE Invoice Number: INV-2025-5079 Invoice Date: December 12, 2025 Due Date: January 11, 2026 Terms: Net 30 days From: Bill To: Reliable Solutions Inc Summit Partners LLC 654 Market Street, Building B 246 Enterprise Avenue Seattle, WA 98101 Atlanta, GA 30301 Description Quantity Unit Price Amount Training and Development (hours) 49 $300.94 $14,746.06 Software Licensing (licenses) 7 $89.35 $625.45 Professional Consulting Services (hours) 14 $281.51 $3,941.14 Subtotal: $19,312.65 Tax (8%): $1,545.01 Total: $20,857.66 Payment Instructions: Please make payment to: Reliable Solutions Inc Bank Account: 9572177953 Routing Number: 123456789 Reference: Invoice number on payment Thank you for your business! For questions about this invoice, please contact accounts@company.com",
+    "key_value_pairs": {
+      "Invoice Number:": "INV-2025-5079",
+      "Invoice Date:": "December 12, 2025",
+      "From:": "Reliable Solutions Inc 654 Market Street, Building B Seattle, WA 98101",
+      "Bill To:": "Summit Partners LLC 246 Enterprise Avenue Atlanta, GA 30301",
+      "Total:": "$20,857.66",
+      "Please make payment to:": "Reliable Solutions Inc",
+      "Subtotal:": "$19,312.65",
+      "Reference:": "Invoice number on payment",
+      "Routing Number:": "123456789",
+      "Due Date:": "January 11, 2026",
+      "Terms:": "Net 30 days",
+      "Bank Account:": "9572177953",
+      "Tax (8%):": "$1,545.01"
+    },
+    "page_count": 1,
+    "extraction_confidence": 95.28
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "INV-2025-5079",
+        "type": "OTHER",
+        "score": 0.87
+      },
+      {
+        "text": "December 12, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "January 11, 2026",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "30 days",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "Reliable Solutions Inc Summit Partners LLC",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "654 Market Street, Building B 246 Enterprise Avenue Seattle, WA 98101 Atlanta, GA 30301",
+        "type": "LOCATION",
+        "score": 0.98
+      },
+      {
+        "text": "49",
+        "type": "QUANTITY",
+        "score": 0.94
+      },
+      {
+        "text": "$300.94",
+        "type": "QUANTITY",
+        "score": 0.88
+      },
+      {
+        "text": "$14,746.06",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "7",
+        "type": "QUANTITY",
+        "score": 0.85
+      },
+      {
+        "text": "$89.35",
+        "type": "QUANTITY",
+        "score": 0.82
+      },
+      {
+        "text": "$625.45",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "14",
+        "type": "QUANTITY",
+        "score": 0.85
+      },
+      {
+        "text": "$281.51",
+        "type": "QUANTITY",
+        "score": 0.86
+      },
+      {
+        "text": "$3,941.14",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$19,312.65",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$1,545.01",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$20,857.66",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "Reliable Solutions Inc",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "9572177953",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "123456789",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "accounts@company.com",
+        "type": "OTHER",
+        "score": 0.99
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "INVOICE Invoice Number",
+        "score": 0.96
+      },
+      {
+        "text": "INV-2025-5079 Invoice Date",
+        "score": 0.94
+      },
+      {
+        "text": "December 12, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Due",
+        "score": 0.9
+      },
+      {
+        "text": "Date",
+        "score": 0.74
+      },
+      {
+        "text": "January 11, 2026",
+        "score": 1.0
+      },
+      {
+        "text": "Terms",
+        "score": 0.8
+      },
+      {
+        "text": "Net 30 days",
+        "score": 0.93
+      },
+      {
+        "text": "Bill",
+        "score": 0.95
+      },
+      {
+        "text": "Reliable Solutions Inc Summit Partners LLC 654 Market Street",
+        "score": 0.91
+      }
+    ]
+  },
+  "status": "success"
+}

@@ -1,0 +1,28 @@
+{
+  "document_name": "uploads/phase3/1769885136_receipt_034_RCP-984044.pdf",
+  "processed_at": "2026-01-31T18:45:45.746746",
+  "status": "success",
+  "full_text_length": 378,
+  "key_value_pairs": 11,
+  "page_count": 1,
+  "entities_found": 20,
+  "avg_entity_confidence": 92.6,
+  "entity_types": {
+    "ORGANIZATION": 1,
+    "LOCATION": 2,
+    "OTHER": 2,
+    "DATE": 1,
+    "TITLE": 1,
+    "QUANTITY": 13
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "Acme Corporation 456 Tech Center Drive San Francisco",
+    "CA 94102 Receipt",
+    "RCP-984044 Date",
+    "10/17/2025",
+    "12:13 PM Cashier"
+  ]
+}
