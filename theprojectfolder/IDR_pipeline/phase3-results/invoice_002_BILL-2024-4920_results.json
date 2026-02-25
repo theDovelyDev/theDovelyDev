@@ -1,0 +1,200 @@
+{
+  "document_name": "uploads/phase3/1769887409_invoice_002_BILL-2024-4920.pdf",
+  "processed_at": "2026-01-31T19:23:40.360770",
+  "extraction": {
+    "full_text": "INVOICE Invoice Number: BILL-2024-4920 Invoice Date: December 21, 2025 Due Date: January 20, 2026 Terms: Payment due within 30 days of invoice date From: Bill To: Stellar Solutions Inc Paramount Services 456 Tech Center Drive 987 Corporate Drive San Francisco, CA 94102 Boston, MA 02101 Description Quantity Unit Price Amount Software Licensing (licenses) 17 $236.55 $4,021.35 System Integration (project) 49 $455.56 $22,322.44 Professional Consulting Services (hours) 16 $477.69 $7,643.04 Subtotal: $33,986.83 Tax (8%): $2,718.95 Total: $36,705.78 Payment Instructions: Please make payment to: Stellar Solutions Inc Bank Account: 4218314961 Routing Number: 123456789 Reference: Invoice number on payment Thank you for your business! For questions about this invoice, please contact accounts@company.com",
+    "key_value_pairs": {
+      "Invoice Number:": "BILL-2024-4920",
+      "Invoice Date:": "December 21, 2025",
+      "From:": "Stellar Solutions Inc 456 Tech Center Drive San Francisco, CA 94102",
+      "Bill To:": "Paramount Services 987 Corporate Drive Boston, MA 02101",
+      "Total:": "$36,705.78",
+      "Please make payment to:": "Stellar Solutions Inc",
+      "Subtotal:": "$33,986.83",
+      "Reference:": "Invoice number on payment",
+      "Routing Number:": "123456789",
+      "Due Date:": "January 20, 2026",
+      "Terms:": "Payment due within 30 days of invoice date",
+      "Bank Account:": "4218314961",
+      "Tax (8%):": "$2,718.95"
+    },
+    "page_count": 1,
+    "extraction_confidence": 95.39
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "BILL",
+        "type": "OTHER",
+        "score": 0.92
+      },
+      {
+        "text": "2024-4920",
+        "type": "OTHER",
+        "score": 0.77
+      },
+      {
+        "text": "December 21, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "January 20, 2026",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "30 days",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "Stellar Solutions Inc Paramount Services",
+        "type": "ORGANIZATION",
+        "score": 0.97
+      },
+      {
+        "text": "456 Tech Center Drive 987 Corporate Drive San Francisco, CA 94102 Boston, MA 02101",
+        "type": "LOCATION",
+        "score": 0.98
+      },
+      {
+        "text": "17",
+        "type": "QUANTITY",
+        "score": 0.63
+      },
+      {
+        "text": "$236.55",
+        "type": "QUANTITY",
+        "score": 0.92
+      },
+      {
+        "text": "$4,021.35",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "49",
+        "type": "QUANTITY",
+        "score": 0.91
+      },
+      {
+        "text": "$455.56",
+        "type": "QUANTITY",
+        "score": 0.93
+      },
+      {
+        "text": "$22,322.44",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "16",
+        "type": "QUANTITY",
+        "score": 0.82
+      },
+      {
+        "text": "$477.69",
+        "type": "QUANTITY",
+        "score": 0.85
+      },
+      {
+        "text": "$7,643.04",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$33,986.83",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$2,718.95",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$36,705.78",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "Stellar Solutions Inc",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "4218314961",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "123456789",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "accounts@company.com",
+        "type": "OTHER",
+        "score": 0.99
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "INVOICE Invoice Number",
+        "score": 0.95
+      },
+      {
+        "text": "BILL-2024-4920 Invoice Date",
+        "score": 0.79
+      },
+      {
+        "text": "December 21, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Due",
+        "score": 0.78
+      },
+      {
+        "text": "Date",
+        "score": 0.68
+      },
+      {
+        "text": "January 20, 2026",
+        "score": 1.0
+      },
+      {
+        "text": "Terms",
+        "score": 0.83
+      },
+      {
+        "text": "Payment",
+        "score": 0.86
+      },
+      {
+        "text": "30 days",
+        "score": 1.0
+      },
+      {
+        "text": "invoice date",
+        "score": 0.99
+      }
+    ]
+  },
+  "status": "success"
+}

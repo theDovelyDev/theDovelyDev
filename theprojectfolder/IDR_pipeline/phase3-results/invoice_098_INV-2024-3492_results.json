@@ -1,0 +1,14 @@
+{
+  "document_name": "uploads/phase3/1769889760_invoice_098_INV-2024-3492.pdf",
+  "processed_at": "2026-01-31T20:02:45.762586",
+  "extraction": {
+    "full_text": "",
+    "key_value_pairs": {},
+    "page_count": 0,
+    "error": "An error occurred (UnsupportedDocumentException) when calling the AnalyzeDocument operation: Request has unsupported document format"
+  },
+  "analysis": {
+    "error": "Text too short for analysis"
+  },
+  "status": "success"
+}

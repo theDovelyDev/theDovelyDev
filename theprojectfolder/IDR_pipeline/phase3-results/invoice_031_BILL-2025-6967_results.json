@@ -1,0 +1,14 @@
+{
+  "document_name": "uploads/phase3/1769889886_invoice_031_BILL-2025-6967.pdf",
+  "processed_at": "2026-01-31T20:04:50.487280",
+  "extraction": {
+    "full_text": "",
+    "key_value_pairs": {},
+    "page_count": 0,
+    "error": "An error occurred (UnsupportedDocumentException) when calling the AnalyzeDocument operation: Request has unsupported document format"
+  },
+  "analysis": {
+    "error": "Text too short for analysis"
+  },
+  "status": "success"
+}

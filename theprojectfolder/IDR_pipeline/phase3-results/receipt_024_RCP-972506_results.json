@@ -1,0 +1,197 @@
+{
+  "document_name": "uploads/phase3/1769888577_receipt_024_RCP-972506.pdf",
+  "processed_at": "2026-01-31T19:43:07.137899",
+  "extraction": {
+    "full_text": "Apex Solutions Group 789 Commerce Blvd, Floor 5 Chicago, IL 60601 Receipt #: RCP-972506 Date: 07/23/2025 12:13 PM Cashier: Cashier 2 Database Management 1 X $ 65.86 $ 65.86 Cloud Infrastructure Services 1 X $ 34.57 $ 34.57 Application Support 3 X $ 56.73 $ 170.19 Project Management 4 X $ 75.76 $ 303.04 System Integration 2 X $ 56.29 $ 112.58 Software Development 5 X $ 94.53 $ 472.65 Network Administration 3 X $ 86.96 $ 260.88 Subtotal: $ 1419.77 Tax (8.25%) : $ 117.13 TOTAL: $ 1536.90 Payment Method: Credit Card Card ending in: 6613 Thank you for your purchase!",
+    "key_value_pairs": {
+      "Payment Method:": "Credit Card",
+      "TOTAL:": "$ 1536.90",
+      "Card ending in:": "6613",
+      "Subtotal:": "$ 1419.77",
+      "Date:": "07/23/2025 12:13 PM",
+      "Cashier:": "Cashier 2",
+      "Receipt #:": "RCP-972506",
+      "Tax (8.25%) :": "$ 117.13",
+      "Application Support": "3 X $ 56.73 $ 170.19",
+      "Network Administration": "3 X $ 86.96 $ 260.88",
+      "Software Development": "$ 94.53 $ 472.65",
+      "System Integration 2": "$ 56.29 $ 112.58",
+      "Project Management 4": "$ 75.76 $ 303.04",
+      "Database Management 1 X": "$ 65.86 $ 65.86",
+      "Floor": "5"
+    },
+    "page_count": 1,
+    "extraction_confidence": 94.7
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "Apex Solutions Group",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "789 Commerce Blvd, Floor 5 Chicago, IL 60601",
+        "type": "LOCATION",
+        "score": 0.94
+      },
+      {
+        "text": "RCP-972506",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "07/23/2025 12:13 PM",
+        "type": "DATE",
+        "score": 0.97
+      },
+      {
+        "text": "$ 65.86",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 65.86",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 34.57",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 34.57",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$ 56.73",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 170.19",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 75.76",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 303.04",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$ 56.29",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 112.58",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 94.53",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 472.65",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 86.96",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 260.88",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$ 1419.77",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8.25%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$ 117.13",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 1536.90",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "6613",
+        "type": "OTHER",
+        "score": 1.0
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "Apex Solutions Group 789 Commerce Blvd",
+        "score": 0.96
+      },
+      {
+        "text": "Floor 5 Chicago",
+        "score": 0.93
+      },
+      {
+        "text": "IL 60601 Receipt",
+        "score": 0.8
+      },
+      {
+        "text": "RCP-972506 Date",
+        "score": 0.95
+      },
+      {
+        "text": "07/23/2025 12:13 PM Cashier",
+        "score": 0.83
+      },
+      {
+        "text": "Cashier 2 Database Management 1 X",
+        "score": 0.86
+      },
+      {
+        "text": "$ 65.86",
+        "score": 0.98
+      },
+      {
+        "text": "$ 65.86 Cloud Infrastructure Services 1 X",
+        "score": 0.78
+      },
+      {
+        "text": "$ 34.57",
+        "score": 0.9
+      },
+      {
+        "text": "$ 34.57 Application Support 3 X",
+        "score": 0.77
+      }
+    ]
+  },
+  "status": "success"
+}

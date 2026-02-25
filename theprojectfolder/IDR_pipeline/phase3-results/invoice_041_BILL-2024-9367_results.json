@@ -1,0 +1,190 @@
+{
+  "document_name": "uploads/phase3/1769887345_invoice_041_BILL-2024-9367.pdf",
+  "processed_at": "2026-01-31T19:22:34.631838",
+  "extraction": {
+    "full_text": "INVOICE Invoice Number: BILL-2024-9367 Invoice Date: August 18, 2025 Due Date: September 17, 2025 Terms: Payment due within 30 days of invoice date From: Bill To: Excellence Enterprises Pinnacle Consulting 246 Enterprise Avenue 654 Market Street, Building B Atlanta, GA 30301 Seattle, WA 98101 Description Quantity Unit Price Amount Managed Services (month) 8 $438.42 $3,507.36 Cloud Infrastructure Services (month) 38 $490.83 $18,651.54 Hardware Maintenance (units) 4 $113.69 $454.76 Subtotal: $22,613.66 Tax (8%): $1,809.09 Total: $24,422.75 Payment Instructions: Please make payment to: Excellence Enterprises Bank Account: 4494933401 Routing Number: 123456789 Reference: Invoice number on payment Thank you for your business! For questions about this invoice, please contact accounts@company.com",
+    "key_value_pairs": {
+      "Invoice Number:": "BILL-2024-9367",
+      "Invoice Date:": "August 18, 2025",
+      "From:": "Excellence Enterprises 246 Enterprise Avenue Atlanta, GA 30301",
+      "Bill To:": "Pinnacle Consulting 654 Market Street, Building B Seattle, WA 98101",
+      "Total:": "$24,422.75",
+      "Please make payment to:": "Excellence Enterprises",
+      "Subtotal:": "$22,613.66",
+      "Reference:": "Invoice number on payment",
+      "Routing Number:": "123456789",
+      "Due Date:": "September 17, 2025",
+      "Terms:": "Payment due within 30 days of invoice date",
+      "Bank Account:": "4494933401",
+      "Tax (8%):": "$1,809.09"
+    },
+    "page_count": 1,
+    "extraction_confidence": 95.27
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "BILL-2024-9367",
+        "type": "OTHER",
+        "score": 0.7
+      },
+      {
+        "text": "August 18, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "September 17, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "30 days",
+        "type": "QUANTITY",
+        "score": 0.95
+      },
+      {
+        "text": "Excellence Enterprises Pinnacle Consulting",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "246 Enterprise Avenue 654 Market Street, Building B Atlanta, GA 30301 Seattle, WA 98101",
+        "type": "LOCATION",
+        "score": 0.98
+      },
+      {
+        "text": "8 $438.42",
+        "type": "QUANTITY",
+        "score": 0.79
+      },
+      {
+        "text": "$3,507.36",
+        "type": "QUANTITY",
+        "score": 0.91
+      },
+      {
+        "text": "38",
+        "type": "QUANTITY",
+        "score": 0.94
+      },
+      {
+        "text": "$490.83",
+        "type": "QUANTITY",
+        "score": 0.87
+      },
+      {
+        "text": "$18,651.54",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "4",
+        "type": "QUANTITY",
+        "score": 0.86
+      },
+      {
+        "text": "$113.69",
+        "type": "QUANTITY",
+        "score": 0.73
+      },
+      {
+        "text": "$454.76",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$22,613.66",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$1,809.09",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$24,422.75",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "Excellence Enterprises Bank",
+        "type": "ORGANIZATION",
+        "score": 0.99
+      },
+      {
+        "text": "4494933401",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "123456789",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "accounts@company.com",
+        "type": "OTHER",
+        "score": 1.0
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "INVOICE Invoice Number",
+        "score": 0.94
+      },
+      {
+        "text": "BILL-2024-9367 Invoice Date",
+        "score": 0.92
+      },
+      {
+        "text": "August 18, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Due",
+        "score": 0.75
+      },
+      {
+        "text": "Date",
+        "score": 0.65
+      },
+      {
+        "text": "September 17, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Terms",
+        "score": 0.81
+      },
+      {
+        "text": "Payment",
+        "score": 0.82
+      },
+      {
+        "text": "30 days",
+        "score": 1.0
+      },
+      {
+        "text": "invoice date",
+        "score": 0.99
+      }
+    ]
+  },
+  "status": "success"
+}

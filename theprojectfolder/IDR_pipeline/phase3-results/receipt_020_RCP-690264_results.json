@@ -1,0 +1,191 @@
+{
+  "document_name": "uploads/phase3/1769888514_receipt_020_RCP-690264.pdf",
+  "processed_at": "2026-01-31T19:42:01.048387",
+  "extraction": {
+    "full_text": "Quality Products Co 123 Business Plaza, Suite 400 New York, NY 10001 Receipt #: RCP-690264 Date: 11/04/2025 12:13 PM Cashier: Cashier 12 Network Administration 1 X $ 52.62 $ 52.62 Hardware Maintenance 3 X $ 8.45 $ 25.35 Technical Support 4 X $ 37.71 $ 150.84 Project Management 5 X $ 32.66 $ 163.30 Security Audit Services 5 X $ 47.47 $ 237.35 Subtotal: $ 629.46 Tax (8.25%) : $ 51.93 TOTAL: $ 681.39 Payment Method: Credit Card Card ending in: 4613 Thank you for your purchase!",
+    "key_value_pairs": {
+      "Card ending in:": "4613",
+      "Date:": "11/04/2025 12:13 PM",
+      "Tax (8.25%) :": "$ 51.93",
+      "Cashier:": "Cashier 12",
+      "Payment Method:": "Credit Card",
+      "Receipt #:": "RCP-690264",
+      "TOTAL:": "$ 681.39",
+      "Subtotal:": "$ 629.46",
+      "Network Administration 1 X": "$ 52.62 $ 52.62",
+      "Security Audit Services": "5 X $ 47.47 $ 237.35",
+      "Project Management 5": "$ 32.66 $ 163.30",
+      "Technical Support": "4 X $ 37.71 $ 150.84",
+      "Suite": "400",
+      "Hardware Maintenance 3 X": "$ 8.45 $ 25.35"
+    },
+    "page_count": 1,
+    "extraction_confidence": 95.61
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "Quality Products Co",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "123 Business Plaza, Suite 400 New York, NY 10001",
+        "type": "LOCATION",
+        "score": 0.94
+      },
+      {
+        "text": "RCP-690264",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "11/04/2025 12:13 PM",
+        "type": "DATE",
+        "score": 0.98
+      },
+      {
+        "text": "$ 52.62",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 52.62",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "3",
+        "type": "QUANTITY",
+        "score": 0.42
+      },
+      {
+        "text": "$ 8.45",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 25.35",
+        "type": "QUANTITY",
+        "score": 0.94
+      },
+      {
+        "text": "$ 37.71",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 150.84",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "5",
+        "type": "QUANTITY",
+        "score": 0.64
+      },
+      {
+        "text": "$ 32.66",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 163.30",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "5",
+        "type": "QUANTITY",
+        "score": 0.53
+      },
+      {
+        "text": "$ 47.47",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 237.35",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$ 629.46",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8.25%",
+        "type": "QUANTITY",
+        "score": 0.97
+      },
+      {
+        "text": "$ 51.93",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$ 681.39",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "4613",
+        "type": "OTHER",
+        "score": 0.99
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "Quality Products Co 123 Business Plaza",
+        "score": 0.97
+      },
+      {
+        "text": "Suite 400",
+        "score": 0.95
+      },
+      {
+        "text": "New York",
+        "score": 0.71
+      },
+      {
+        "text": "NY 10001 Receipt",
+        "score": 0.91
+      },
+      {
+        "text": "RCP-690264 Date",
+        "score": 0.94
+      },
+      {
+        "text": "11/04/2025",
+        "score": 0.99
+      },
+      {
+        "text": "12:13 PM Cashier",
+        "score": 0.8
+      },
+      {
+        "text": "Cashier 12 Network Administration 1 X",
+        "score": 0.91
+      },
+      {
+        "text": "$ 52.62",
+        "score": 0.98
+      },
+      {
+        "text": "$ 52.62",
+        "score": 0.97
+      }
+    ]
+  },
+  "status": "success"
+}

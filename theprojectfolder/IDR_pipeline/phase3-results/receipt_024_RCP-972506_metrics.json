@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769888577_receipt_024_RCP-972506.pdf",
+  "processed_at": "2026-01-31T19:43:07.137899",
+  "status": "success",
+  "full_text_length": 567,
+  "key_value_pairs": 15,
+  "page_count": 1,
+  "entities_found": 23,
+  "avg_entity_confidence": 99.0,
+  "entity_types": {
+    "ORGANIZATION": 1,
+    "LOCATION": 1,
+    "OTHER": 2,
+    "DATE": 1,
+    "QUANTITY": 18
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "Apex Solutions Group 789 Commerce Blvd",
+    "Floor 5 Chicago",
+    "IL 60601 Receipt",
+    "RCP-972506 Date",
+    "07/23/2025 12:13 PM Cashier"
+  ]
+}

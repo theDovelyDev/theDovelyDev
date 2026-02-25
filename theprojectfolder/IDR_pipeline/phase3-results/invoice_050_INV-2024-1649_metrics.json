@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769885328_invoice_050_INV-2024-1649.pdf",
+  "processed_at": "2026-01-31T18:48:55.522558",
+  "status": "success",
+  "full_text_length": 688,
+  "key_value_pairs": 14,
+  "page_count": 1,
+  "entities_found": 20,
+  "avg_entity_confidence": 96.2,
+  "entity_types": {
+    "OTHER": 4,
+    "DATE": 2,
+    "QUANTITY": 11,
+    "ORGANIZATION": 2,
+    "LOCATION": 1
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "INVOICE Invoice Number",
+    "INV-2024-1649 Invoice Date",
+    "July 16, 2025",
+    "Due",
+    "Date"
+  ]
+}

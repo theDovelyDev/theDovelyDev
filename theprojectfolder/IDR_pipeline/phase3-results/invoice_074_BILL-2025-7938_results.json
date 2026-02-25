@@ -1,0 +1,177 @@
+{
+  "document_name": "uploads/phase3/1769885264_invoice_074_BILL-2025-7938.pdf",
+  "processed_at": "2026-01-31T18:47:53.028778",
+  "extraction": {
+    "full_text": "INVOICE Invoice Number: BILL-2025-7938 Invoice Date: September 13, 2025 Due Date: October 13, 2025 Terms: Due upon receipt From: Bill To: Pinnacle Consulting Reliable Solutions Inc 456 Tech Center Drive 456 Tech Center Drive San Francisco, CA 94102 San Francisco, CA 94102 Description Quantity Unit Price Amount Application Support (hours) 42 $344.91 $14,486.22 Technical Support (hours) 8 $155.71 $1,245.68 Subtotal: $15,731.90 Tax (8%): $1,258.55 Total: $16,990.45 Payment Instructions: Please make payment to: Pinnacle Consulting Bank Account: 9956115098 Routing Number: 123456789 Reference: Invoice number on payment Thank you for your business! For questions about this invoice, please contact accounts@company.com",
+    "key_value_pairs": {
+      "Invoice Number:": "BILL-2025-7938",
+      "Invoice Date:": "September 13, 2025",
+      "From:": "Pinnacle Consulting 456 Tech Center Drive San Francisco, CA 94102",
+      "Bill To:": "Reliable Solutions Inc 456 Tech Center Drive San Francisco, CA 94102",
+      "Please make payment to:": "Pinnacle Consulting",
+      "Routing Number:": "123456789",
+      "Bank Account:": "9956115098",
+      "Total:": "$16,990.45",
+      "Due Date:": "October 13, 2025",
+      "Terms:": "Due upon receipt",
+      "Reference:": "Invoice number on payment",
+      "Subtotal:": "$15,731.90",
+      "Tax (8%):": "$1,258.55",
+      "Technical Support (hours)": "8 $155.71 $1,245.68",
+      "For questions about this invoice, please contact": "accounts@company.com"
+    },
+    "page_count": 1,
+    "extraction_confidence": 94.45
+  },
+  "analysis": {
+    "entities": [
+      {
+        "text": "BILL-2025-7938",
+        "type": "OTHER",
+        "score": 0.88
+      },
+      {
+        "text": "September 13, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "October 13, 2025",
+        "type": "DATE",
+        "score": 1.0
+      },
+      {
+        "text": "Pinnacle Consulting Reliable Solutions Inc",
+        "type": "ORGANIZATION",
+        "score": 1.0
+      },
+      {
+        "text": "456 Tech Center Drive 456 Tech Center Drive San Francisco, CA 94102 San Francisco, CA 94102",
+        "type": "LOCATION",
+        "score": 0.98
+      },
+      {
+        "text": "42",
+        "type": "QUANTITY",
+        "score": 0.92
+      },
+      {
+        "text": "$344.91",
+        "type": "QUANTITY",
+        "score": 0.93
+      },
+      {
+        "text": "$14,486.22",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "8",
+        "type": "QUANTITY",
+        "score": 0.87
+      },
+      {
+        "text": "$155.71",
+        "type": "QUANTITY",
+        "score": 0.89
+      },
+      {
+        "text": "$1,245.68",
+        "type": "QUANTITY",
+        "score": 0.99
+      },
+      {
+        "text": "$15,731.90",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "8%",
+        "type": "QUANTITY",
+        "score": 0.98
+      },
+      {
+        "text": "$1,258.55",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "$16,990.45",
+        "type": "QUANTITY",
+        "score": 1.0
+      },
+      {
+        "text": "Pinnacle Consulting Bank",
+        "type": "ORGANIZATION",
+        "score": 0.99
+      },
+      {
+        "text": "9956115098",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "123456789",
+        "type": "OTHER",
+        "score": 1.0
+      },
+      {
+        "text": "accounts@company.com",
+        "type": "OTHER",
+        "score": 0.99
+      }
+    ],
+    "sentiment": {
+      "overall": "NEUTRAL",
+      "scores": {
+        "Positive": 0.0,
+        "Negative": 0.0,
+        "Neutral": 1.0,
+        "Mixed": 0.0
+      }
+    },
+    "key_phrases": [
+      {
+        "text": "INVOICE Invoice Number",
+        "score": 0.95
+      },
+      {
+        "text": "BILL-2025-7938 Invoice Date",
+        "score": 0.92
+      },
+      {
+        "text": "September 13, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Due Date",
+        "score": 0.81
+      },
+      {
+        "text": "October 13, 2025",
+        "score": 1.0
+      },
+      {
+        "text": "Terms",
+        "score": 0.73
+      },
+      {
+        "text": "Due",
+        "score": 0.76
+      },
+      {
+        "text": "receipt",
+        "score": 0.93
+      },
+      {
+        "text": "Bill",
+        "score": 0.86
+      },
+      {
+        "text": "Pinnacle Consulting Reliable Solutions Inc 456 Tech Center Drive 456 Tech Center Drive San Francisco",
+        "score": 0.84
+      }
+    ]
+  },
+  "status": "success"
+}

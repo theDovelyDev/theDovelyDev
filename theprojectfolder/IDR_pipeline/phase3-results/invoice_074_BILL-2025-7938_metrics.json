@@ -1,0 +1,27 @@
+{
+  "document_name": "uploads/phase3/1769885264_invoice_074_BILL-2025-7938.pdf",
+  "processed_at": "2026-01-31T18:47:53.028778",
+  "status": "success",
+  "full_text_length": 719,
+  "key_value_pairs": 15,
+  "page_count": 1,
+  "entities_found": 19,
+  "avg_entity_confidence": 96.8,
+  "entity_types": {
+    "OTHER": 4,
+    "DATE": 2,
+    "ORGANIZATION": 2,
+    "LOCATION": 1,
+    "QUANTITY": 10
+  },
+  "sentiment": "NEUTRAL",
+  "sentiment_confidence": 0,
+  "key_phrases_count": 10,
+  "top_key_phrases": [
+    "INVOICE Invoice Number",
+    "BILL-2025-7938 Invoice Date",
+    "September 13, 2025",
+    "Due Date",
+    "October 13, 2025"
+  ]
+}
