@@ -12,9 +12,9 @@ A full-stack serverless portfolio site built on AWS — the long way, on purpose
 > **Project Status:** ✅ Live in Production  
 > **Monthly Cost:** ~$0.50 (Route 53 hosted zone only)  
 > **Started:** 2023  
-> **Live Site:** [theprojectfolder.com](https://www.theprojectfolder.com)  
-> **Read the Build Post:** [Substack — What I Actually Learned Building My Portfolio Site on AWS](https://substack.com/home)  
-> **FinOps Analysis:** [I Built a Website on AWS and Then Did a FinOps Analysis on It](https://substack.com/home)
+> **Live Site:** [www.theprojectfolder.com](https://www.theprojectfolder.com)  
+> **Read the Build Post:** [Substack — What I Actually Learned Building My Portfolio Site on AWS](https://open.substack.com/pub/carlandrainthecloud/p/i-almost-let-one-wrong-s3-bucket?utm_campaign=post-expanded-share&utm_medium=web)  
+> **FinOps Analysis:** [I Built a Website on AWS and Then Did a FinOps Analysis on It](https://open.substack.com/pub/carlandrainthecloud/p/i-built-a-website-on-aws-and-then?utm_campaign=post-expanded-share&utm_medium=web)
 
 ---
 
@@ -37,7 +37,7 @@ A full-stack serverless portfolio site built on AWS — the long way, on purpose
 
 ## 🎯 Overview
 
-This project is my implementation of [Forrest Brazeal's Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/) — a 16-step project that bridges cloud certification with real-world DevOps skills.
+This project is my implementation of [The Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/) — a 16-step project that bridges cloud certification with real-world DevOps skills.
 
 The result is a fully serverless, production-grade portfolio site with a live visitor counter, HTTPS, custom domain, infrastructure as code, and an automated CI/CD pipeline. No servers. No manual deployments. No hardcoded credentials.
 
@@ -106,6 +106,8 @@ This project was about closing the gap between the work I analyze and the work I
 ---
 
 ## ✨ Key Features
+
+**Built with ☁️ AWS, 🐍 Python, ☕ stubbornness, and the willingness to delete everything and start over.**
 
 ### Frontend
 
@@ -351,7 +353,7 @@ Lambda Function URL vs. API Gateway isn't just a cost question — it's an archi
 
 ### 6. Tag Everything Before You Deploy Anything
 
-All resources tagged with `Project: CloudResume` before first deployment. Filtering Cost Explorer by this tag gives me an exact dollar figure for this project at any time. At portfolio scale this seems trivial. At $200M enterprise scale, this discipline is how you generate $1.5M in cost avoidance.
+All resources tagged with `Project: theprojectfolder` before first deployment. Filtering Cost Explorer by this tag gives me an exact dollar figure for this project at any time. At portfolio scale this seems trivial. At $200M enterprise scale, this discipline is how you generate $1.5M in cost avoidance.
 
 ---
 
@@ -375,7 +377,7 @@ All resources tagged with `Project: CloudResume` before first deployment. Filter
 
 ### My Write-Ups
 
-- [What I Actually Learned Building My Portfolio Site on AWS](https://substack.com/home) — honest reflection on what went wrong and why
+- [What I Actually Learned Building My Portfolio Site on AWS](https://open.substack.com/pub/carlandrainthecloud/p/i-almost-let-one-wrong-s3-bucket?utm_campaign=post-expanded-share&utm_medium=web) — honest reflection on what went wrong and why
 - [I Built a Website on AWS and Then Did a FinOps Analysis on It](https://substack.com/home) — cost model, pricing corrections, 30-day forecast
 
 ### AWS Documentation
@@ -409,8 +411,6 @@ All resources tagged with `Project: CloudResume` before first deployment. Filter
 MIT License — fork it, build your own version, share what you learn.
 
 ---
-
-**Built with ☁️ AWS, 🐍 Python, ☕ stubbornness, and the willingness to delete everything and start over.**
 
 _Part of [The Project Folder](https://www.theprojectfolder.com) — a working portfolio, not a highlight reel._
 
