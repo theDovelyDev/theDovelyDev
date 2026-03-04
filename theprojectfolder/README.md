@@ -44,12 +44,12 @@ Event-driven Lambda function that automatically extracts text, entities, and sen
 **Tech:** AWS (Lambda, Textract, Comprehend, S3), Python, Event-Driven Architecture  
 🔗 [GitHub](./IDP_pipeline) | [Article](link-when-published)
 
-#### [DNS Failover with Route53](./route53-dns-failover)
+#### [Intelligent Document Processing Pipeline](./IDP_pipeline)
 
-**High availability architecture for static sites**  
-Active/passive failover setup with health checks. Built in response to the December 2024 AWS us-east-1 outage—because downtime teaches the best lessons.  
-**Tech:** AWS (Route53, S3, CloudFormation), High Availability, Disaster Recovery  
-🔗 [GitHub](./route53-dns-failover)
+**Serverless AI pipeline for automated document extraction and analysis**
+Event-driven architecture that processes invoices, receipts, and forms in 30 seconds at $0.034/doc — versus 3 minutes and $1.25 manually. Because if you can automate it, you should.
+**Tech:** AWS (S3, Lambda, Textract, Comprehend, API Gateway, EventBridge), Python, FinOps
+🔗 [GitHub](./IDP_pipeline)
 
 ---
 
@@ -57,7 +57,7 @@ Active/passive failover setup with health checks. Built in response to the Decem
 
 - **3-Tier Web Application** - VPC, EC2, RDS, Load Balancer architecture
 - **Data Pipeline Project** - ETL with AWS Glue and data warehousing
-- **AI/ML Project** - Building on Textract/Comprehend experience
+- **DNS Failover with Route 53** - High availability architecture for static sites
 - **2026 Cost Analysis** - Quarterly and year-end cost breakdown by project (FinOps in action)
 - **Thought Leadership** - Articles on FinOps, Cloud Governance, AI, and lessons learned
 

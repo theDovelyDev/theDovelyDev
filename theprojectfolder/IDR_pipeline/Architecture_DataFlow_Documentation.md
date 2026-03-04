@@ -1,4 +1,5 @@
-# Project 1: Intelligent Document Processing Pipeline
+# Intelligent Document Processing Pipeline
+
 ## Architecture & Data Flow Documentation
 
 ---
@@ -116,7 +117,7 @@ Step 7: AWS Textract extraction
 ├─ Input: S3 bucket + key reference
 ├─ API Call: analyze_document()
 ├─ Features: TABLES, FORMS
-├─ Processing: 
+├─ Processing:
 │   ├─ Identifies text blocks
 │   ├─ Extracts key-value pairs
 │   ├─ Detects tables
@@ -246,11 +247,13 @@ Step 12: Frontend displays results
 ### 1. Frontend (S3 Static Website)
 
 **Files:**
+
 - `index.html` - Main page structure
 - `styles.css` - Styling and layout
 - `app.js` - Upload logic, API calls, results display
 
 **Responsibilities:**
+
 - File selection and validation
 - Base64 encoding
 - API communication
@@ -283,6 +286,7 @@ GET /results
 ```
 
 **Responsibilities:**
+
 - Request routing
 - CORS handling
 - Request/response transformation
@@ -293,12 +297,14 @@ GET /results
 ### 3. Lambda Functions
 
 #### 3a. Upload Handler
+
 **Trigger:** API Gateway POST /upload
 **Runtime:** Python 3.11
 **Memory:** 256MB
 **Timeout:** 30s
 
 **Process:**
+
 1. Receive Base64 file
 2. Decode to binary
 3. Generate UUID
@@ -306,17 +312,20 @@ GET /results
 5. Return documentId
 
 **Data Flow:**
+
 ```
 API Request → Decode → Generate ID → S3 Upload → Response
 ```
 
 #### 3b. Document Processor (Core)
-**Trigger:** S3 ObjectCreated event (uploads/*)
+
+**Trigger:** S3 ObjectCreated event (uploads/\*)
 **Runtime:** Python 3.11
 **Memory:** 512MB
 **Timeout:** 60s
 
 **Process:**
+
 1. Receive S3 event
 2. Call Textract (OCR + Forms)
 3. Call Comprehend (NLP)
@@ -324,29 +333,34 @@ API Request → Decode → Generate ID → S3 Upload → Response
 5. Save to S3 Processed bucket
 
 **Data Flow:**
+
 ```
 S3 Event → Fetch File → Textract → Comprehend → Combine → Save JSON
 ```
 
 **Key Functions:**
+
 - `extract_text_from_document()` - Textract integration
 - `analyze_text()` - Comprehend integration
 - `extract_text_from_relationship()` - Parse Textract blocks
 - `extract_value_text()` - Get key-value pairs
 
 #### 3c. Results Handler
+
 **Trigger:** API Gateway GET /results
 **Runtime:** Python 3.11
 **Memory:** 256MB
 **Timeout:** 30s
 
 **Process:**
+
 1. Extract documentId from query
 2. Search S3 Processed bucket
 3. Fetch JSON result
 4. Return to API Gateway
 
 **Data Flow:**
+
 ```
 API Request → Parse documentId → S3 Lookup → Fetch JSON → Response
 ```
@@ -356,6 +370,7 @@ API Request → Parse documentId → S3 Lookup → Fetch JSON → Response
 ### 4. S3 Buckets
 
 #### Uploads Bucket
+
 **Name:** `{project}-uploads-{account-id}`
 **Purpose:** Store raw uploaded documents
 **Lifecycle:** 90 days → Glacier (optional)
@@ -363,6 +378,7 @@ API Request → Parse documentId → S3 Lookup → Fetch JSON → Response
 **Encryption:** AES-256 (default)
 
 **Structure:**
+
 ```
 uploads/
 ├── {uuid}_document1.pdf
@@ -371,10 +387,12 @@ uploads/
 ```
 
 #### Processed Bucket
+
 **Name:** `{project}-processed-{account-id}`
 **Purpose:** Store processing results (JSON)
 **Lifecycle:** 90 days → Glacier
 **Structure:**
+
 ```
 processed/
 ├── {uuid}_document1.pdf.json
@@ -383,10 +401,12 @@ processed/
 ```
 
 #### Frontend Bucket
+
 **Name:** `{project}-frontend-{account-id}`
 **Purpose:** Host static website
 **Public Access:** Enabled (for website)
 **Structure:**
+
 ```
 /
 ├── index.html
@@ -399,13 +419,16 @@ processed/
 ### 5. AI/ML Services
 
 #### AWS Textract
+
 **API:** `analyze_document()`
 **Features Used:**
+
 - TABLES - Extract tabular data
 - FORMS - Extract key-value pairs
 
 **Input:** S3 reference (bucket + key)
 **Output:** Blocks array with:
+
 - LINE blocks (text lines)
 - WORD blocks (individual words)
 - KEY_VALUE_SET blocks (form fields)
@@ -415,7 +438,9 @@ processed/
 **Free Tier:** 1,000 pages/month (first 3 months)
 
 #### AWS Comprehend
+
 **APIs Used:**
+
 1. `detect_entities()` - Find people, places, dates, amounts
 2. `detect_sentiment()` - Determine document tone
 3. `detect_key_phrases()` - Extract important phrases
@@ -431,11 +456,13 @@ processed/
 ### 6. CloudWatch (Monitoring)
 
 **Log Groups:**
+
 - `/aws/lambda/DocumentProcessor`
 - `/aws/lambda/APIUploadHandler`
 - `/aws/lambda/APIResultsHandler`
 
 **Metrics Tracked:**
+
 - Lambda invocations
 - Lambda duration
 - Lambda errors
@@ -443,6 +470,7 @@ processed/
 - API Gateway requests
 
 **Alarms (Optional):**
+
 - Lambda error rate > 5%
 - Processing time > 30s
 - Estimated charges > $20
@@ -485,22 +513,26 @@ processed/
 ## 📈 Data Volume & Performance
 
 **Typical Document:**
+
 - Size: 500KB - 2MB
 - Pages: 1-3
 - Processing time: 20-40 seconds
 
 **Breakdown:**
+
 - Upload: 2-5 seconds
 - Textract: 10-20 seconds (depends on pages)
 - Comprehend: 3-5 seconds
 - Storage: 1-2 seconds
 
 **Bottlenecks:**
+
 1. Textract API (slowest component)
 2. Lambda cold starts (first invocation)
 3. Network latency (file upload)
 
 **Optimization:**
+
 - Use async Textract for large documents
 - Implement Lambda warm-up
 - Compress files before upload
@@ -521,11 +553,13 @@ DocProcessingLambdaRole
 ```
 
 **S3 Bucket Policies:**
+
 - Uploads: Lambda read/write only
 - Processed: Lambda write, API read only
 - Frontend: Public read (static website)
 
 **API Gateway:**
+
 - CORS enabled for frontend domain
 - Rate limiting: 1000 requests/second
 - Authentication: None (can add API keys/Cognito)
@@ -535,6 +569,7 @@ DocProcessingLambdaRole
 ## 💰 Cost Attribution
 
 **Per Document Processing:**
+
 - Textract: $0.0015 per page (avg 2 pages = $0.003)
 - Comprehend: $0.01 per 100 units (avg 500 chars = $0.005)
 - Lambda: $0.000002 per invocation (3 functions = $0.000006)
@@ -542,6 +577,7 @@ DocProcessingLambdaRole
 - **Total: ~$0.034 per document**
 
 **Monthly Costs (500 documents):**
+
 - AI Services: $8.00
 - Lambda: $1.25
 - S3: $1.15
@@ -555,16 +591,19 @@ DocProcessingLambdaRole
 ## 🎯 Success Metrics
 
 **Performance:**
+
 - Processing time: < 60 seconds
 - Success rate: > 95%
 - Extraction accuracy: > 90% for printed docs
 
 **Cost:**
+
 - Per document: < $0.05
 - Monthly (500 docs): < $25
 - Development: < $15
 
 **Reliability:**
+
 - Uptime: 99.9% (AWS SLA)
 - Error rate: < 5%
 - Recovery time: < 5 minutes
