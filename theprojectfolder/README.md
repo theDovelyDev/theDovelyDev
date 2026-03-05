@@ -39,17 +39,10 @@ Serverless frontend (S3 + CloudFront), API Gateway + Lambda backend, DynamoDB vi
 
 #### [Intelligent Document Processing Pipeline](./IDP_pipeline)
 
-**AI-powered document extraction using AWS Textract and Comprehend**  
-Event-driven Lambda function that automatically extracts text, entities, and sentiment from uploaded documents. Reduces processing time from 3 minutes to 30 seconds at $0.034 per document.  
-**Tech:** AWS (Lambda, Textract, Comprehend, S3), Python, Event-Driven Architecture  
-🔗 [GitHub](./IDP_pipeline) | [Article](link-when-published)
-
-#### [Intelligent Document Processing Pipeline](./IDP_pipeline)
-
 **Serverless AI pipeline for automated document extraction and analysis**
 Event-driven architecture that processes invoices, receipts, and forms in 30 seconds at $0.034/doc — versus 3 minutes and $1.25 manually. Because if you can automate it, you should.
 **Tech:** AWS (S3, Lambda, Textract, Comprehend, API Gateway, EventBridge), Python, FinOps
-🔗 [GitHub](./IDP_pipeline)
+🔗 [GitHub](./IDP_pipeline) | Project writeup on Substack coming soon.
 
 ---
 

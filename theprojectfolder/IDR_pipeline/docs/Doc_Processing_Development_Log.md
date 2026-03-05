@@ -1002,50 +1002,116 @@ Challenge 3: Textract PDF Compatibility
 - Time spent: 30 minutes investigating
 - #### Lesson: Always test with edge cases and document failures
 
-### Phase 4: Comprehend Integration Deep Dive
+### Phase 4: Lambda Optimization & PDF Preprocessing
 
-**Date:** [DATE]  
-**Time Spent:** [HOURS]  
-**Status:** [ ] In Progress / [ ] Complete
+**Date:** March 4, 2026
+**Time Spent:** 2 hours
+**Status:** ✅ Complete
+
+#### Goal:
+
+Fix the 20% failure rate from Phase 3 by adding PDF preprocessing before Textract ingestion.
+3 complex PDFs failed with `UnsupportedDocumentException` — Phase 4 resolves this.
 
 #### What I Did:
 
-- [ ] Implemented entity detection
-- [ ] Added sentiment analysis
-- [ ] Extracted key phrases
-- [ ] Tested on various document types
+- [x] Built PyPDF2 Lambda layer (lambda/layers/pypdf2/)
+- [x] Installed PyPDF2 3.0.1 using Python 3.11 to match Lambda runtime
+- [x] Zipped layer using Python shutil (zip not available on Windows Git Bash)
+- [x] Deployed layer to AWS (pypdf2-layer:1)
+- [x] Attach layer to DocumentProcessor Lambda function
+- [x] Write PDF validation function
+- [x] Implement PDF normalization logic
+- [x] Update Lambda handler with preprocessing
+- [x] Re-test 3 failed documents
+- [x] Full regression test (all 15 documents)
+- [x] Update cost tracker
 
-#### Entity Detection Results:
-
-```
-Sample Invoice Analysis:
-- Organizations detected: 3 (95% confidence)
-- Dates detected: 2 (98% confidence)
-- Monetary amounts: 5 (92% confidence)
-- Locations: 2 (89% confidence)
-```
-
-#### Cost Tracker:
-
-- Comprehend API calls: $[AMOUNT]
-- Running total: $[TOTAL]
-
-#### Key Findings:
+#### Architecture Change:
 
 ```
-[Share insights]
+BEFORE (Phase 3):
+S3 Upload → Lambda → Textract (20% failure on complex PDFs)
 
-Example:
-- Comprehend's entity detection is extremely accurate for standard formats
-- Sentiment analysis useful for feedback forms
-- Key phrase extraction helps identify important contract terms
+AFTER (Phase 4):
+S3 Upload → Lambda → PyPDF2 Preprocessing → Textract (target: 100% success)
+```
+
+#### Layer Details:
+
+```
+Layer Name: pypdf2-layer
+Version: 1
+ARN: arn:aws:lambda:us-east-1:848747536965:layer:pypdf2-layer:1
+Runtime: python3.11
+Package: PyPDF2 3.0.1
+Size: 715KB
+Note: AWS does not support tagging Lambda layers — tracked here instead.
+```
+
+#### Key Learnings So Far:
+
+```
+Lambda Layers - Mental Model:
+Layers are pre-loaded kitchen tools. Instead of shipping all dependencies
+with every function deployment, layers mount to /opt/ at runtime and are
+shared across functions. Stable dependencies (PyPDF2) belong in layers;
+volatile business logic belongs in the function itself.
+
+When to use layers:
+- Multiple Lambda functions need the same dependency
+- Large dependencies that change rarely (PyPDF2, Pandas, NumPy)
+- Sharing internal utilities across a team or org
+- Approaching Lambda's 50MB deployment package size limit
+
+Python Version Matching:
+Always match local Python version to Lambda runtime. Building a layer with
+Python 3.13 locally but running Python 3.11 in Lambda causes silent failures
+for packages with C extensions. PyPDF2 is pure Python so it's forgiving,
+but this habit is critical for packages like Pandas or NumPy.
+
+pip --target flag:
+Installs packages to a specific folder instead of the global Python
+environment. Essential pattern for Lambda layer packaging.
+
+AWS Layer Tagging Limitation:
+AWS does not support tagging Lambda layers — only Lambda functions.
+Workaround: document layer resources in config files or the dev log.
+
+Windows Git Bash - zip not available:
+Used Python shutil.make_archive() as a cross-platform alternative.
+Pattern: when a CLI tool is missing, Python stdlib almost always has an equivalent.
 ```
 
 #### Challenges Faced:
 
 ```
-[YOUR CHALLENGES]
+Challenge 1: Python Version Mismatch
+- Issue: Local Python 3.13 compiled .pyc files incompatible with Lambda 3.11
+- Detection: cpython-313 in .pyc filenames after install
+- Solution: Wiped folder, installed Python 3.11, reinstalled with explicit path
+- Lesson: Always verify python --version matches Lambda runtime before building layers
+
+Challenge 2: Python 3.11 Not on PATH After Install
+- Issue: python3.11 command not found even after installing Python 3.11
+- Root cause: Windows installer did not add versioned executable to PATH
+- Solution: Used full path /c/Users/carla/AppData/Local/Programs/Python/Python311/python.exe
+- Lesson: On Windows, use full paths for specific Python versions
+
+Challenge 3: pip not included with Python 3.11 install
+- Solution: python3.11 -m ensurepip --upgrade
+- Lesson: Always bootstrap pip on fresh Python installs
+
+Challenge 4: zip command not available on Windows Git Bash
+- Solution: Python shutil.make_archive() — cross-platform and reliable
+- Lesson: Python stdlib is a reliable fallback for missing CLI tools on Windows
 ```
+
+#### Cost Tracker:
+
+- Lambda layer storage: $0.00 (within Free Tier)
+- Running total: $0.038
+- Budget remaining: $24.96
 
 ---
 
@@ -1616,9 +1682,9 @@ Example:
 **January 16, 2026** - Completed Pre-Development Setup (AWS account, IAM, CLI config, budget alerts)  
 **January 16, 2026** - Completed Phase 1 (S3 buckets with comprehensive tagging, versioning, policies, lifecycle rules)  
 **January 16, 2026** - Completed Side Quest: Automated Tag Governance (Lambda, EventBridge, SNS - weekly audits)  
-**[DATE]** - Completed Phase 2 (Lambda functions)  
-**[DATE]** - Completed Phase 3 (Textract integration)  
-**[DATE]** - Completed Phase 4 (Comprehend integration)  
+**February 2026** - Completed Phase 2 (Lambda functions)  
+**February 2026** - Completed Phase 3 (Textract integration - 80% success rate, 12/15 docs)  
+**March 4, 2026** - Completed Phase 4 (Lambda Optimization & PDF Preprocessing - PyPDF2 layer, preprocessing pipeline, 80% success rate maintained)  
 **[DATE]** - Completed Phase 5 (Frontend development)  
 **[DATE]** - Completed Phase 6 (API Gateway)  
 **[DATE]** - Completed Phase 7 (End-to-end testing)  
