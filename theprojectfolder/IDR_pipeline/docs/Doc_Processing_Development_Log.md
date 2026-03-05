@@ -1019,13 +1019,13 @@ Fix the 20% failure rate from Phase 3 by adding PDF preprocessing before Textrac
 - [x] Installed PyPDF2 3.0.1 using Python 3.11 to match Lambda runtime
 - [x] Zipped layer using Python shutil (zip not available on Windows Git Bash)
 - [x] Deployed layer to AWS (pypdf2-layer:1)
-- [x] Attach layer to DocumentProcessor Lambda function
-- [x] Write PDF validation function
-- [x] Implement PDF normalization logic
-- [x] Update Lambda handler with preprocessing
-- [x] Re-test 3 failed documents
-- [x] Full regression test (all 15 documents)
-- [x] Update cost tracker
+- [ ] Attach layer to DocumentProcessor Lambda function
+- [ ] Write PDF validation function
+- [ ] Implement PDF normalization logic
+- [ ] Update Lambda handler with preprocessing
+- [ ] Re-test 3 failed documents
+- [ ] Full regression test (all 15 documents)
+- [ ] Update cost tracker
 
 #### Architecture Change:
 
