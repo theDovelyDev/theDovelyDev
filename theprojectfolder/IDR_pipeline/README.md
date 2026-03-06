@@ -6,10 +6,10 @@ AI-powered document extraction and analysis built on AWS serverless architecture
 [![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Status:** 🚧 In Development — Phase 4 Complete
-> **Cost So Far:** $0.038 / $25.00 budget
-> **Success Rate:** 80% (12/15 documents) — PDF preprocessing layer added
-> **Last Updated:** March 4, 2026
+> **Status:** 🚧 In Development — Phase 5 Complete
+> **Cost So Far:** $0.038 / $25.00 budget  
+> **Success Rate:** 80% (12/15 documents) — DocFlow frontend deployed
+> **Last Updated:** March 6, 2026
 
 ---
 
@@ -131,6 +131,7 @@ See the Implementation Guide in /docs for full setup instructions.
 | Phase 2 — Lambda Development   | $0.00         |
 | Phase 3 — Textract Integration | $0.038        |
 | Phase 4 — Lambda Optimization  | $0.038        |
+| Phase 5 — Frontend (S3 Deploy) | $0.038        |
 
 **Estimated production cost:** ~$17/month for 500 documents
 **vs manual processing:** $625/month — 97% cost reduction
@@ -144,8 +145,8 @@ See the Implementation Guide in /docs for full setup instructions.
 - ✅ Phase 2 — Lambda Function Development
 - ✅ Phase 3 — Textract & Comprehend Integration
 - ✅ Phase 4 — Lambda Optimization & PDF Preprocessing
-- 🚧 Phase 5 — Frontend Development
-- ⬜ Phase 6 — API Gateway Integration
+- ✅ Phase 5 — Frontend Development (DocFlow static site deployed to S3)
+- 🚧 Phase 6 — API Gateway Integration
 - ⬜ Phase 7 — End-to-End Testing
 - ⬜ Phase 8 — Optimization & Cost Reduction
 - ⬜ Phase 9 — Documentation & Portfolio Prep
@@ -154,8 +155,12 @@ See the Implementation Guide in /docs for full setup instructions.
 
 ## Dev Log & Writing
 
+## Dev Log & Writing
+
 Full development log: docs/Doc_Processing_Development_Log.md
-Project writeup on Substack coming soon.
+
+Substack: [Carlandra in the Cloud](https://carlandrainthecloud.substack.com)
+Live demo: http://doc-processing-demo-frontend-848747536965.s3-website-us-east-1.amazonaws.com
 
 ---
 
