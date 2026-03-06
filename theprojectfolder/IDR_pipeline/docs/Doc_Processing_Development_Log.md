@@ -1117,49 +1117,126 @@ Challenge 4: zip command not available on Windows Git Bash
 
 ### Phase 5: Frontend Development
 
-**Date:** [DATE]  
-**Time Spent:** [HOURS]  
-**Status:** [ ] In Progress / [ ] Complete
+**Date:** March 6, 2026
+**Time Spent:** ~2 hours
+**Status:** ✅ Complete
+**Tag:** phase-5-complete
 
 #### What I Did:
 
-- [ ] Created HTML structure
-- [ ] Styled with CSS (gradient background, cards)
-- [ ] Implemented drag-and-drop upload
-- [ ] Added Base64 encoding
-- [ ] Built results display
-- [ ] Added statistics tracking
+- [x] Built DocFlow static frontend (index.html, styles.css, app.js)
+- [x] Implemented drag-and-drop upload with file validation (PDF/JPG/PNG, 10MB limit)
+- [x] Built animated progress ring with 4 pipeline step indicators (S3 → Textract → Comprehend → Store)
+- [x] Built results cards showing extracted Textract fields, entities, sentiment bars, S3 key
+- [x] Built stats bar tracking docs processed, avg time, success rate, estimated cost
+- [x] Simulated pipeline at 80% success rate matching Phase 3/4 actuals
+- [x] Pre-wired Phase 6 API stubs in app.js (CONFIG.SIMULATE flag ready to flip)
+- [x] Fixed style.css → styles.css filename typo
+- [x] Deployed to S3 static website hosting
+- [x] Configured public access block + bucket policy
+- [x] Recorded 1-minute demo video (90% success rate on 10 docs)
+- [x] Updated portfolio project cards (copy, tags, DocFlow screenshot)
+- [x] Committed, tagged, merged to main
 
 #### Design Decisions:
 
 ```
-[Explain your UI/UX choices]
-
-Example:
-- Chose purple gradient because it looks professional yet modern
-- Drag-and-drop was essential - uploading documents should be frictionless
-- Real-time stats (documents processed, avg time) show immediate value
+Dark theme with grid background — matches technical/engineering aesthetic
+DM Mono for data fields — clearly separates labels from values
+Progress ring over spinner — shows actual progress not just "loading"
+Pipeline breadcrumb (S3 → Lambda → Textract → Comprehend → Output) —
+  educates viewers about the architecture while they wait
+Failure cards kept intentional — honest 80% rate, shows UnsupportedDocumentException
+  with documented remediation path from Phase 4
+Stats bar always visible — immediate value signal for portfolio viewers
+CONFIG.SIMULATE flag — clean separation between Phase 5 UI and Phase 6 API wiring
 ```
 
-#### Cost Tracker:
+#### S3 Deployment:
 
-- S3 static hosting: $[AMOUNT]
-- Running total: $[TOTAL]
+```
+Bucket: doc-processing-demo-frontend-848747536965
+URL: http://doc-processing-demo-frontend-848747536965.s3-website-us-east-1.amazonaws.com
+Public access block: disabled (frontend bucket only — by design)
+Bucket policy: PublicReadGetObject
+Content-type headers set explicitly on upload (critical for browser rendering)
+cache-control: no-cache on HTML/JS, max-age=3600 on CSS
+```
 
 #### Challenges Faced:
 
 ```
-[YOUR CHALLENGES]
+Challenge 1: style.css vs styles.css filename mismatch
+- Issue: File uploaded as style.css but index.html referenced styles.css
+- Impact: CSS not loading, unstyled page
+- Solution: Renamed locally, re-uploaded with corrected filename
+- Lesson: Always verify filenames match exactly before deploying
+
+Challenge 2: S3 BlockPublicPolicy error on bucket policy
+- Issue: AccessDenied when calling PutBucketPolicy — BlockPublicPolicy setting
+- Solution: Disabled public access block first, then applied bucket policy
+- Lesson: S3 public access block must be explicitly disabled before public
+  bucket policies can be applied — this is intentional AWS security behavior
+  Note: Only appropriate for frontend/static asset buckets, never uploads/processed buckets
 ```
+
+#### Key Learnings:
+
+```
+aws s3 cp source destination — same as Unix cp but crosses local ↔ S3 boundary
+--content-type flag is critical — without it S3 serves HTML as plain text
+--cache-control "no-cache" on HTML/JS ensures browsers always fetch fresh copy
+S3 Block Public Access — four separate settings, all must be false for public hosting
+Production pattern: CloudFront → private S3 (Origin Access Control) instead of public bucket
+Phase 6 presigned URL pattern — Lambda generates temporary signed URL,
+  browser uploads directly to S3, no credentials exposed client-side
+```
+
+#### Demo Video:
+
+```
+Length: ~1 minute
+Success rate shown: 90% (10 docs, 1 failure)
+Structure: single doc first → bulk processing (shows both use cases)
+Platform: Loom (browser extension)
+Scheduled posts: LinkedIn, Instagram, Substack (captions drafted)
+```
+
+#### Portfolio Updates:
+
+```
+Updated project cards: Cloud Resume Challenge, FinOps Case Study,
+  Cloud Governance Playbook, Doc Processing Pipeline
+Changes: new copy (value-first format), tightened tags, DocFlow screenshot added
+Governance Playbook title updated: "The Cloud Governance Playbook I Wish Existed When I Started"
+```
+
+#### Cost Tracker:
+
+- S3 static hosting: $0.00 (within Free Tier)
+- S3 PUT requests (file uploads): $0.00 (within Free Tier)
+- Running total: $0.038
+- Budget remaining: $24.962
 
 #### Screenshots Captured:
 
-- [ ] Upload interface
-- [ ] Processing animation
-- [ ] Results display
-- [ ] Mobile responsive view
+- [x] DocFlow frontend live (portfolio card image)
+- [x] Demo video recorded (10 docs, 90% success rate)
+- [x] LinkedIn engagement — peer validation from Full Stack Developer
 
----
+#### Side Quest: GitHub Repo Restructure
+
+```
+Status: Deferred
+Goal: Flatten theDovelyDev/theDovelyDev → theDovelyDev/theprojectfolder (no wrapper folder)
+Finding: git mv failing on Windows Git Bash — glob expansion not working as expected
+Options when revisiting:
+  1. Debug Windows Git Bash glob/mv behavior
+  2. Fresh repo with correct flat structure from the start
+Decision: Not worth the risk mid-project with public viewers
+Local cleanup: Deleted orphaned backup branches (backup-main-before-merge, main-backup)
+  — these were local-only, never pushed, no impact on remote
+```
 
 ### Phase 6: API Gateway Integration
 
@@ -1685,7 +1762,7 @@ Example:
 **February 2026** - Completed Phase 2 (Lambda functions)  
 **February 2026** - Completed Phase 3 (Textract integration - 80% success rate, 12/15 docs)  
 **March 4, 2026** - Completed Phase 4 (Lambda Optimization & PDF Preprocessing - PyPDF2 layer, preprocessing pipeline, 80% success rate maintained)  
-**[DATE]** - Completed Phase 5 (Frontend development)  
+**March 5, 2026** - Completed Phase 5 (DocFlow frontend deployed to S3 — drag-and-drop upload, animated pipeline visualization, simulated 80% success rate, Phase 6 API stubs pre-wired. Portfolio project cards updated. Demo video recorded.)
 **[DATE]** - Completed Phase 6 (API Gateway)  
 **[DATE]** - Completed Phase 7 (End-to-end testing)  
 **[DATE]** - Completed Phase 8 (Optimization)  
