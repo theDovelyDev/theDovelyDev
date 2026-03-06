@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocFlow — Intelligent Document Processing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background grid -->
+    <div class="bg-grid"></div>
+
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="header-top">
+          <div class="logo">
+            <span class="logo-icon">◈</span>
+            <span class="logo-text">DocFlow</span>
+          </div>
+          <div class="status-badge" id="statusBadge">
+            <span class="status-dot"></span>
+            <span>Pipeline Ready</span>
+          </div>
+        </div>
+        <div class="header-body">
+          <h1>Intelligent Document<br /><em>Processing Pipeline</em></h1>
+          <p class="subtitle">
+            AWS-powered extraction via Textract &amp; Comprehend. Drop a
+            document, get structured data.
+          </p>
+        </div>
+        <div class="pipeline-path">
+          <span class="pill">S3</span>
+          <span class="arrow">→</span>
+          <span class="pill">Lambda</span>
+          <span class="arrow">→</span>
+          <span class="pill">Textract</span>
+          <span class="arrow">→</span>
+          <span class="pill">Comprehend</span>
+          <span class="arrow">→</span>
+          <span class="pill active">Output</span>
+        </div>
+      </header>
+
+      <!-- Upload Section -->
+      <section class="upload-section">
+        <div
+          class="upload-box"
+          id="uploadBox"
+          role="button"
+          tabindex="0"
+          aria-label="Upload documents">
+          <div class="upload-inner">
+            <div class="upload-icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+            </div>
+            <p class="upload-headline">Drop documents here</p>
+            <p class="upload-sub">
+              or <span class="upload-link">browse files</span>
+            </p>
+            <p class="upload-types">PDF · JPG · PNG — up to 10MB each</p>
+          </div>
+          <input
+            type="file"
+            id="fileInput"
+            accept=".pdf,.jpg,.jpeg,.png"
+            multiple
+            hidden />
+        </div>
+
+        <!-- File queue -->
+        <div class="file-queue" id="fileQueue"></div>
+
+        <!-- Process button -->
+        <button class="process-btn" id="processBtn" disabled>
+          <span class="btn-icon">⚡</span>
+          <span class="btn-label">Process Documents</span>
+          <span class="btn-count" id="btnCount"></span>
+        </button>
+      </section>
+
+      <!-- Processing State -->
+      <section
+        class="processing-section"
+        id="processingSection"
+        style="display: none">
+        <div class="processing-inner">
+          <div class="processing-ring">
+            <svg viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="26" class="ring-track" />
+              <circle
+                cx="30"
+                cy="30"
+                r="26"
+                class="ring-progress"
+                id="ringProgress" />
+            </svg>
+            <span class="ring-label" id="ringLabel">0%</span>
+          </div>
+          <div class="processing-text">
+            <p class="processing-status" id="processingStatus">
+              Uploading to S3...
+            </p>
+            <p class="processing-sub">
+              Your documents are moving through the pipeline
+            </p>
+          </div>
+          <div class="processing-steps" id="processingSteps">
+            <div class="step" id="step-upload">
+              <span class="step-dot"></span> S3 Upload
+            </div>
+            <div class="step" id="step-textract">
+              <span class="step-dot"></span> Textract OCR
+            </div>
+            <div class="step" id="step-comprehend">
+              <span class="step-dot"></span> Comprehend NLP
+            </div>
+            <div class="step" id="step-store">
+              <span class="step-dot"></span> Store Results
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section
+        class="results-section"
+        id="resultsSection"
+        style="display: none">
+        <div class="results-header">
+          <h2>Extracted Results</h2>
+          <button class="clear-btn" id="clearBtn">↩ Process More</button>
+        </div>
+        <div class="results-grid" id="resultsContainer"></div>
+      </section>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-val" id="statDocs">0</span>
+          <span class="stat-lbl">Documents</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-val" id="statTime">—</span>
+          <span class="stat-lbl">Avg. Time</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-val" id="statRate">—</span>
+          <span class="stat-lbl">Success Rate</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-val" id="statCost">$0.000</span>
+          <span class="stat-lbl">Est. Cost</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <span class="mono">idr_pipeline</span> · dev branch · Phase 5
+        <span class="footer-divider">|</span>
+        Budget: <span id="footerBudget" class="mono">$24.96 remaining</span>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
