@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 64" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c4697"/>
+      <stop offset="100%" stop-color="#b464ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Chevron mark — vertically centered to cap height of text -->
+  <polyline points="12,14 28,32 12,50" stroke="url(#grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Wordmark — optically aligned to chevron center -->
+  <text x="44" y="43" font-family="'DM Mono', 'Courier New', monospace" font-size="26" font-weight="400" letter-spacing="-0.5" fill="#0f1623">the<tspan fill="#0f1623" font-weight="500">project</tspan>folder</text>
+</svg>
