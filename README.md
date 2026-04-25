@@ -8,51 +8,55 @@ Building in public while learning AWS, data engineering, and AI/ML through hands
 
 ---
 
-## 👋 About Me
+## 👋 About Me & Why I Build
 
-I started my tech career as a **Business Analyst in IT Infrastructure & Reliability**, where I fell in love with understanding complex systems and making them work better. That curiosity led me to cloud computing, where I discovered I could build tangible, production-grade systems without needing extra storage space in my house (a win for everyone involved).
+I started my tech career as a **Business Analyst in IT Infrastructure & Reliability** where I fell in love with understanding complex systems and making them work better. Cloud computing opened up an entirely new world where I could build something tangible, break it, fix it, and deploy it to production—all without finding storage space around my house (a win for everyone involved). After earning my **AWS Cloud Practitioner certification**, I realized something: courses teach you theory, but **projects teach you reality**. I needed to bridge that gap between "I understand this concept" and "I can actually build this."
 
 Now I'm focused on **cloud engineering and data projects**, combining my analytical background with hands-on technical skills. I'm particularly interested in **AWS AI services**, **FinOps**, and building **cost-conscious, well-architected solutions**.
+I'm a tactile learner—I like puzzles, building things with my hands, and figuring out how systems work by taking them apart and putting them back together. 
 
 ---
 
-## 🎯 Why I Build
+## 💡 What Makes This Portfolio Different
 
-After earning my **AWS Cloud Practitioner certification**, I realized something: courses teach you theory, but **projects teach you reality**. I needed to bridge that gap between "I understand this concept" and "I can actually build this."
+This isn't just a code repository — it's a **learning journal with working software.**
 
-I'm a tactile learner—I like puzzles, building things with my hands, and figuring out how systems work by taking them apart and putting them back together. Cloud computing opened up an entirely new world where I could build something tangible, iterate on it, break it, fix it, and deploy it to production—all without finding storage space around my house.
+Each project folder contains a README, architecture documentation, development log, 
+cost tracker, and lessons learned. *The documentation is part of the work, not an afterthought.*
 
-**Every project in this repo represents something I built to learn**, not just to check a box. I document challenges, cost optimizations, and lessons learned because that's the real value—not just the final product.
+**Cost-Conscious Engineering** — every project includes a cost tracker. I document AWS 
+spend, optimize for Free Tier, and think about production costs from day one. *FinOps 
+isn't just a certification — it's a practice baked into every technical decision.*
 
----
+**Real Problems, Real Solutions** — I don't build toy projects. The DNS Failover project 
+came from experiencing an actual AWS outage. DocFlow solves a real business problem. 
+CARA exists because I watched peers burn through API credits with no guardrails. 
+These are production-ready solutions built to address real pain points.
 
-## 🚀 Featured Projects
+**Learning in Public** — I document challenges, failures, and pivots. The best learning 
+happens when things break. Every dev log has a Challenges Faced section because that's 
+where the real growth is.
 
-### 🏆 Production Projects
-
-#### [Cloud Resume Challenge](./cloudresumechallenge)
-
-**My portfolio site built with AWS serverless architecture**  
-Serverless frontend (S3 + CloudFront), API Gateway + Lambda backend, DynamoDB visitor counter, CI/CD with GitHub Actions, IaC with Terraform.  
-**Tech:** AWS (S3, CloudFront, Lambda, DynamoDB, Route53), JavaScript, Python, Terraform  
-🔗 [Live Site](https://www.theprojectfolder.com) | [GitHub](./cloudresumechallenge)
-
-#### [Intelligent Document Processing Pipeline](./IDP_pipeline)
-
-**Serverless AI pipeline for automated document extraction and analysis**
-Event-driven architecture that processes invoices, receipts, and forms in 30 seconds at $0.034/doc — versus 3 minutes and $1.25 manually. Because if you can automate it, you should.
-**Tech:** AWS (S3, Lambda, Textract, Comprehend, API Gateway, EventBridge), Python, FinOps
-🔗 [GitHub](./IDP_pipeline) | Project writeup on Substack coming soon.
+**End-to-End Ownership** — from architecture design to cost optimization to documentation, 
+*I own the full lifecycle.* These aren't tutorials I followed — they're systems I designed, 
+built, debugged, and deployed.
 
 ---
 
-### 🚧 In Progress / Planned
+## 🗂️ The Project Folder
 
-- **3-Tier Web Application** - VPC, EC2, RDS, Load Balancer architecture
-- **Data Pipeline Project** - ETL with AWS Glue and data warehousing
-- **DNS Failover with Route 53** - High availability architecture for static sites
-- **2026 Cost Analysis** - Quarterly and year-end cost breakdown by project (FinOps in action)
-- **Thought Leadership** - Articles on FinOps, Cloud Governance, AI, and lessons learned
+All my projects live at **[github.com/theDovelyDev/theprojectfolder](https://github.com/theDovelyDev/theprojectfolder)**
+
+| Project | Stack | Status | Write-up |
+|---------|-------|--------|----------|
+| [C.A.R.A. — Cost-Aware Research Agent](https://github.com/theDovelyDev/theprojectfolder/tree/main/budget-research-agent) | LangGraph · Claude · Tavily · Fargate | 🚧 In Progress | Coming soon |
+| [DocFlow IDP Pipeline](https://github.com/theDovelyDev/theprojectfolder/tree/main/IDR_pipeline) | AWS Lambda · Textract · Comprehend · API GW | ✅ Complete | [Substack](https://carlandrainthecloud.substack.com?utm_source=github&utm_medium=profile&utm_campaign=portfolio) |
+| [Cloud Resume Challenge](https://github.com/theDovelyDev/theprojectfolder/tree/main/cloudresumechallenge) | S3 · CloudFront · Lambda · DynamoDB | ✅ Complete | [Substack](https://carlandrainthecloud.substack.com?utm_source=github&utm_medium=profile&utm_campaign=portfolio) |
+| Thought Leadership | Substack · LinkedIn | 🔄 Ongoing | [Substack](https://carlandrainthecloud.substack.com?utm_source=github&utm_medium=profile&utm_campaign=portfolio) |
+| DNS Failover with Route 53 | Route 53 · CloudFront · S3 | 📋 Planned | Coming soon |
+| 3-Tier Web Application | VPC · EC2 · RDS · ALB | 📋 Planned | Coming soon |
+| Data Pipeline | AWS Glue · S3 · Redshift | 📋 Planned | Coming soon |
+| 2026 Cost Analysis | AWS Cost Explorer · FinOps | 📋 Planned | Coming soon |
 
 ---
 
@@ -86,17 +90,17 @@ I'm a big believer in **certifications + hands-on projects**. Theory without pra
 
 ### 📜 Certifications
 
-**Completed:**
+**✅Completed:**
 
-- ✅ AWS Certified Cloud Practitioner (CCP)
-- ✅ FinOps Certified Practitioner
-- ✅ FinOps Engineer
-- ✅ FinOps FOCUS Analyst
-- ✅ Oracle Cloud Infrastructure Foundations
-- ✅ Oracle AI Foundations
-- ✅ AWS Certified AI Practitioner
+[![AWS AI CP](https://images.credly.com/size/80x80/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png)](https://www.credly.com/users/carlandra-williams)
+[![AWS CCP](https://images.credly.com/size/80x80/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png)](https://www.credly.com/users/carlandra-williams)
+[![FINOPS PRAC](https://images.credly.com/size/80x80/images/08a5010a-0c0a-448c-981e-c116fedd380c/image.png)](https://www.credly.com/users/carlandra-williams)
+[![FINOPS ENG](https://images.credly.com/size/80x80/images/90c78afd-e885-4525-8f5e-e5834d8cb13d/image.png)](https://www.credly.com/users/carlandra-williams)
+[![FINOPS FOCUS](https://images.credly.com/size/80x80/images/c28f46e1-b0cf-4581-a963-d04db79cd39c/image.png)](https://www.credly.com/users/carlandra-williams)
+[![ORACLE OCI AI](https://images.credly.com/size/80x80/images/570a6e90-3d68-4e1a-b1c5-75c43cf9ff02/OCI25AICFAV1_cached_image_20251121-32-elft9u.png)](https://catalog-education.oracle.com/ords/certview/sharebadge?id=710155462B13A546B9D484883A1613E94035BBC0C9E614B0E070611B8CC41423)
+[![ORACLE OCI](https://images.credly.com/size/80x80/images/30674e9a-f452-4f69-a82d-cfd83d29ce18/OCI25FNDCFAV1_cached_image_20250730-31-yu1idf.png)](https://catalog-education.oracle.com/pls/certview/sharebadge?id=0DBADB7CDD606CC871E698A7A0606413B842361FF3EEFE2D3427079890FCEE97)
 
-**In Progress / Planned:**
+**🚧 Planned:**
 
 - 🎯 AWS Solutions Architect Associate (SAA)
 - 🎯 FinOps Certified Professional
@@ -105,64 +109,16 @@ I'm a big believer in **certifications + hands-on projects**. Theory without pra
 
 ---
 
-## 💡 What Makes This Portfolio Different
-
-**1. Cost-Conscious Engineering**  
-Every project includes a cost tracker. I document AWS spend, optimize for Free Tier, and think about production costs from day one. FinOps isn't just a certification for me—it's a practice.
-
-**2. Real Problems, Real Solutions**  
-I don't build "toy projects." The DNS Failover project came from experiencing an actual AWS outage. The Document Processing Pipeline solves a real business problem (manual data entry). These are production-ready solutions.
-
-**3. Learning in Public**  
-I document challenges, failures, and pivots. The best learning happens when things break. I share those moments because that's where the real growth is.
-
-**4. End-to-End Ownership**  
-From architecture design to cost optimization to documentation—I own the full lifecycle. These aren't tutorials I followed; they're systems I designed, built, debugged, and deployed.
-
----
-
-## 📊 Project Stats
-
-- **Total Projects:** 3 (+ 5 in planning)
-- **AWS Services Used:** 15+
-- **Total AWS Spend (2024-2026):** Tracking in cost analysis project
-- **Lines of Code:** Growing daily
-
----
-
 ## 📫 Let's Connect
 
 I'm always open to discussing cloud architecture, FinOps, data engineering, or sharing what I've learned building these projects.
 
-- **Portfolio:** [theprojectfolder.com](https://www.theprojectfolder.com)
-- **LinkedIn:** [linkedin.com/in/carlandra-williams](https://www.linkedin.com/in/carlandra-williams)
-- **Email:** [datanpearlz@gmail.com](mailto:datanpearlz@gmail.com)
-
+- **Portfolio:** [![Portfolio](https://img.shields.io/badge/🌍_The_Project_Folder-theprojectfolder.com-BA7517?style=flat)](https://theprojectfolder.com?utm_source=github&utm_medium=profile&utm_campaign=portfolio)
+- **LinkedIn:** [![LinkedIn](https://img.shields.io/badge/💼_LinkedIn-Carlandra_Williams-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/carlandra?utm_source=github&utm_medium=profile&utm_campaign=portfolio)
+- **Email:** [![Gmail](https://img.shields.io/badge/📧_Email-datanpearlz@gmail.com-blue)](mailto:datanpearlz@gmail.com)
 ---
 
-## 🎯 Current Focus (Q1 2026)
-
-- Finishing **Intelligent Document Processing Pipeline** documentation
-- Planning **3-tier web application** architecture
-- Publishing thought leadership articles on FinOps and cloud governance
-- Studying for **AWS Solutions Architect Associate**
-
----
-
-## 📝 Notes on This Repo
-
-Each project folder contains:
-
-- **README.md** - Project overview, architecture, and learnings
-- **Documentation** - Setup guides, cost tracking, development logs
-- **Code** - Infrastructure as Code, Lambda functions, scripts
-- **Lessons Learned** - Challenges, pivots, and what I'd do differently
-
-This isn't just a code repository—it's a **learning journal** with working software.
-
----
-
-**Last Updated:** January 2026  
+**Last Updated:** April 2026  
 **Status:** Actively building 🚀
 
 ---
