@@ -26,13 +26,9 @@ All my projects live at **[github.com/theDovelyDev/theprojectfolder](https://git
 ---
 
 ## 🛠️ Tech Stack
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)
-![LangGraph](https://img.shields.io/badge/LangGraph-1C3A5E?style=flat&logo=python&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
-![Anthropic](https://img.shields.io/badge/Anthropic-000000?style=flat&logo=anthropic&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
+<div align="left">
+  <img src="https://skillicons.dev/icons?i=aws,git,github,vscode,python,fastapi,docker,anthropic" />
+</div>
 
 ---
 
